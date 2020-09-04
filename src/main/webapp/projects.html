@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <title>Projects</title>
+    <link rel="icon" href="/images/IMG_1502_circular.ico" type="image/x-icon" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+  </head>
+  <body onload="onloadPage('projects')">
+    <div id="content">
+      <div id="login-logout"></div>
+      <div id="content-logged-in">
+        <br />
+        <form
+          id="project-form"
+          method="POST"
+          action="/projects"
+        >
+          <div style="width: 100%;">
+            <label for="mode">Mode:</label>
+            <input type="text" name="mode" required />
+          </div>
+          <div style="width: 100%;">
+            <label for="proj-id">Project ID:</label>
+            <input type="text" name="proj-id" />
+          </div>
+          <div style="width: 100%;">
+            <label for="proj-name">Project name:</label>
+            <input type="text" name="proj-name" />
+          </div>
+          <div style="width: 100%;">
+            <label for="owners">Owners:</label>
+            <input type="text" name="owners" />
+          </div>
+          <div style="width: 100%;">
+            <label for="editors">Editors:</label>
+            <input type="text" name="editors" />
+          </div>
+          <div style="width: 100%;">
+            <label for="visibility">Visibility:</label><br />
+            <input type="radio" name="visibility" value="public">
+            <label for="true">Public</label><br />
+            <input type="radio" name="visibility" value="private">
+            <label for="false">Private</label><br />
+          </div>
+          <div style="width: 100%;">
+            <label for="delete">Delete project:</label><br />
+            <input type="radio" name="delete" value="true">
+            <label for="true">True</label><br />
+            <input type="radio" name="delete" value="false">
+            <label for="false">False</label><br />
+          </div>
+          <br />
+          <button type="submit" id="create-project" class="center misc-button">
+            Create
+          </button>
+        </form>
+        <br />
+        <a href="imgmanip.html"
+          ><button id="goto-editor" class="center misc-button">
+            Go to editor
+          </button>
+        </a>
+      </div>
+    </div>
+  </body>
+</html>

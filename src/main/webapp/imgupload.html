@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <title>Image Upload</title>
+    <link rel="icon" href="/images/IMG_1502_circular.ico" type="image/x-icon" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+  </head>
+  <body onload="onloadPage('imgupload')">
+    <div id="content">
+      <div id="login-logout"></div>
+      <div id="content-logged-in">
+        <br />
+        <form
+          id="img-upload-form"
+          method="POST"
+          enctype="multipart/form-data"
+          action=""
+        >
+          <div style="width: 100%;">
+            <label for="proj-id">Project ID:</label>
+            <input type="text" name="proj-id" required />
+          </div>
+          <div style="width: 100%;">
+            <label for="mode">Mode:</label>
+            <input type="text" name="mode" required />
+          </div>
+          <div style="width: 100%;">
+            <label for="img-name">Image name:</label>
+            <input type="text" name="img-name" required />
+          </div>
+          <div style="width: 100%;">
+            <label for="image">Upload an image:</label>
+            <input type="file" name="image" />
+          </div>
+          <div style="width: 100%;">
+            <label for="new-name">New name:</label>
+            <input type="text" name="new-name" />
+          </div>
+          <div style="width: 100%;">
+            <label for="parent-img">Parent image name:</label>
+            <input type="text" name="parent-img" />
+          </div>
+          <div style="width: 100%;">
+            <label for="tags">Tags:</label>
+            <input type="text" name="tags" />
+          </div>
+          <div style="width: 100%;">
+            <label for="delete">Delete image:</label><br />
+            <input type="radio" name="delete" value="true">
+            <label for="true">True</label><br />
+            <input type="radio" name="delete" value="false">
+            <label for="false">False</label><br />
+          </div>
+          <br />
+          <button type="submit" id="upload-image" class="center misc-button">
+            Submit
+          </button>
+        </form>
+        <br />
+        <a href="imgmanip.html"
+          ><button id="goto-editor" class="center misc-button">
+            Go to editor
+          </button>
+        </a>
+      </div>
+    </div>
+  </body>
+</html>
