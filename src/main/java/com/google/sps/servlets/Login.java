@@ -31,16 +31,16 @@ public class Login extends HttpServlet {
       throws IOException {
     response.setContentType("application/json");
 
+    String page = request.getParameter("page");
     String userInfo = new String();
 
     UserService userService = UserServiceFactory.getUserService();
+    Gson gson = new GsonBuilder().setPrettyPrinting().create();
     if (userService.isUserLoggedIn()) {
-      String logoutUrl = userService.createLogoutURL("/#/logout");
-      Gson gson = new GsonBuilder().setPrettyPrinting().create();
+      String logoutUrl = userService.createLogoutURL("/" + page);
       userInfo = gson.toJson(new UserInfo(true, logoutUrl));
     } else {
-      String loginUrl = userService.createLoginURL("/");
-      Gson gson = new GsonBuilder().setPrettyPrinting().create();
+      String loginUrl = userService.createLoginURL("/" + page);  
       userInfo = gson.toJson(new UserInfo(false, loginUrl));
     }
     response.getWriter().println(userInfo);
