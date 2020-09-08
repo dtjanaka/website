@@ -18,11 +18,23 @@ xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/
   </error-page>
   <security-constraint>
     <web-resource-collection>
-        <web-resource-name>delete-all-comments</web-resource-name>
-        <url-pattern>/delete-data</url-pattern>
+      <web-resource-name>delete-all-comments</web-resource-name>
+      <url-pattern>/delete-data</url-pattern>
     </web-resource-collection>
     <auth-constraint>
-        <role-name>admin</role-name>
+      <role-name>admin</role-name>
     </auth-constraint>
+  </security-constraint>
+  <!--
+  https://cloud.google.com/appengine/docs/standard/java/config/webxml#Secure_URLs
+  -->
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>all</web-resource-name>
+      <url-pattern>*</url-pattern>
+    </web-resource-collection>
+    <user-data-constraint>
+      <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+    </user-data-constraint>
   </security-constraint>
 </web-app>
