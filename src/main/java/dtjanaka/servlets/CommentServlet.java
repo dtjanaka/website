@@ -32,12 +32,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.JSONObject;
 
 @WebServlet("/comments")
-public class DataServlet extends HttpServlet {
+public class CommentServlet extends HttpServlet {
   private static final String ALL_COMMENTS = "All";
   private static final String ASCENDING_COMMENTS = "asc";
 
-  public synchronized boolean isValidCaptcha(String secretKey,
-                                             String response) {
+  // https://stackoverflow.com/questions/47622506/how-to-validate-recaptcha-v2-java-servlet
+  public synchronized boolean isValidCaptcha(String secretKey, String response)
+      throws IOException {
     try {
       String url = "https://www.google.com/recaptcha/api/siteverify",
              params = "secret=" + secretKey + "&response=" + response;
@@ -67,9 +68,8 @@ public class DataServlet extends HttpServlet {
 
       return json.getBoolean("success");
     } catch (Exception e) {
-      System.out.println("Error verifying reCAPTCHA");
+      throw new IOException("Error verifying reCAPTCHA.");
     }
-    return false;
   }
 
   @Override
@@ -82,14 +82,17 @@ public class DataServlet extends HttpServlet {
     String uid = userService.getCurrentUser().getUserId();
     String token = request.getParameter("g-recaptcha-response");
 
-    Query query = new Query("Secret");
+    Query query = new Query("Secret").setFilter(new FilterPredicate(
+        "name", FilterOperator.EQUAL, "recaptcha-comments"));
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery secret = datastore.prepare(query);
 
     String secretKey = (String)secret.asSingleEntity().getProperty("value");
 
-    if (!isValidCaptcha(secretKey, token) || !userService.isUserLoggedIn()) {
+    if (DataUtils.isEmptyParameter(name) ||
+        DataUtils.isEmptyParameter(comment) ||
+        !isValidCaptcha(secretKey, token) || !userService.isUserLoggedIn()) {
       response.sendRedirect("/comments.html");
       return;
     }
@@ -127,15 +130,15 @@ public class DataServlet extends HttpServlet {
     int numComments = 10; // Show 10 comments by default
     boolean forProfile = false;
 
-    if (newLang == null) {
-        newLang = "en";
+    if (DataUtils.isEmptyParameter(newLang)) {
+      newLang = "en";
     }
 
-    if (sortType == null) {
+    if (DataUtils.isEmptyParameter(sortType)) {
       sortType = "dsc";
     }
 
-    if (numCommentsString == null) {
+    if (DataUtils.isEmptyParameter(numCommentsString)) {
       numCommentsString = "10";
     }
 
@@ -143,18 +146,18 @@ public class DataServlet extends HttpServlet {
       try {
         numComments = Integer.parseInt(numCommentsString);
       } catch (Exception e) {
-        System.out.println("Error parsing argument to integer");
+        throw new IOException("Error parsing argument to integer.");
       }
     }
 
-    if (forProfileString == null) {
+    if (DataUtils.isEmptyParameter(forProfileString)) {
       forProfileString = "false";
     }
 
     try {
       forProfile = Boolean.parseBoolean(forProfileString);
     } catch (Exception e) {
-      System.out.println("Error parsing argument to boolean");
+      throw new IOException("Error parsing argument to boolean");
     }
 
     Query query = new Query("Comment").addSort(
@@ -180,25 +183,26 @@ public class DataServlet extends HttpServlet {
       String comment = (String)entity.getProperty("comment");
       if (!newLang.equals("en")) {
         try {
-            Translation translation =
-                translate.translate(comment, Translate.TranslateOption.targetLanguage(newLang));
-            comment = translation.getTranslatedText();
+          Translation translation = translate.translate(
+              comment, Translate.TranslateOption.targetLanguage(newLang));
+          comment = translation.getTranslatedText();
         } catch (Exception e) {
-            System.out.println("Error translating to" + newLang);
+          throw new IOException("Error translating to" + newLang + ".");
         }
       }
       String utc = (String)entity.getProperty("utc");
 
       maxComments++;
-      comments.add(new Comment(name, comment, utc, null));
-      if (!numCommentsString.equals(ALL_COMMENTS) && maxComments >= numComments) {
+      comments.add(new Comment(name, comment, utc));
+      if (!numCommentsString.equals(ALL_COMMENTS) &&
+          maxComments >= numComments) {
         break;
       }
     }
 
-    //TODO: known issue where translated comments display &#39; instead of ' 
-
-    Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
+    // TODO: known issue where translated comments display &#39; instead of '
+    Gson gson =
+        new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
     String jsonComments = gson.toJson(comments);
     response.getWriter().println(jsonComments);
   }

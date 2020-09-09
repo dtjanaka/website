@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
  * Returns a Blobstore upload link. 
  */
 @WebServlet("/blob-upload")
-public class BlobUrl extends HttpServlet {
+public class BlobUrlServlet extends HttpServlet {
   
   /**
    * Handles GET requests for Blobstore upload links.
