@@ -1,4 +1,4 @@
-package com.google.sps.servlets;
+package dtjanaka.servlets;
 
 /**
  * Holds relevant User login info to return to front end and

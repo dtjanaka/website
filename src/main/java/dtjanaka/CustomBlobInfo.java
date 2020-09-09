@@ -1,4 +1,4 @@
-package com.google.sps.servlets;
+package dtjanaka.servlets;
 
 /**
  * Holds the Blobkey string and file extension of a Blob.

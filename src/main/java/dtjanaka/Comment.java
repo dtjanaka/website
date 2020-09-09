@@ -1,4 +1,4 @@
-package com.google.sps.servlets;
+package dtjanaka.servlets;
 
 class Comment {
   String name;

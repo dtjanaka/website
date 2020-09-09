@@ -1,4 +1,4 @@
-package com.google.sps.servlets;
+package dtjanaka.servlets;
 
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;

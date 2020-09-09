@@ -1,6 +1,6 @@
-package com.google.sps.servlets;
+package dtjanaka.servlets;
 
-import static com.google.sps.servlets.BlobServletTestUtils.*;
+import static dtjanaka.servlets.BlobServletTestUtils.*;
 import static org.junit.Assert.*;
 
 import com.google.appengine.api.datastore.DatastoreService;

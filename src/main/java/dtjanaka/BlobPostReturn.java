@@ -1,4 +1,4 @@
-package com.google.sps.servlets;
+package dtjanaka.servlets;
 
 /**
  * Holds the values url and name of an image after a successful POST request.

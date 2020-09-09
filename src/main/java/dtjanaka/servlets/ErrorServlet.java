@@ -1,4 +1,4 @@
-package com.google.sps.servlets;
+package dtjanaka.servlets;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

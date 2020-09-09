@@ -1,6 +1,6 @@
-package com.google.sps.servlets;
+package dtjanaka.servlets;
 
-import static com.google.sps.servlets.ProjectServletTestUtils.*;
+import static dtjanaka.servlets.ProjectServletTestUtils.*;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
