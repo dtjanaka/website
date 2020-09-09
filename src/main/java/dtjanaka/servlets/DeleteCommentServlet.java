@@ -20,6 +20,12 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/delete-data")
 public class DeleteCommentServlet extends HttpServlet {
 
+  /**
+   * Handles POST requests for deleting comments.
+   * @param     {HttpServletRequest}    request
+   * @param     {HttpServletResponse}   response
+   * @return    {void}
+   */
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response)
       throws IOException {

@@ -36,7 +36,13 @@ public class CommentServlet extends HttpServlet {
   private static final String ALL_COMMENTS = "All";
   private static final String ASCENDING_COMMENTS = "asc";
 
-  // https://stackoverflow.com/questions/47622506/how-to-validate-recaptcha-v2-java-servlet
+  /**
+   * Handles server-side reCAPTCHA verification.
+   * https://stackoverflow.com/questions/47622506/how-to-validate-recaptcha-v2-java-servlet
+   * @param     {String}    secretKey
+   * @param     {String}    response
+   * @return    {boolean}
+   */
   public synchronized boolean isValidCaptcha(String secretKey, String response)
       throws IOException {
     try {
@@ -72,6 +78,12 @@ public class CommentServlet extends HttpServlet {
     }
   }
 
+  /**
+   * Handles POST requests for comments.
+   * @param     {HttpServletRequest}    request
+   * @param     {HttpServletResponse}   response
+   * @return    {void}
+   */
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response)
       throws IOException {
@@ -110,6 +122,12 @@ public class CommentServlet extends HttpServlet {
     response.sendRedirect("/comments.html");
   }
 
+  /**
+   * Handles GET requests for comments.
+   * @param     {HttpServletRequest}    request
+   * @param     {HttpServletResponse}   response
+   * @return    {void}
+   */
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response)
       throws IOException {

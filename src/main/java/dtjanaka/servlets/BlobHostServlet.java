@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
  * Hosts Blobs directly.
  */
 @WebServlet("/blob-host")
-public class BlobHost extends HttpServlet {
+public class BlobHostServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response)
       throws IOException {
