@@ -26,6 +26,7 @@ xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/
     </auth-constraint>
   </security-constraint>
   <!--
+  Redirect all HTTP to HTTPS
   https://cloud.google.com/appengine/docs/standard/java/config/webxml#Secure_URLs
   -->
   <security-constraint>
