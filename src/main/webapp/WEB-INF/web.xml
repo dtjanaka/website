@@ -32,7 +32,7 @@ xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/
   <security-constraint>
     <web-resource-collection>
       <web-resource-name>all</web-resource-name>
-      <url-pattern>*</url-pattern>
+      <url-pattern>/*</url-pattern> <!-- must begin with / for path mapping -->
     </web-resource-collection>
     <user-data-constraint>
       <transport-guarantee>CONFIDENTIAL</transport-guarantee>
