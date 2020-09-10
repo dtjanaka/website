@@ -228,6 +228,10 @@ iframe {
   font-size: large;
 }
 
+#delete-data {
+  background-color: #d00000;
+}
+
 .odd {
   background-color: #16c172;
 }
@@ -373,7 +377,6 @@ button:hover {
     width: 75%;
   }
   p:not(.no-pad),
-  h2,
   h3 {
     padding-left: 5px;
     padding-right: 5px;

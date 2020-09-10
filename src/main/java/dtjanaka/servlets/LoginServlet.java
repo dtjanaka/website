@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Sends back the login status of User and a login/logout link.
+ * Sends back the login and admin status of User and a login/logout link.
  */
 @WebServlet("/login-status")
 public class LoginServlet extends HttpServlet {
@@ -21,7 +21,8 @@ public class LoginServlet extends HttpServlet {
    * Responds with JSON string of UserInfo object upon successful GET.
    * UserInfo object contains:
    *    {boolean}   loggedIn    login status
-   *    {String}    url         login/logout link    
+   *    {boolean}   isAdmin     admin status
+   *    {String}    url         login/logout link
    * @param     {HttpServletRequest}    request
    * @param     {HttpServletResponse}   response
    * @return    {void}
@@ -41,10 +42,11 @@ public class LoginServlet extends HttpServlet {
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
     if (userService.isUserLoggedIn()) {
       String logoutUrl = userService.createLogoutURL("/" + page);
-      userInfo = gson.toJson(new UserInfo(true, logoutUrl));
+      userInfo =
+          gson.toJson(new UserInfo(true, userService.isUserAdmin(), logoutUrl));
     } else {
-      String loginUrl = userService.createLoginURL("/" + page);  
-      userInfo = gson.toJson(new UserInfo(false, loginUrl));
+      String loginUrl = userService.createLoginURL("/" + page);
+      userInfo = gson.toJson(new UserInfo(false, false, loginUrl));
     }
     response.getWriter().println(userInfo);
   }

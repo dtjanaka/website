@@ -32,7 +32,11 @@ xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/
   <security-constraint>
     <web-resource-collection>
       <web-resource-name>all</web-resource-name>
-      <url-pattern>/*</url-pattern> <!-- must begin with / for path mapping -->
+      <!-- 
+      Must begin with / for path mapping
+      https://stackoverflow.com/questions/8570805/can-we-use-regular-expressions-in-web-xml-url-patterns
+      -->
+      <url-pattern>/*</url-pattern> 
     </web-resource-collection>
     <user-data-constraint>
       <transport-guarantee>CONFIDENTIAL</transport-guarantee>

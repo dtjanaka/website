@@ -6,10 +6,12 @@ package dtjanaka.servlets;
  */
 class UserInfo {
   boolean loggedIn;
+  boolean isAdmin;
   String url;
 
-  public UserInfo(boolean loggedIn, String url) {
+  public UserInfo(boolean loggedIn, boolean isAdmin, String url) {
     this.loggedIn = loggedIn;
+    this.isAdmin = isAdmin;
     this.url = url;
   }
 }

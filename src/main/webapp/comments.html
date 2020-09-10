@@ -10,8 +10,8 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
-    <script src="moment.js"></script>  
-    <script src="moment-timezone.js"></script>    
+    <script src="moment.js"></script>
+    <script src="moment-timezone.js"></script>
     <script src="script.js"></script>
   </head>
   <body onload="onloadPage('comments')">
@@ -29,14 +29,14 @@
         <form id="comment-form" action="/comments" method="POST">
           <label for="name">Name:</label>
           <br />
-          <input type="text" name="name" id="name"/>
+          <input type="text" name="name" id="name" />
           <br />
           <label for="comment-box">Comment:</label>
           <br />
           <textarea name="comment" id="comment-box"></textarea>
           <br />
-          <div style="text-align: center; height: 78px;">
-            <div id="recaptcha" style="display: inline-block;"></div>
+          <div style="text-align: center; height: 78px">
+            <div id="recaptcha" style="display: inline-block"></div>
           </div>
           <br />
           <button
@@ -48,46 +48,57 @@
             Submit
           </button>
         </form>
-        <br />
-        <form id="delete-form" action="/delete-data" method="POST">
-          <button
-            id="delete-data"
-            class="center misc-button"
-          >
-            Delete comments
-          </button>
-        </form>
+        <div id="delete-data-div" style="display: none">
+          <br />
+          <form id="delete-form" action="/delete-data" method="POST">
+            <button id="delete-data" class="center misc-button">
+              Delete all comments
+            </button>
+          </form>
+        </div>
         <br />
         <form>
-          <label for="num-comments">Show:</label>
-          <select
-            type="text"
-            id="num-comments"
-            onchange="updateComments(false)"
-          >
-            <option selected>10</option>
-            <option>20</option>
-            <option>30</option>
-            <option>40</option>
-            <option>50</option>
-            <option>All</option>
-          </select>
-          <label for="sort-type">Sort by:</label>
-          <select type="text" id="sort-type" onchange="updateComments(false)">
-            <option value="dsc" selected>Date: new to old</option>
-            <option value="asc">Date: old to new</option>
-          </select>
-          <label for="lang-comments">Language:</label>
-          <select
-            type="text"
-            id="lang-comments"
-            onchange="updateComments(false)"
-          >
-            <option value="en" selected>English</option>
-            <option value="fr">French</option>
-            <option value="zh">Chinese</option>
-            <option value="es">Spanish</option>
-          </select>          
+          <div>
+            <div>
+              <label for="num-comments">Show:</label>
+              <select
+                type="text"
+                id="num-comments"
+                onchange="updateComments(false)"
+              >
+                <option selected>10</option>
+                <option>20</option>
+                <option>30</option>
+                <option>40</option>
+                <option>50</option>
+                <option>All</option>
+              </select>
+            </div>
+            <div>
+              <label for="sort-type">Sort by:</label>
+              <select
+                type="text"
+                id="sort-type"
+                onchange="updateComments(false)"
+              >
+                <option value="dsc" selected>Date: new to old</option>
+                <option value="asc">Date: old to new</option>
+              </select>
+            </div>
+            <div>
+              <label for="lang-comments">Language:</label>
+              <select
+                type="text"
+                id="lang-comments"
+                onchange="updateComments(false)"
+              >
+                <option value="en" selected>English</option>
+                <option value="fr">French</option>
+                <option value="zh">Chinese</option>
+                <option value="es">Spanish</option>
+              </select>
+            </div>
+          </div>
         </form>
         <div id="content-container"></div>
       </div>
