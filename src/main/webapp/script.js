@@ -23,38 +23,68 @@ async function updateComments(profile) {
   const response = await fetch(url);
   const msg = await response.json();
 
-  const commentContainer = document.getElementById('content-container');
-
-  //<button class="delete-comment-button"><img id="trash-icon" src="/images/trash_icon.svg" /></button>
+  const commentContainer = document.getElementById('comment-container');
 
   commentContainer.innerHTML = '';
   if (msg.length === 0) {
     commentContainer.innerHTML = 'Nothing to show'.italics();
   } else {
     for (let numComment = 0; numComment < msg.length; numComment++) {
-      commentContainer.appendChild(
-        createNameElement(msg[numComment].name, msg[numComment].utc)
-      );
-      commentContainer.appendChild(createPElement(msg[numComment].comment));
+      commentContainer.appendChild(createCommentElement(msg[numComment]));
     }
   }
 }
 
 /**
- * Creates a <h3> element containing commenter name.
+ * Creates the comment elements.
  */
-function createNameElement(name, utc) {
-  const h3Element = document.createElement('h3');
-  h3Element.innerText = name;
-  h3Element.className = 'commenter-name';
-  const pElement = document.createElement('p');
+function createCommentElement(comment) {
+  const nameElement = document.createElement('h3');
+  nameElement.innerText = comment.name;
+  nameElement.className = 'commenter-name';
+
+  const trashHtml =
+    '<button class="trash-button comment-button"><img class="comment-icon" src="/images/icons/trash_icon.svg" /></button>';
+  const editHtml =
+    '<button class="edit-button comment-button"><img class="comment-icon" src="/images/icons/edit_icon.svg" /></button>';
+  let trashDiv = document.createElement('div');
+  trashDiv.className = 'trash-div';
+  trashDiv.innerHTML = trashHtml;
+  let editDiv = document.createElement('div');
+  editDiv.className = 'edit-div';
+  editDiv.innerHTML = editHtml;
+
+  const timeElement = document.createElement('p');
   let tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-  pElement.innerText = moment(utc).tz(tz).format('D MMM YYYY [at] h:mm a');
-  pElement.className = 'commenter-time';
-  divElement = document.createElement('div');
-  divElement.appendChild(h3Element);
-  divElement.appendChild(pElement);
-  return divElement;
+  timeElement.innerText = moment(comment.utc)
+    .tz(tz)
+    .format('D MMM YYYY [at] h:mm a');
+  timeElement.className = 'commenter-time';
+
+  const commentElement = document.createElement('p');
+  commentElement.innerText = comment.comment;
+
+  let commentButtonDiv = document.createElement('div');
+  commentButtonDiv.className = 'comment-button-div';
+  if (comment.editable) {
+    commentButtonDiv.appendChild(editDiv);
+  }
+  if (comment.deletable) {
+    commentButtonDiv.appendChild(trashDiv);
+  }
+
+  let commentHeaderDiv = document.createElement('div');
+  commentHeaderDiv.className = 'comment';
+  commentHeaderDiv.appendChild(nameElement);
+  if (comment.deletable || comment.editable) {
+    commentHeaderDiv.appendChild(commentButtonDiv);
+  }
+
+  let bigCommentDiv = document.createElement('div');
+  bigCommentDiv.appendChild(commentHeaderDiv);
+  bigCommentDiv.appendChild(timeElement);
+  bigCommentDiv.appendChild(commentElement);
+  return bigCommentDiv;
 }
 
 /**
@@ -117,7 +147,7 @@ async function onloadPage(page) {
       .appendChild(createLoginLogout(true, result.url));
     if (page === 'comments' || page === 'profile') {
       updateComments(page);
-      if (result.isAdmin) {
+      if (page === 'comments' && result.isAdmin) {
         document.getElementById('delete-data-div').style.display = 'initial';
       }
     } else if (page === 'imgupload') {

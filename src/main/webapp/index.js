@@ -57,7 +57,7 @@ function changeProfilePic() {
   let img = imgElement.src;
   while (img === imgElement.src) {
     img = images[Math.floor(Math.random() * images.length)];
-    img = '/images/' + img;
+    img = '/images/pfps/' + img;
   }
 
   // Add it to the page.

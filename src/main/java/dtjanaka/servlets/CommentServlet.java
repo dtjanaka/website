@@ -214,8 +214,13 @@ public class CommentServlet extends HttpServlet {
       }
       String utc = (String)entity.getProperty("utc");
 
+      String cid = (String)entity.getProperty("comment-id");
+
+      boolean editable = ((String)entity.getProperty("uid")).equals(uid);
+      boolean deletable = userService.isUserAdmin() || editable;
+
       maxComments++;
-      comments.add(new Comment(name, comment, utc));
+      comments.add(new Comment(name, comment, utc, cid, deletable, editable));
       if (!numCommentsString.equals(ALL_COMMENTS) &&
           maxComments >= numComments) {
         break;

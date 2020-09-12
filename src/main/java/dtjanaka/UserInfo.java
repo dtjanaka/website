@@ -8,6 +8,7 @@ class UserInfo {
   boolean loggedIn;
   boolean isAdmin;
   String url;
+  String username;
 
   public UserInfo(boolean loggedIn, boolean isAdmin, String url) {
     this.loggedIn = loggedIn;
