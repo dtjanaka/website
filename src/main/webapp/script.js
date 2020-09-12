@@ -32,7 +32,6 @@ function addRandomPrequelQuote() {
 /**
  * Changes profile picture to random image.
  */
-
 function changeProfilePic() {
   const images = [
     'pfp_def.png',
@@ -93,16 +92,18 @@ async function updateComments(profile) {
 
   const commentContainer = document.getElementById('content-container');
 
+  //<button class="delete-comment-button"><img id="trash-icon" src="/images/trash_icon.svg" /></button>
+
   commentContainer.innerHTML = '';
   if (msg.length === 0) {
     commentContainer.innerHTML = 'Nothing to show'.italics();
   } else {
-  for (let numComment = 0; numComment < msg.length; numComment++) {
-    commentContainer.appendChild(
-      createNameElement(msg[numComment].name, msg[numComment].utc)
-    );
-    commentContainer.appendChild(createPElement(msg[numComment].comment));
-  }
+    for (let numComment = 0; numComment < msg.length; numComment++) {
+      commentContainer.appendChild(
+        createNameElement(msg[numComment].name, msg[numComment].utc)
+      );
+      commentContainer.appendChild(createPElement(msg[numComment].comment));
+    }
   }
 }
 

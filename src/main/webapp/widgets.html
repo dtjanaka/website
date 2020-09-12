@@ -12,14 +12,15 @@
     <link rel="stylesheet" href="style.css" />
     <script src="tictactoe.js"></script>
     <script src="invertWidget.js"></script>
+    <script src="marquee.js"></script>
     <script src="script.js"></script>
   </head>
-  <body onload="inversePaint('/images/angular.png', 256, 256)">
+  <body onload="widgetsOnLoad()" onresize="widgetsOnResize()">
     <div id="content">
       <h1>Widgets</h1>
       <h2>Tic-Tac-Toe</h2>
       <p id="player-turn">Player X, make your move.</p>
-      <div style="text-align: center;">
+      <div style="text-align: center">
         <div class="tac-cont">
           <button id="1" class="tictactoe" onclick="ticTacToe(1)"></button>
           <button id="2" class="tictactoe" onclick="ticTacToe(2)"></button>
@@ -56,6 +57,15 @@
           value="5"
         />
       </form>
+      <div id="dvd-logo-screensaver">
+        <h2 id="dvd-header">DVD Logo Screensaver</h2>
+        <h4 id="with-marquee" style="display: none;">with HTML marquees!</h4>
+        <marquee id="up-down" direction="down" behavior="alternate">
+          <marquee behavior="alternate">
+            <img id="dvd-logo" src="images/dvd_logo_cropped.png" />
+          </marquee>
+        </marquee>
+      </div>
     </div>
   </body>
 </html>
