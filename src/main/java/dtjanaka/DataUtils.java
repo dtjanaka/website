@@ -2,10 +2,6 @@ package dtjanaka.servlets;
 
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
-import com.google.appengine.api.datastore.Entity;
-import com.google.appengine.api.datastore.FetchOptions;
-import com.google.appengine.api.datastore.Key;
-import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.Filter;
@@ -15,7 +11,6 @@ import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -26,11 +21,8 @@ import javax.servlet.http.HttpServletRequest;
 public final class DataUtils {
   public static final String ASCENDING_SORT = "asc";
   public static final String DESCENDING_SORT = "dsc";
-  public static final String PRIVATE = "private";
-  public static final String PUBLIC = "public";
-  public static final String PROJECT = "Project";
-  public static final String IMAGE = "Image";
-  public static final String MASK = "Mask";
+  public static final String USER = "User";
+  public static final String COMMENT = "Comment";
 
   /**
    * Determines if the given request parameter is empty.
@@ -61,100 +53,11 @@ public final class DataUtils {
   }
 
   /**
-   * Parses mode for POST requests and returns whether the mode is create.
-   * @param     {HttpServeletRequest}   request   the HTTP request
-   * @return    {boolean}
+   * Returns a custom object with the registration status and the username if
+   * registered (null otherwise).
+   * @return    {UserRegistered}
    */
-  public static boolean parseMode(HttpServletRequest request)
-      throws IOException {
-    String mode = request.getParameter("mode");
-    if (isEmptyParameter(mode) || (!mode.toLowerCase().equals("create") &&
-                                   !mode.toLowerCase().equals("update"))) {
-      throw new IOException("Invalid mode.");
-    }
-    return mode.toLowerCase().equals("create");
-  }
-
-  /**
-   * Retrieves project Entity with respect to access restrictions.
-   * @param     {String}        projId          the Datastore key String for
-   *                                            the working project
-   * @param     {String}        userEmail       the User's email
-   * @param     {boolean}       accessIfEditor  whether editors can access
-   * @param     {boolean}       accessIfPublic  whether the project can be
-                                                used for the current action
-                                                given it is public
-   * @return    {Entity}
-   */
-  public static Entity getProjectEntity(String projId, String userEmail,
-                                        boolean accessIfEditor,
-                                        boolean accessIfPublic)
-      throws IOException {
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-
-    Entity projEntity = new Entity(PROJECT);
-    Key projKey = projEntity.getKey();
-
-    try {
-      projKey = KeyFactory.stringToKey(projId);
-      projEntity = datastore.get(projKey);
-    } catch (Exception e) {
-      throw new IOException(
-          "Database error when trying to access this project.");
-    }
-
-    ArrayList<String> owners =
-        (ArrayList<String>)projEntity.getProperty("owners");
-    ArrayList<String> editors =
-        (ArrayList<String>)projEntity.getProperty("editors");
-    String existingVis = (String)projEntity.getProperty("visibility");
-
-    // owners and visibility should never be null, so no null check provided
-    // If either is null, something has gone very wrong
-    boolean isOwner = owners.contains(userEmail);
-    boolean isEditor =
-        accessIfEditor && editors != null && editors.contains(userEmail);
-    boolean isPublic = accessIfPublic && existingVis.equals(PUBLIC);
-
-    if (!isOwner && !isEditor && !isPublic) {
-      throw new IOException(
-          "You do not have permission to access this project.");
-    }
-
-    return projEntity;
-  }
-
-  /**
-   * Removes a project and all of its children from the database.
-   * @param     {Key}       projectKey
-   */
-  public static void deleteProjectAndChildren(Key projectKey) {
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    Query childQuery = new Query(projectKey);
-    List<Entity> children = datastore.prepare(childQuery)
-                                .asList(FetchOptions.Builder.withDefaults());
-    for (Entity child : children) {
-      deleteImageAndChildren(child.getKey());
-    }
-    datastore.delete(projectKey);
-  }
-
-  /**
-   * Removes an image and all of its children from the database.
-   * @param     {Key}       imgKey
-   */
-  public static void deleteImageAndChildren(Key imgKey) {
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    Query childQuery = new Query(imgKey);
-    List<Entity> children = datastore.prepare(childQuery)
-                                .asList(FetchOptions.Builder.withDefaults());
-    for (Entity child : children) {
-      datastore.delete(child.getKey());
-    }
-    datastore.delete(imgKey);
-  }
-
-  public static boolean isUserRegistered() {
+  public static UserRegistered isUserRegistered() {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     UserService userService = UserServiceFactory.getUserService();
 
@@ -163,8 +66,9 @@ public final class DataUtils {
     }
 
     String uid = userService.getCurrentUser().getUserId();
-    Query userQuery = new Query("User").setFilter(
-        new FilterPredicate("uid", FilterOperator.EQUAL, uid));
+    Query userQuery =
+        new Query(DataUtils.USER)
+            .setFilter(new FilterPredicate("uid", FilterOperator.EQUAL, uid));
     PreparedQuery storedUser = datastore.prepare(userQuery);
 
     if (storedUser.countEntities() == 0) {

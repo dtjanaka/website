@@ -30,7 +30,7 @@ public class DeleteCommentServlet extends HttpServlet {
   public void doPost(HttpServletRequest request, HttpServletResponse response)
       throws IOException {
 
-    Query query = new Query("Comment");
+    Query query = new Query(DataUtils.COMMENT);
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     List<Entity> storedComments =

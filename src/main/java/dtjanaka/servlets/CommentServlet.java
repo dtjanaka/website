@@ -113,7 +113,7 @@ public class CommentServlet extends HttpServlet {
 
     String now = Instant.now().toString();
 
-    Entity commentEntity = new Entity("Comment");
+    Entity commentEntity = new Entity(DataUtils.COMMENT);
     commentEntity.setProperty("name", name);
     commentEntity.setProperty("comment", comment);
     commentEntity.setProperty("uid", uid);
@@ -182,9 +182,10 @@ public class CommentServlet extends HttpServlet {
       throw new IOException("Error parsing argument to boolean");
     }
 
-    Query query = new Query("Comment").addSort(
-        "utc", sortType.equals(ASCENDING_COMMENTS) ? SortDirection.ASCENDING
-                                                   : SortDirection.DESCENDING);
+    Query query = new Query(DataUtils.COMMENT)
+                      .addSort("utc", sortType.equals(ASCENDING_COMMENTS)
+                                          ? SortDirection.ASCENDING
+                                          : SortDirection.DESCENDING);
 
     if (forProfile) {
       Filter propertyFilter =

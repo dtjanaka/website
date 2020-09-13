@@ -25,7 +25,8 @@ public class ErrorServlet extends HttpServlet {
   }
 
   /**
-   * Responds with information about errors and exceptions thrown during runtime.
+   * Responds with information about errors and exceptions thrown during
+   * runtime.
    * @param     {HttpServletRequest}    request
    * @param     {HttpServletResponse}   response
    * @return    {void}
@@ -67,7 +68,9 @@ public class ErrorServlet extends HttpServlet {
 
     response.getWriter().println("<h1>" + statusCode + "</h1>"
                                  + "<p>" + throwable.getMessage() + "</p>"
-                                 + "<p>" + "on " + servletName + "</p>"
-                                 + "<p>" + "when accessing " + requestUri + "</p>");
+                                 + "<p>"
+                                 + "on " + servletName + "</p>"
+                                 + "<p>"
+                                 + "when accessing " + requestUri + "</p>");
   }
 }

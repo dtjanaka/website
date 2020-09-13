@@ -8,6 +8,8 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
 import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
 import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 import java.io.IOException;
@@ -26,7 +28,11 @@ public final class DataUtilsTest {
   private MockHttpServletRequest request;
 
   private final LocalServiceTestHelper helper =
-      new LocalServiceTestHelper(new LocalDatastoreServiceTestConfig());
+      new LocalServiceTestHelper(new LocalUserServiceTestConfig(),
+                                 new LocalDatastoreServiceTestConfig())
+          .setEnvIsLoggedIn(true)
+          .setEnvEmail("abc@xyz.com")
+          .setEnvAuthDomain("gmail.com");
 
   @Before
   public void setUp() {
@@ -83,137 +89,40 @@ public final class DataUtilsTest {
   }
 
   /**
-   * "create" is a valid mode that indicates creation.
+   * User should be registered.
    */
   @Test
-  public void createMode() throws IOException {
-    request.addParameter("mode", "create");
-    assertEquals(true, DataUtils.parseMode(request));
-  }
-
-  /**
-   * "update" is a valid mode that indicates updating (not creation).
-   */
-  @Test
-  public void updateMode() throws IOException {
-    request.addParameter("mode", "update");
-    assertEquals(false, DataUtils.parseMode(request));
-  }
-
-  /**
-   * Invalid modes throw an IOException.
-   */
-  @Test
-  public void invalidMode() {
-    request.addParameter("mode", "null");
-    try {
-      DataUtils.parseMode(request);
-    } catch (IOException e) {
-      assertEquals("Invalid mode.", e.getMessage());
-    }
-  }
-
-  /**
-   * Invalid key throw an IOException.
-   */
-  @Test
-  public void noProjectExists() {
+  public void userRegistered() {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    assertEquals(
-        0, datastore.prepare(new Query(DataUtils.PROJECT)).countEntities());
-    try {
-      DataUtils.getProjectEntity("abcdef", "abc@xyz.com", true, true);
-    } catch (IOException e) {
-      assertEquals(
-          0, datastore.prepare(new Query(DataUtils.PROJECT)).countEntities());
-      assertEquals("Database error when trying to access this project.",
-                   e.getMessage());
-    }
-  }
+    UserService userService = UserServiceFactory.getUserService();
 
+    assertEquals(0,
+                 datastore.prepare(new Query(DataUtils.USER)).countEntities());
 
-  /**
-   * Owner should always be able to access project.
-   */
-  @Test
-  public void ownersOnly() throws IOException {
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    assertEquals(
-        0, datastore.prepare(new Query(DataUtils.PROJECT)).countEntities());
-    Entity projEntity = new Entity(DataUtils.PROJECT, 123456);
-    projEntity.setIndexedProperty("owners", Arrays.asList("abc@xyz.com"));
-    Key projKey = datastore.put(projEntity);
+    Entity userEntity = new Entity(DataUtils.USER);
+    String uid = userService.getCurrentUser().getUserId();
+    userEntity.setProperty("uid", uid);
+    userEntity.setProperty("username", "abc");
 
-    assertEquals(
-        1, datastore.prepare(new Query(DataUtils.PROJECT)).countEntities());
-    assertEquals(projEntity,
-                 DataUtils.getProjectEntity(KeyFactory.keyToString(projKey),
-                                            "abc@xyz.com", false, false));
+    datastore.put(userEntity);
+
+    assertEquals(1,
+                 datastore.prepare(new Query(DataUtils.USER)).countEntities());
+
+    assertEquals(new UserRegistered(true, "abc"), DataUtils.isUserRegistered());
   }
 
   /**
-   * Editor should be able to access project if flag is specified.
+   * User should not be registered.
    */
   @Test
-  public void ownersAndEditorsOnly() throws IOException {
+  public void userNotRegistered() {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    assertEquals(
-        0, datastore.prepare(new Query(DataUtils.PROJECT)).countEntities());
-    Entity projEntity = new Entity(DataUtils.PROJECT, 123456);
-    projEntity.setIndexedProperty("owners", Arrays.asList("def@xyz.com"));
-    projEntity.setIndexedProperty("editors", Arrays.asList("abc@xyz.com"));
-    Key projKey = datastore.put(projEntity);
+    UserService userService = UserServiceFactory.getUserService();
 
-    assertEquals(
-        1, datastore.prepare(new Query(DataUtils.PROJECT)).countEntities());
-    assertEquals(projEntity,
-                 DataUtils.getProjectEntity(KeyFactory.keyToString(projKey),
-                                            "abc@xyz.com", true, false));
-  }
+    assertEquals(0,
+                 datastore.prepare(new Query(DataUtils.USER)).countEntities());
 
-  /**
-   * Anyone should be able to access project if it is public and flag is 
-   * specified.
-   */
-  @Test
-  public void ownersOrPublicOnly() throws IOException {
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    assertEquals(
-        0, datastore.prepare(new Query(DataUtils.PROJECT)).countEntities());
-    Entity projEntity = new Entity(DataUtils.PROJECT, 123456);
-    projEntity.setIndexedProperty("owners", Arrays.asList("def@xyz.com"));
-    projEntity.setProperty("visibility", DataUtils.PUBLIC);
-    Key projKey = datastore.put(projEntity);
-
-    assertEquals(
-        1, datastore.prepare(new Query(DataUtils.PROJECT)).countEntities());
-    assertEquals(projEntity,
-                 DataUtils.getProjectEntity(KeyFactory.keyToString(projKey),
-                                            "abc@xyz.com", false, true));
-  }
-
-  /**
-   * Should not be able to access project if not owner or editor and project is
-   * private.
-   */
-  @Test
-  public void noPermission() {
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    assertEquals(
-        0, datastore.prepare(new Query(DataUtils.PROJECT)).countEntities());
-    Entity projEntity = new Entity(DataUtils.PROJECT, 123456);
-    projEntity.setIndexedProperty("owners", Arrays.asList("abc@xyz.com"));
-    projEntity.setIndexedProperty("owners", Arrays.asList("def@xyz.com"));
-    projEntity.setProperty("visibility", DataUtils.PRIVATE);
-    Key projKey = datastore.put(projEntity);
-    try {
-      DataUtils.getProjectEntity(KeyFactory.keyToString(projKey), "ghi@xyz.com",
-                                 true, true);
-    } catch (IOException e) {
-      assertEquals(
-          1, datastore.prepare(new Query(DataUtils.PROJECT)).countEntities());
-      assertEquals("You do not have permission to access this project.",
-                   e.getMessage());
-    }
+    assertEquals(new UserRegistered(false, ""), DataUtils.isUserRegistered());
   }
 }

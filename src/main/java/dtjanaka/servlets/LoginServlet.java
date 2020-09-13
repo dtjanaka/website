@@ -42,11 +42,13 @@ public class LoginServlet extends HttpServlet {
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
     if (userService.isUserLoggedIn()) {
       String logoutUrl = userService.createLogoutURL("/" + page);
-      userInfo =
-          gson.toJson(new UserInfo(true, userService.isUserAdmin(), logoutUrl));
+      UserRegistered userRegistered = DataUtils.isUserRegistered();
+      userInfo = gson.toJson(new UserInfo(true, userService.isUserAdmin(),
+                                          userRegistered.registered, logoutUrl,
+                                          userRegistered.username));
     } else {
       String loginUrl = userService.createLoginURL("/" + page);
-      userInfo = gson.toJson(new UserInfo(false, false, loginUrl));
+      userInfo = gson.toJson(new UserInfo(false, false, false, "", loginUrl));
     }
     response.getWriter().println(userInfo);
   }
