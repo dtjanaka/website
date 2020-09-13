@@ -85,8 +85,8 @@ function createMap() {
     mapInfoContainer.appendChild(createCloseButtonElement());
   });
 
-  const GRTPath = new google.maps.Polyline({
-    path : GRTCoordinates,
+  const grtPath = new google.maps.Polyline({
+    path : grtCoordinates,
     geodesic : true,
     strokeColor : '#FF0000',
     strokeOpacity : 1.0,
