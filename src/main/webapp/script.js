@@ -1,7 +1,7 @@
 /**
  * Fetch content from data servlet and place in container.
  */
-async function updateComments(profile) {
+async function updateComments(isProfile) {
   let numCom = document.getElementById('num-comments');
   let numComments = numCom.options[numCom.selectedIndex].text;
   let howSort = document.getElementById('sort-type');
@@ -16,7 +16,7 @@ async function updateComments(profile) {
     '&sortType=' +
     sortType +
     '&profile=' +
-    profile +
+    isProfile +
     '&lang=' +
     newLang;
 
@@ -145,12 +145,14 @@ async function onloadPage(page) {
     document
       .getElementById('login-logout')
       .appendChild(createLoginLogout(true, result.url));
-    if (page === 'comments' || page === 'profile') {
-      updateComments(page);
-      if (page === 'comments' && result.isAdmin) {
+    if (page === 'comments') {
+      updateComments(false);
+      if (result.isAdmin) {
         document.getElementById('delete-comment-div').style.display = 'initial';
       }
-    } else if (page === 'imgupload') {
+    } else if(page === 'profile') {
+      updateComments(true);
+    }else if (page === 'imgupload') {
       getBlobUploadUrl();
     } else if (page === 'imgmanip') {
       await populateImages();
