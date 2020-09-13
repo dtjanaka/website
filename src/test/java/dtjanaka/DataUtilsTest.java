@@ -12,6 +12,7 @@ import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
 import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
+import com.google.appengine.tools.development.testing.LocalUserServiceTestConfig;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -109,7 +110,10 @@ public final class DataUtilsTest {
     assertEquals(1,
                  datastore.prepare(new Query(DataUtils.USER)).countEntities());
 
-    assertEquals(new UserRegistered(true, "abc"), DataUtils.isUserRegistered());
+    UserRegistered userRegistered = DataUtils.isUserRegistered();
+
+    assertEquals(true, userRegistered.registered);
+    assertEquals("abc", userRegistered.username);
   }
 
   /**
@@ -123,6 +127,9 @@ public final class DataUtilsTest {
     assertEquals(0,
                  datastore.prepare(new Query(DataUtils.USER)).countEntities());
 
-    assertEquals(new UserRegistered(false, ""), DataUtils.isUserRegistered());
+    UserRegistered userRegistered = DataUtils.isUserRegistered();
+
+    assertEquals(false, userRegistered.registered);
+    assertEquals("", userRegistered.username);
   }
 }

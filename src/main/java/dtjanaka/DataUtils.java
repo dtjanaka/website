@@ -11,6 +11,7 @@ import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -62,7 +63,7 @@ public final class DataUtils {
     UserService userService = UserServiceFactory.getUserService();
 
     if (!userService.isUserLoggedIn()) {
-      return false;
+      return new UserRegistered(false, "");
     }
 
     String uid = userService.getCurrentUser().getUserId();
@@ -72,10 +73,11 @@ public final class DataUtils {
     PreparedQuery storedUser = datastore.prepare(userQuery);
 
     if (storedUser.countEntities() == 0) {
-      return false;
+      return new UserRegistered(false, "");
     }
 
-    return true;
+    return new UserRegistered(
+        true, (String)(storedUser.asSingleEntity().getProperty("username")));
   }
 
   private DataUtils() {}
