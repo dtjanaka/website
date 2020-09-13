@@ -48,7 +48,7 @@ public class LoginServlet extends HttpServlet {
                                           userRegistered.username));
     } else {
       String loginUrl = userService.createLoginURL("/" + page);
-      userInfo = gson.toJson(new UserInfo(false, false, false, "", loginUrl));
+      userInfo = gson.toJson(new UserInfo(false, false, false, loginUrl, ""));
     }
     response.getWriter().println(userInfo);
   }
