@@ -17,8 +17,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/delete-comment")
-public class DeleteCommentServlet extends HttpServlet {
+@WebServlet("/edit-comment")
+public class EditCommentServlet extends HttpServlet {
 
   /**
    * Handles POST requests for deleting comments.

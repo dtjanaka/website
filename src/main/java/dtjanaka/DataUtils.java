@@ -11,6 +11,8 @@ import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.Filter;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.FilterPredicate;
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -124,14 +126,13 @@ public final class DataUtils {
 
   /**
    * Removes a project and all of its children from the database.
-   * @param     {Key}       projectKey  
+   * @param     {Key}       projectKey
    */
   public static void deleteProjectAndChildren(Key projectKey) {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     Query childQuery = new Query(projectKey);
-    List<Entity> children =
-        datastore.prepare(childQuery)
-            .asList(FetchOptions.Builder.withDefaults());
+    List<Entity> children = datastore.prepare(childQuery)
+                                .asList(FetchOptions.Builder.withDefaults());
     for (Entity child : children) {
       deleteImageAndChildren(child.getKey());
     }
@@ -140,18 +141,37 @@ public final class DataUtils {
 
   /**
    * Removes an image and all of its children from the database.
-   * @param     {Key}       imgKey  
+   * @param     {Key}       imgKey
    */
   public static void deleteImageAndChildren(Key imgKey) {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     Query childQuery = new Query(imgKey);
-    List<Entity> children =
-        datastore.prepare(childQuery)
-            .asList(FetchOptions.Builder.withDefaults());
+    List<Entity> children = datastore.prepare(childQuery)
+                                .asList(FetchOptions.Builder.withDefaults());
     for (Entity child : children) {
       datastore.delete(child.getKey());
     }
     datastore.delete(imgKey);
+  }
+
+  public static boolean isUserRegistered() {
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    UserService userService = UserServiceFactory.getUserService();
+
+    if (!userService.isUserLoggedIn()) {
+      return false;
+    }
+
+    String uid = userService.getCurrentUser().getUserId();
+    Query userQuery = new Query("User").setFilter(
+        new FilterPredicate("uid", FilterOperator.EQUAL, uid));
+    PreparedQuery storedUser = datastore.prepare(userQuery);
+
+    if (storedUser.countEntities() == 0) {
+      return false;
+    }
+
+    return true;
   }
 
   private DataUtils() {}

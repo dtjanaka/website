@@ -148,7 +148,7 @@ async function onloadPage(page) {
     if (page === 'comments' || page === 'profile') {
       updateComments(page);
       if (page === 'comments' && result.isAdmin) {
-        document.getElementById('delete-data-div').style.display = 'initial';
+        document.getElementById('delete-comment-div').style.display = 'initial';
       }
     } else if (page === 'imgupload') {
       getBlobUploadUrl();
