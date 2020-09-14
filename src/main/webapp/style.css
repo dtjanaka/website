@@ -378,6 +378,14 @@ button:hover {
   display: none;
 }
 
+#register-div {
+  display: none;
+}
+
+#delete-comment-div {
+  display: none;
+}
+
 #brush-options {
   margin-top: 20px;
 }

@@ -17,7 +17,16 @@
   <body onload="onloadPage('comments')">
     <div id="content">
       <h1>Comments</h1>
-      <div id="login-logout"></div>
+      <div id="gatekeeper">
+        <div id="register-div">
+          <form id="register-form" action="/users" method="POST">
+            <label for="username">Select a username to comment:</label>
+            <br />
+            <input type="text" name="username" id="username-input" required/>
+            <br />
+          </form>
+        </div>
+      </div>
       <div id="content-logged-in">
         <br />
         <a href="profile.html"
@@ -29,11 +38,11 @@
         <form id="comment-form" action="/comments" method="POST">
           <label for="name">Name:</label>
           <br />
-          <input type="text" name="name" id="name" />
+          <input type="text" name="name" id="name-input" required/>
           <br />
           <label for="comment-box">Comment:</label>
           <br />
-          <textarea name="comment" id="comment-box"></textarea>
+          <textarea name="comment" id="comment-box" required></textarea>
           <br />
           <div style="text-align: center; height: 78px">
             <div id="recaptcha" style="display: inline-block"></div>
@@ -48,7 +57,7 @@
             Submit
           </button>
         </form>
-        <div id="delete-comment-div" style="display: none">
+        <div id="delete-comment-div">
           <br />
           <form id="delete-form" action="/delete-comment" method="POST">
             <button id="delete-comment" class="center misc-button">

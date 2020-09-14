@@ -88,15 +88,6 @@ function createCommentElement(comment) {
 }
 
 /**
- * Creates a <p> element containing text.
- */
-function createPElement(text) {
-  const pElement = document.createElement('p');
-  pElement.innerText = text;
-  return pElement;
-}
-
-/**
  * Callback to render reCAPTCHA.
  */
 function onloadCallback() {
@@ -141,58 +132,31 @@ async function onloadPage(page) {
   const response = await fetch(url);
   const result = await response.json();
   if (result.loggedIn) {
-    document.getElementById('content-logged-in').style.display = 'initial';
-    document
-      .getElementById('login-logout')
-      .appendChild(createLoginLogout(true, result.url));
-    if (page === 'comments') {
-      updateComments(false);
-      if (result.isAdmin) {
-        document.getElementById('delete-comment-div').style.display = 'initial';
+    if (result.registered) {
+      document.getElementById('content-logged-in').style.display = 'initial';
+      document
+        .getElementById('gatekeeper')
+        .appendChild(createLoginLogout(true, result.url));
+      if (page === 'comments') {
+        updateComments(false);
+        if (result.isAdmin) {
+          document.getElementById('delete-comment-div').style.display =
+            'initial';
+        }
+      } else if (page === 'profile') {
+        updateComments(true);
       }
-    } else if(page === 'profile') {
-      updateComments(true);
-    }else if (page === 'imgupload') {
-      getBlobUploadUrl();
-    } else if (page === 'imgmanip') {
-      await populateImages();
+    } else {
+      document
+        .getElementById('gatekeeper')
+        .appendChild(createLoginLogout(true, result.url));
+      document
+        .getElementById('gatekeeper')
+        .appendChild(createRegistration()); // or should it be a hidden element initally... ?
     }
   } else {
     document
-      .getElementById('login-logout')
+      .getElementById('gatekeeper')
       .appendChild(createLoginLogout(false, result.url));
-  }
-}
-
-/**
- * Fetch a Blobstore upload link.
- */
-async function getBlobUploadUrl() {
-  const response = await fetch('/blob-upload');
-  const result = await response.json();
-  document.getElementById('img-upload-form').action = result;
-}
-
-/**
- * Create an image element with width 200px from a src link.
- */
-function createImgElement(url) {
-  let imgElement = document.createElement('img');
-  imgElement.src = url;
-  imgElement.classList = 'for-editing';
-  imgElement.style.width = '200px';
-  return imgElement;
-}
-
-/**
- * Add images from Blobstore to editing gallery.
- */
-async function populateImages() {
-  const response = await fetch('/blobs');
-  const result = await response.json();
-  for (let img = 0; img < result.length; img++) {
-    document
-      .getElementById('gallery')
-      .appendChild(createImgElement(result[img]));
   }
 }
