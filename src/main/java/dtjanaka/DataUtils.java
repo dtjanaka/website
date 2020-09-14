@@ -80,5 +80,9 @@ public final class DataUtils {
         true, (String)(storedUser.asSingleEntity().getProperty("username")));
   }
 
+  public static getUsernameFromUid(String uid) {
+    
+  }
+
   private DataUtils() {}
 }

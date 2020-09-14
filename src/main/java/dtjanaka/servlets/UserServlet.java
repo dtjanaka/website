@@ -40,6 +40,9 @@ public class UserServlet extends HttpServlet {
   Post:
       parameter: name
 
+
+    username AND displayname
+    a la discord
   */
 
   /**

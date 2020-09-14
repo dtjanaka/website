@@ -91,7 +91,6 @@ public class CommentServlet extends HttpServlet {
       throws IOException {
     UserService userService = UserServiceFactory.getUserService();
 
-    String name = request.getParameter("name");
     String comment = request.getParameter("comment");
     String uid = userService.getCurrentUser().getUserId();
     String token = request.getParameter("g-recaptcha-response");
@@ -104,9 +103,8 @@ public class CommentServlet extends HttpServlet {
 
     String secretKey = (String)secret.asSingleEntity().getProperty("value");
 
-    if (DataUtils.isEmptyParameter(name) ||
-        DataUtils.isEmptyParameter(comment) ||
-        !isValidCaptcha(secretKey, token) || !userService.isUserLoggedIn()) {
+    if (DataUtils.isEmptyParameter(comment) ||
+        !isValidCaptcha(secretKey, token) || !DataUtils.isUserRegistered().registered) {
       response.sendRedirect("/comments.html");
       return;
     }
@@ -114,7 +112,6 @@ public class CommentServlet extends HttpServlet {
     String now = Instant.now().toString();
 
     Entity commentEntity = new Entity(DataUtils.COMMENT);
-    commentEntity.setProperty("name", name);
     commentEntity.setProperty("comment", comment);
     commentEntity.setProperty("uid", uid);
     commentEntity.setProperty("utc", now);
@@ -140,13 +137,13 @@ public class CommentServlet extends HttpServlet {
     UserService userService = UserServiceFactory.getUserService();
     String uid = userService.getCurrentUser().getUserId();
 
-    if (!userService.isUserLoggedIn()) {
+    if (!DataUtils.isUserRegistered().registered) {
       response.sendRedirect("/comments.html");
       return;
     }
 
-    String numCommentsString = request.getParameter("numComments");
-    String sortType = request.getParameter("sortType");
+    String numCommentsString = request.getParameter("num-comments");
+    String sortType = request.getParameter("sort-type");
     String forProfileString = request.getParameter("profile");
     String newLang = request.getParameter("lang");
     int numComments = 10; // Show 10 comments by default
@@ -202,7 +199,8 @@ public class CommentServlet extends HttpServlet {
     ArrayList<Comment> comments = new ArrayList<Comment>();
     int maxComments = 0;
     for (Entity entity : storedComments.asIterable()) {
-      String name = (String)entity.getProperty("name");
+      String commentUid = (String)entity.getProperty("uid");
+      String name = DataUtils.getUsernameFromUid(commentUid);
       String comment = (String)entity.getProperty("comment");
       if (!newLang.equals("en")) {
         try {

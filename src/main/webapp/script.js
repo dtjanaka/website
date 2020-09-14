@@ -11,9 +11,9 @@ async function updateComments(isProfile) {
 
   let url =
     '/comments?' +
-    'numComments=' +
+    'num-comments=' +
     numComments +
-    '&sortType=' +
+    '&sort-type=' +
     sortType +
     '&profile=' +
     isProfile +
