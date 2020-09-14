@@ -150,9 +150,7 @@ async function onloadPage(page) {
       document
         .getElementById('gatekeeper')
         .appendChild(createLoginLogout(true, result.url));
-      document
-        .getElementById('gatekeeper')
-        .appendChild(createRegistration()); // or should it be a hidden element initally... ?
+      document.getElementById('register-div').style.display = 'initial';
     }
   } else {
     document
