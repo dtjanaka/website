@@ -104,7 +104,8 @@ public class CommentServlet extends HttpServlet {
     String secretKey = (String)secret.asSingleEntity().getProperty("value");
 
     if (DataUtils.isEmptyParameter(comment) ||
-        !isValidCaptcha(secretKey, token) || !DataUtils.isUserRegistered().registered) {
+        !isValidCaptcha(secretKey, token) ||
+        !DataUtils.isCurrentUserRegistered()) {
       response.sendRedirect("/comments.html");
       return;
     }
@@ -137,7 +138,7 @@ public class CommentServlet extends HttpServlet {
     UserService userService = UserServiceFactory.getUserService();
     String uid = userService.getCurrentUser().getUserId();
 
-    if (!DataUtils.isUserRegistered().registered) {
+    if (!DataUtils.isCurrentUserRegistered()) {
       response.sendRedirect("/comments.html");
       return;
     }
@@ -199,7 +200,7 @@ public class CommentServlet extends HttpServlet {
     ArrayList<Comment> comments = new ArrayList<Comment>();
     int maxComments = 0;
     for (Entity entity : storedComments.asIterable()) {
-      String commentUid = (String)entity.getProperty("uid");      
+      String commentUid = (String)entity.getProperty("uid");
       UserRegistered userRegistered = DataUtils.getNameFromUid(commentUid);
       String comment = (String)entity.getProperty("comment");
       if (!newLang.equals("en")) {
@@ -219,7 +220,8 @@ public class CommentServlet extends HttpServlet {
       boolean deletable = userService.isUserAdmin() || editable;
 
       maxComments++;
-      comments.add(new Comment(userRegistered, comment, utc, cid, deletable, editable));
+      comments.add(
+          new Comment(userRegistered, comment, utc, cid, deletable, editable));
       if (!numCommentsString.equals(ALL_COMMENTS) &&
           maxComments >= numComments) {
         break;

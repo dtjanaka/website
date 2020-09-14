@@ -2,6 +2,7 @@ package dtjanaka.servlets;
 
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.Filter;
@@ -54,7 +55,7 @@ public final class DataUtils {
   }
 
   /**
-   * Returns a custom object with the registration status and the username and 
+   * Returns a custom object with the registration status and the username and
    * display name if registered (both empty otherwise).
    * For the currently logged in User.
    * @return    {UserRegistered}
@@ -72,7 +73,7 @@ public final class DataUtils {
   }
 
   /**
-   * Returns a custom object with the registration status and the username and 
+   * Returns a custom object with the registration status and the username and
    * display name if registered (both empty otherwise).
    * For any User specified by uid.
    * @param     {String}          uid
@@ -100,6 +101,14 @@ public final class DataUtils {
     String displayName = (String)userEntity.getProperty("display-name");
 
     return new UserRegistered(true, username, displayName);
+  }
+
+  /**
+   * Returns the registration status of currently logged in User.
+   * @return    {boolean}
+   */
+  public static boolean isCurrentUserRegistered() {
+    return getNameCurrentUser().registered;
   }
 
   private DataUtils() {}

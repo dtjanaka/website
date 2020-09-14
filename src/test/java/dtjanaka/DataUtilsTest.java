@@ -173,6 +173,8 @@ public final class DataUtilsTest {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     UserService userService = UserServiceFactory.getUserService();
 
+    String uid = userService.getCurrentUser().getUserId();
+
     assertEquals(0,
                  datastore.prepare(new Query(DataUtils.USER)).countEntities());
 
