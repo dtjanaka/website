@@ -93,7 +93,7 @@ public final class DataUtilsTest {
    * User should be registered.
    */
   @Test
-  public void userRegistered() {
+  public void userRegisteredCurrentUser() {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     UserService userService = UserServiceFactory.getUserService();
 
@@ -103,33 +103,83 @@ public final class DataUtilsTest {
     Entity userEntity = new Entity(DataUtils.USER);
     String uid = userService.getCurrentUser().getUserId();
     userEntity.setProperty("uid", uid);
-    userEntity.setProperty("username", "abc");
+    userEntity.setProperty("username", "abc#0001");
+    userEntity.setProperty("display-name", "abc");
 
     datastore.put(userEntity);
 
     assertEquals(1,
                  datastore.prepare(new Query(DataUtils.USER)).countEntities());
 
-    UserRegistered userRegistered = DataUtils.isUserRegistered();
+    UserRegistered userRegistered = DataUtils.getNameCurrentUser();
 
     assertEquals(true, userRegistered.registered);
-    assertEquals("abc", userRegistered.username);
+    assertEquals("abc#0001", userRegistered.username);
+    assertEquals("abc", userRegistered.displayName);
   }
 
   /**
    * User should not be registered.
    */
   @Test
-  public void userNotRegistered() {
+  public void userNotRegisteredCurrentUser() {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     UserService userService = UserServiceFactory.getUserService();
 
     assertEquals(0,
                  datastore.prepare(new Query(DataUtils.USER)).countEntities());
 
-    UserRegistered userRegistered = DataUtils.isUserRegistered();
+    UserRegistered userRegistered = DataUtils.getNameCurrentUser();
 
     assertEquals(false, userRegistered.registered);
-    assertEquals("", userRegistered.username);
+    assertEquals(null, userRegistered.username);
+    assertEquals(null, userRegistered.displayName);
+  }
+
+  /**
+   * User should be registered.
+   */
+  @Test
+  public void userRegisteredWithUid() {
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    UserService userService = UserServiceFactory.getUserService();
+
+    assertEquals(0,
+                 datastore.prepare(new Query(DataUtils.USER)).countEntities());
+
+    Entity userEntity = new Entity(DataUtils.USER);
+    String uid = userService.getCurrentUser().getUserId();
+    userEntity.setProperty("uid", uid);
+    userEntity.setProperty("username", "abc#0001");
+    userEntity.setProperty("display-name", "abc");
+
+    datastore.put(userEntity);
+
+    assertEquals(1,
+                 datastore.prepare(new Query(DataUtils.USER)).countEntities());
+
+    UserRegistered userRegistered = DataUtils.getNameFromUid(uid);
+
+    assertEquals(true, userRegistered.registered);
+    assertEquals("abc#0001", userRegistered.username);
+    assertEquals("abc", userRegistered.displayName);
+  }
+
+  /**
+   * User should not be registered.
+   */
+  @Test
+  public void userNotRegisteredWithUid() {
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    UserService userService = UserServiceFactory.getUserService();
+
+    assertEquals(0,
+                 datastore.prepare(new Query(DataUtils.USER)).countEntities());
+
+    UserRegistered userRegistered = DataUtils.getNameFromUid(uid);
+
+    assertEquals(false, userRegistered.registered);
+    assertEquals(null, userRegistered.username);
+    assertEquals(null, userRegistered.displayName);
   }
 }

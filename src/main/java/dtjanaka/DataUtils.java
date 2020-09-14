@@ -54,34 +54,52 @@ public final class DataUtils {
   }
 
   /**
-   * Returns a custom object with the registration status and the username if
-   * registered (null otherwise).
+   * Returns a custom object with the registration status and the username and 
+   * display name if registered (both empty otherwise).
+   * For the currently logged in User.
    * @return    {UserRegistered}
    */
-  public static UserRegistered isUserRegistered() {
+  public static UserRegistered getNameCurrentUser() {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     UserService userService = UserServiceFactory.getUserService();
 
     if (!userService.isUserLoggedIn()) {
-      return new UserRegistered(false, "");
+      return new UserRegistered(false, null, null);
     }
 
     String uid = userService.getCurrentUser().getUserId();
+    return getNameFromUid(uid);
+  }
+
+  /**
+   * Returns a custom object with the registration status and the username and 
+   * display name if registered (both empty otherwise).
+   * For any User specified by uid.
+   * @param     {String}          uid
+   * @return    {UserRegistered}
+   */
+  public static UserRegistered getNameFromUid(String uid) {
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    UserService userService = UserServiceFactory.getUserService();
+
+    if (!userService.isUserLoggedIn()) {
+      return new UserRegistered(false, null, null);
+    }
+
     Query userQuery =
         new Query(DataUtils.USER)
             .setFilter(new FilterPredicate("uid", FilterOperator.EQUAL, uid));
     PreparedQuery storedUser = datastore.prepare(userQuery);
 
     if (storedUser.countEntities() == 0) {
-      return new UserRegistered(false, "");
+      return new UserRegistered(false, null, null);
     }
 
-    return new UserRegistered(
-        true, (String)(storedUser.asSingleEntity().getProperty("username")));
-  }
+    Entity userEntity = storedUser.asSingleEntity();
+    String username = (String)userEntity.getProperty("username");
+    String displayName = (String)userEntity.getProperty("display-name");
 
-  public static getUsernameFromUid(String uid) {
-    
+    return new UserRegistered(true, username, displayName);
   }
 
   private DataUtils() {}
