@@ -26,6 +26,8 @@ public final class DataUtils {
   public static final String USER = "User";
   public static final String COMMENT = "Comment";
 
+  private static final UserRegistered NOT_REGISTERED = new UserRegistered(false, null);
+
   /**
    * Determines if the given request parameter is empty.
    * @param     {String}    param   request parameter
@@ -65,7 +67,7 @@ public final class DataUtils {
     UserService userService = UserServiceFactory.getUserService();
 
     if (!userService.isUserLoggedIn()) {
-      return new UserRegistered(false, null);
+      return NOT_REGISTERED;
     }
 
     String uid = userService.getCurrentUser().getUserId();
@@ -84,7 +86,7 @@ public final class DataUtils {
     UserService userService = UserServiceFactory.getUserService();
 
     if (!userService.isUserLoggedIn()) {
-      return new UserRegistered(false, null);
+      return NOT_REGISTERED;
     }
 
     Query userQuery =
@@ -93,7 +95,7 @@ public final class DataUtils {
     PreparedQuery storedUser = datastore.prepare(userQuery);
 
     if (storedUser.countEntities() == 0) {
-      return new UserRegistered(false, null);
+      return NOT_REGISTERED;
     }
 
     Entity userEntity = storedUser.asSingleEntity();
