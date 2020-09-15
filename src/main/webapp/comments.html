@@ -4,7 +4,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="UTF-8" />
     <title>Comments</title>
-    <link rel="icon" href="/images/pfps/pfp_def_circular.ico" type="image/x-icon" />
+    <link
+      rel="icon"
+      href="/images/pfps/pfp_def_circular.ico"
+      type="image/x-icon"
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
       rel="stylesheet"
@@ -22,16 +26,16 @@
           <form id="register-form" action="/users" method="POST">
             <label for="username">Select a username to comment:</label>
             <br />
-            <input type="text" name="username" id="username-input" required/>
+            <input type="text" name="username" id="username-input" required />
             <br />
             <button
-            type="button"
-            id="submit-register"
-            class="center misc-button"
-            onclick="checkUniqueUsername()"
-          >
-            Submit
-          </button>
+              type="button"
+              id="submit-register"
+              class="center misc-button"
+              onclick="checkUniqueUsername()"
+            >
+              Submit
+            </button>
           </form>
         </div>
       </div>
@@ -46,7 +50,7 @@
         <form id="comment-form" action="/comments" method="POST">
           <label for="name">Name:</label>
           <br />
-          <input type="text" name="name" id="name-input" required/>
+          <input type="text" name="name" id="name-input" required />
           <br />
           <label for="comment-box">Comment:</label>
           <br />
