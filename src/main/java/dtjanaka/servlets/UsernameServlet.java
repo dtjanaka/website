@@ -16,7 +16,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/username")
 public class UsernameServlet extends HttpServlet {
-  private static final UsernameInfo USERNAME_EMPTY = new UsernameInfo(false, "Usernames must be between one and twenty characters.");
+  private static final UsernameInfo USERNAME_EMPTY = new UsernameInfo(
+      false, "Usernames must be between one and twenty characters.");
 
   /**
    * Handles GET requests for username checks.
@@ -32,7 +33,6 @@ public class UsernameServlet extends HttpServlet {
 
     String username = request.getParameter("username");
     if (DataUtils.isEmptyParameter(username)) {
-      
     }
   }
 }

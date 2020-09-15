@@ -26,7 +26,8 @@ public final class DataUtils {
   public static final String USER = "User";
   public static final String COMMENT = "Comment";
 
-  private static final UserRegistered NOT_REGISTERED = new UserRegistered(false, null);
+  private static final UserRegistered NOT_REGISTERED =
+      new UserRegistered(false, null);
 
   /**
    * Determines if the given request parameter is empty.
