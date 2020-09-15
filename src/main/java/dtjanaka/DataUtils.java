@@ -65,7 +65,7 @@ public final class DataUtils {
     UserService userService = UserServiceFactory.getUserService();
 
     if (!userService.isUserLoggedIn()) {
-      return new UserRegistered(false, null, null);
+      return new UserRegistered(false, null);
     }
 
     String uid = userService.getCurrentUser().getUserId();
@@ -84,7 +84,7 @@ public final class DataUtils {
     UserService userService = UserServiceFactory.getUserService();
 
     if (!userService.isUserLoggedIn()) {
-      return new UserRegistered(false, null, null);
+      return new UserRegistered(false, null);
     }
 
     Query userQuery =
@@ -93,14 +93,13 @@ public final class DataUtils {
     PreparedQuery storedUser = datastore.prepare(userQuery);
 
     if (storedUser.countEntities() == 0) {
-      return new UserRegistered(false, null, null);
+      return new UserRegistered(false, null);
     }
 
     Entity userEntity = storedUser.asSingleEntity();
     String username = (String)userEntity.getProperty("username");
-    String displayName = (String)userEntity.getProperty("display-name");
 
-    return new UserRegistered(true, username, displayName);
+    return new UserRegistered(true, username);
   }
 
   /**

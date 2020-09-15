@@ -10,16 +10,14 @@ class UserInfo {
   boolean registered;
   String url;
   String username;
-  String displayName;
 
   public UserInfo(boolean loggedIn, boolean isAdmin, boolean registered,
-                  String url, String username, String displayName) {
+                  String url, String username) {
     this.loggedIn = loggedIn;
     this.isAdmin = isAdmin;
     this.registered = registered;
     this.url = url;
     this.username = username;
-    this.displayName = displayName;
   }
 
   public UserInfo(boolean loggedIn, boolean isAdmin, String url,
@@ -29,6 +27,5 @@ class UserInfo {
     this.registered = userRegistered.registered;
     this.url = url;
     this.username = userRegistered.username;
-    this.displayName = userRegistered.displayName;
   }
 }

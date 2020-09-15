@@ -36,15 +36,6 @@ import org.json.JSONObject;
 @WebServlet("/users")
 public class UserServlet extends HttpServlet {
 
-  /*
-  Post:
-      parameter: name
-
-
-    username AND displayname
-    a la discord
-  */
-
   /**
    * Handles POST requests for comments.
    * @param     {HttpServletRequest}    request
@@ -53,7 +44,41 @@ public class UserServlet extends HttpServlet {
    */
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws IOException {}
+      throws IOException {
+    UserService userService = UserServiceFactory.getUserService();
+
+    String comment = request.getParameter("comment");
+    String uid = userService.getCurrentUser().getUserId();
+    String token = request.getParameter("g-recaptcha-response");
+
+    Query query = new Query("Secret").setFilter(new FilterPredicate(
+        "name", FilterOperator.EQUAL, "recaptcha-comments"));
+
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    PreparedQuery secret = datastore.prepare(query);
+
+    String secretKey = (String)secret.asSingleEntity().getProperty("value");
+
+    if (DataUtils.isEmptyParameter(comment) ||
+        !isValidCaptcha(secretKey, token) ||
+        !DataUtils.isCurrentUserRegistered()) {
+      response.sendRedirect("/comments.html");
+      return;
+    }
+
+    String now = Instant.now().toString();
+
+    Entity commentEntity = new Entity(DataUtils.COMMENT);
+    commentEntity.setProperty("comment", comment);
+    commentEntity.setProperty("uid", uid);
+    commentEntity.setProperty("utc", now);
+    commentEntity.setProperty(
+        "comment-id", KeyFactory.keyToString(datastore.put(commentEntity)));
+
+    datastore.put(commentEntity);
+
+    response.sendRedirect("/comments.html");
+  }
 
   /**
    * Handles GET requests for comments.

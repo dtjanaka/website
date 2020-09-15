@@ -103,8 +103,7 @@ public final class DataUtilsTest {
     Entity userEntity = new Entity(DataUtils.USER);
     String uid = userService.getCurrentUser().getUserId();
     userEntity.setProperty("uid", uid);
-    userEntity.setProperty("username", "abc#0001");
-    userEntity.setProperty("display-name", "abc");
+    userEntity.setProperty("username", "abc");
 
     datastore.put(userEntity);
 
@@ -114,8 +113,7 @@ public final class DataUtilsTest {
     UserRegistered userRegistered = DataUtils.getNameCurrentUser();
 
     assertEquals(true, userRegistered.registered);
-    assertEquals("abc#0001", userRegistered.username);
-    assertEquals("abc", userRegistered.displayName);
+    assertEquals("abc", userRegistered.username);
   }
 
   /**
@@ -133,7 +131,6 @@ public final class DataUtilsTest {
 
     assertEquals(false, userRegistered.registered);
     assertEquals(null, userRegistered.username);
-    assertEquals(null, userRegistered.displayName);
   }
 
   /**
@@ -150,8 +147,7 @@ public final class DataUtilsTest {
     Entity userEntity = new Entity(DataUtils.USER);
     String uid = userService.getCurrentUser().getUserId();
     userEntity.setProperty("uid", uid);
-    userEntity.setProperty("username", "abc#0001");
-    userEntity.setProperty("display-name", "abc");
+    userEntity.setProperty("username", "abc");
 
     datastore.put(userEntity);
 
@@ -161,8 +157,7 @@ public final class DataUtilsTest {
     UserRegistered userRegistered = DataUtils.getNameFromUid(uid);
 
     assertEquals(true, userRegistered.registered);
-    assertEquals("abc#0001", userRegistered.username);
-    assertEquals("abc", userRegistered.displayName);
+    assertEquals("abc", userRegistered.username);
   }
 
   /**
@@ -182,6 +177,5 @@ public final class DataUtilsTest {
 
     assertEquals(false, userRegistered.registered);
     assertEquals(null, userRegistered.username);
-    assertEquals(null, userRegistered.displayName);
   }
 }

@@ -6,12 +6,9 @@ package dtjanaka.servlets;
 class UserRegistered {
   boolean registered;
   String username;
-  String displayName;
 
-  public UserRegistered(boolean registered, String username,
-                        String displayName) {
+  public UserRegistered(boolean registered, String username) {
     this.registered = registered;
     this.username = username;
-    this.displayName = displayName;
   }
 }
