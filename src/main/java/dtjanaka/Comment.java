@@ -2,7 +2,6 @@ package dtjanaka.servlets;
 
 class Comment {
   String username;
-  String displayName;
   String comment;
   String utc;        // timestamp
   String cid;        // Comment ID
@@ -12,7 +11,6 @@ class Comment {
   public Comment(UserRegistered userRegistered, String comment, String utc, String cid,
                  boolean deletable, boolean editable) {
     this.username = userRegistered.username;
-    this.displayName = userRegistered.displayName;
     this.comment = comment;
     this.utc = utc;
     this.cid = cid;
