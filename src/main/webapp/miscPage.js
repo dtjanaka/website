@@ -10,6 +10,15 @@ function createCloseButtonElement() {
 }
 
 /**
+ * Creates a <p> element containing text.
+ */
+function createPElement(text) {
+  const pElement = document.createElement('p');
+  pElement.innerText = text;
+  return pElement;
+}
+
+/**
  * Creates a map and adds it to the page.
  */
 function createMap() {
