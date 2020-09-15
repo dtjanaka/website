@@ -8,7 +8,7 @@ class UsernameInfo {
   boolean available;
   String issue;
 
-  public UserInfo(boolean available, String issue) {
+  public UsernameInfo(boolean available, String issue) {
     this.available = available;
     this.issue = issue;
   }
