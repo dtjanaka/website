@@ -34,20 +34,5 @@ public class UsernameServlet extends HttpServlet {
     if (DataUtils.isEmptyParameter(username)) {
       
     }
-    String userInfo = new String();
-
-    UserService userService = UserServiceFactory.getUserService();
-    Gson gson = new GsonBuilder().setPrettyPrinting().create();
-    if (userService.isUserLoggedIn()) {
-      String logoutUrl = userService.createLogoutURL("/" + page);
-      userInfo =
-          gson.toJson(new UserInfo(true, userService.isUserAdmin(), logoutUrl,
-                                   DataUtils.getNameCurrentUser()));
-    } else {
-      String loginUrl = userService.createLoginURL("/" + page);
-      userInfo = gson.toJson(
-          new UserInfo(false, false, loginUrl, DataUtils.getNameCurrentUser()));
-    }
-    response.getWriter().println(userInfo);
   }
 }
