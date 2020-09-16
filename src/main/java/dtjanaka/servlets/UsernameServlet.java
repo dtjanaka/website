@@ -1,5 +1,12 @@
 package dtjanaka.servlets;
 
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.Filter;
+import com.google.appengine.api.datastore.Query.FilterOperator;
+import com.google.appengine.api.datastore.Query.FilterPredicate;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.google.gson.Gson;
@@ -42,7 +49,7 @@ public class UsernameServlet extends HttpServlet {
     UserService userService = UserServiceFactory.getUserService();
 
     String username = request.getParameter("username");
-    if (DataUtils.isEmptyParameter(username) || username.length > 20) {
+    if (DataUtils.isEmptyParameter(username) || username.length() > 20) {
       response.getWriter().println(USERNAME_BAD_LENGTH);
       return;
     } else if(!DataUtils.hasLegalCharacters(username)) {

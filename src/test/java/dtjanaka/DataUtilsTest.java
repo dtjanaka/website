@@ -185,7 +185,7 @@ public final class DataUtilsTest {
   @Test
   public void alphanumAndUnderscore() {
     assertEquals(true,
-                 DataUtils.hasLegalCharacters("abcABC123_");
+                 DataUtils.hasLegalCharacters("abcABC123_"));
   }
 
   /**
@@ -193,7 +193,7 @@ public final class DataUtilsTest {
    */
   @Test
   public void nonAlphanum() {
-    assertEquals(true,
-                 DataUtils.hasLegalCharacters("#abc123~");
+    assertEquals(false,
+                 DataUtils.hasLegalCharacters("#abc123~"));
   }
 }
