@@ -51,7 +51,12 @@ public class UserServlet extends HttpServlet {
   }
 
   /**
-   * Handles GET requests for comments.
+   * Handles GET requests for login status.
+   * Responds with JSON string of UserInfo object upon successful GET.
+   * UserInfo object contains:
+   *    {boolean}   loggedIn    login status
+   *    {boolean}   isAdmin     admin status
+   *    {String}    url         login/logout link
    * @param     {HttpServletRequest}    request
    * @param     {HttpServletResponse}   response
    * @return    {void}
@@ -60,5 +65,25 @@ public class UserServlet extends HttpServlet {
   public void doGet(HttpServletRequest request, HttpServletResponse response)
       throws IOException {
     response.setContentType("application/json");
+
+    String page = request.getParameter("page");
+    if (DataUtils.isEmptyParameter(page)) {
+      page = "";
+    }
+    String userInfo = new String();
+
+    UserService userService = UserServiceFactory.getUserService();
+    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    if (userService.isUserLoggedIn()) {
+      String logoutUrl = userService.createLogoutURL("/" + page);
+      userInfo =
+          gson.toJson(new UserInfo(true, userService.isUserAdmin(), logoutUrl,
+                                   DataUtils.getNameCurrentUser()));
+    } else {
+      String loginUrl = userService.createLoginURL("/" + page);
+      userInfo = gson.toJson(
+          new UserInfo(false, false, loginUrl, DataUtils.getNameCurrentUser()));
+    }
+    response.getWriter().println(userInfo);
   }
 }

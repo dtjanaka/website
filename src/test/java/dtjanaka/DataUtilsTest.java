@@ -178,4 +178,22 @@ public final class DataUtilsTest {
     assertEquals(false, userRegistered.registered);
     assertEquals(null, userRegistered.username);
   }
+
+  /**
+   * Alphanumeric characters and underscore are valid.
+   */
+  @Test
+  public void alphanumAndUnderscore() {
+    assertEquals(true,
+                 DataUtils.hasLegalCharacters("abcABC123_");
+  }
+
+  /**
+   * Non alphanumeric characters not allowed.
+   */
+  @Test
+  public void nonAlphanum() {
+    assertEquals(true,
+                 DataUtils.hasLegalCharacters("#abc123~");
+  }
 }

@@ -113,5 +113,14 @@ public final class DataUtils {
     return getNameCurrentUser().registered;
   }
 
+  /**
+   * Returns if the given String contains alphanumeric characters
+   * and the underscore only. 
+   * @return    {boolean}
+   */
+  public static boolean hasLegalCharacters(String string) {
+    return string.matches("\\A\\w*\\z"));
+  }
+  
   private DataUtils() {}
 }

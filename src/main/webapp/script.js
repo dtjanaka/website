@@ -128,7 +128,7 @@ function createLoginLogout(type, url) {
  * Either displays login button or full page and logout button.
  */
 async function onloadPage(page) {
-  let url = '/login-status' + '?page=' + page + '.html';
+  let url = '/users' + '?page=' + page + '.html';
   const response = await fetch(url);
   const result = await response.json();
   if (result.loggedIn) {
