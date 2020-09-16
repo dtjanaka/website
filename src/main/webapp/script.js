@@ -163,7 +163,7 @@ async function onloadPage(page) {
 async function checkUniqueUsername() {
   let username = document.getElementById('username-input').value;
   let url =
-    '/username?' +
+    '/usernames?' +
     'username=' +
     username;
 
@@ -171,14 +171,9 @@ async function checkUniqueUsername() {
   const result = await response.json();
 
   if (result.available) {
-    document.getElementById('username-message-container').innerHTML = '<p>Sample</p>';
+    document.getElementById('message-icon').src = '/images/icons/checkmark_icon.svg';
   } else {
-    document.getElementById('username-message-container').innerHTML = '<p>Sample 2</p>';
+    document.getElementById('message-icon').src = '/images/icons/x.svg';
   }
-  
-
+  document.getElementById('message-text').innerText = result.message;
 }
-/*
-<img src="/images/icons/x_icon.svg" id="message-icon" />
-<p>Username not available.</p>
-*/
