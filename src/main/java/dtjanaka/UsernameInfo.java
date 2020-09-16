@@ -6,10 +6,10 @@ package dtjanaka.servlets;
  */
 class UsernameInfo {
   boolean available;
-  String issue;
+  String message;
 
-  public UsernameInfo(boolean available, String issue) {
+  public UsernameInfo(boolean available, String message) {
     this.available = available;
-    this.issue = issue;
+    this.message = message;
   }
 }
