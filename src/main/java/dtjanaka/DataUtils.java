@@ -119,7 +119,7 @@ public final class DataUtils {
    * @return    {boolean}
    */
   public static boolean hasLegalCharacters(String string) {
-    return string.matches("\\A\\w*\\z"));
+    return string.matches("\\A\\w*\\z");
   }
   
   private DataUtils() {}
