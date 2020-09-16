@@ -40,7 +40,7 @@ async function updateComments(isProfile) {
  */
 function createCommentElement(comment) {
   const nameElement = document.createElement('h3');
-  nameElement.innerText = comment.name;
+  nameElement.innerText = comment.username;
   nameElement.className = 'commenter-name';
 
   const trashHtml =
