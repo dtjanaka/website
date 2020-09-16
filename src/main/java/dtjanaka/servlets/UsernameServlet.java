@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
  * Sends back an object indicating a username availability and/or
  * any issues with the requested username.
  */
-@WebServlet("/username")
+@WebServlet("/usernames")
 public class UsernameServlet extends HttpServlet {
   private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
