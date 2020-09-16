@@ -137,15 +137,17 @@ async function onloadPage(page) {
       document
         .getElementById('gatekeeper')
         .appendChild(createLoginLogout(true, result.url));
-      document.getElementById('commenting-as').innerText =
-        'Commenting as ' + result.username;
       if (page === 'comments') {
+        document.getElementById('commenting-as').innerText =
+          'Commenting as ' + result.username + ':';
         updateComments(false);
         if (result.isAdmin) {
           document.getElementById('delete-comment-div').style.display =
             'initial';
         }
       } else if (page === 'profile') {
+        document.getElementById('commenting-as').innerText =
+          'Activity for ' + result.username;
         updateComments(true);
       }
     } else {
