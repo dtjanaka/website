@@ -484,8 +484,10 @@ button:hover {
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
+  margin-top: 10px;
 }
 
 #username-message-container p {
+  margin-top: 0px;
   margin-bottom: 0px;
 }
