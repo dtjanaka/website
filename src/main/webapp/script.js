@@ -146,7 +146,7 @@ async function onloadPage(page) {
             'initial';
         }
       } else if (page === 'profile') {
-        document.getElementById('commenting-as').innerText =
+        document.getElementById('activity-header').innerText =
           'Activity for ' + result.username;
         updateComments(true);
       }
