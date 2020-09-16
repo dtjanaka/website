@@ -21,16 +21,16 @@ async function updateComments(isProfile) {
     newLang;
 
   const response = await fetch(url);
-  const msg = await response.json();
+  const result = await response.json();
 
   const commentContainer = document.getElementById('comment-container');
 
   commentContainer.innerHTML = '';
-  if (msg.length === 0) {
+  if (result.length === 0) {
     commentContainer.innerHTML = 'Nothing to show'.italics();
   } else {
-    for (let numComment = 0; numComment < msg.length; numComment++) {
-      commentContainer.appendChild(createCommentElement(msg[numComment]));
+    for (let numComment = 0; numComment < result.length; numComment++) {
+      commentContainer.appendChild(createCommentElement(result[numComment]));
     }
   }
 }
@@ -158,3 +158,27 @@ async function onloadPage(page) {
       .appendChild(createLoginLogout(false, result.url));
   }
 }
+
+
+async function checkUniqueUsername() {
+  let username = document.getElementById('username-input').value;
+  let url =
+    '/username?' +
+    'username=' +
+    username;
+
+  const response = await fetch(url);
+  const result = await response.json();
+
+  if (result.available) {
+    document.getElementById('username-message-container').innerHTML = '<p>Sample</p>';
+  } else {
+    document.getElementById('username-message-container').innerHTML = '<p>Sample 2</p>';
+  }
+  
+
+}
+/*
+<img src="/images/icons/x_icon.svg" id="message-icon" />
+<p>Username not available.</p>
+*/

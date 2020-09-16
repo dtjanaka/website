@@ -26,12 +26,9 @@
           <form id="register-form" action="/users" method="POST">
             <label for="username">Select a username to comment:</label>
             <br />
-            <input type="text" name="username" id="username-input" required />
+            <input type="text" name="username" id="username-input" oninput="checkUniqueUsername()" required />
             <br />
-            <div id="username-message-container">
-              <img src="/images/icons/x.svg" id="message-icon" />
-              <p>Username not available.</p>
-            </div>
+            <div id="username-message-container"></div>
             <button
               type="button"
               id="submit-register"
