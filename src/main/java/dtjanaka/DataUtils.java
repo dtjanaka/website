@@ -121,6 +121,18 @@ public final class DataUtils {
   public static boolean hasLegalCharacters(String string) {
     return string.matches("\\A\\w*\\z");
   }
-  
+
+  public static boolean isUniqueUsername(String username) {
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+
+    Query userQuery = new Query(DataUtils.USER)
+                          .setFilter(new FilterPredicate(
+                              "username-lowercase", FilterOperator.EQUAL,
+                              username.toLowercase()));
+    PreparedQuery storedUser = datastore.prepare(userQuery);
+
+   return storedUser.countEntities() == 0;
+  }
+
   private DataUtils() {}
 }

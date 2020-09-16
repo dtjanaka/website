@@ -175,4 +175,12 @@ async function checkUniqueUsername() {
     document.getElementById('message-icon').src = '/images/icons/x.svg';
   }
   document.getElementById('message-text').innerText = result.message;
+
+  return result.available;
+}
+
+function submitUsername() {
+  if (checkUniqueUsername()) {
+    document.getElementById('register-form').submit();
+  }
 }
