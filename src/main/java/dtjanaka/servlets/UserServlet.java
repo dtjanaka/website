@@ -32,15 +32,16 @@ public class UserServlet extends HttpServlet {
     String username = request.getParameter("username");
 
     if (!userService.isUserLoggedIn() || DataUtils.isEmptyParameter(username) ||
-        !DataUtils.isUniqueUsername(username)) {
+        !DataUtils.isUsernameUnique(username)) {
       response.sendRedirect("/comments.html");
     }
 
-    Entity userEntity = new Entitiy(DataUtils.USER);
+    Entity userEntity = new Entity(DataUtils.USER);
     userEntity.setProperty("uid", uid);
     userEntity.setProperty("username", username);
-    userEntity.setProperty("username-lowercase", username.toLowercase());
+    userEntity.setProperty("username-lowercase", username.toLowerCase());
 
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(userEntity);
 
     response.sendRedirect("/comments.html");

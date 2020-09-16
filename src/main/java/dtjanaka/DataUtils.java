@@ -122,13 +122,13 @@ public final class DataUtils {
     return string.matches("\\A\\w*\\z");
   }
 
-  public static boolean isUniqueUsername(String username) {
+  public static boolean isUsernameUnique(String username) {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
     Query userQuery = new Query(DataUtils.USER)
                           .setFilter(new FilterPredicate(
                               "username-lowercase", FilterOperator.EQUAL,
-                              username.toLowercase()));
+                              username.toLowerCase()));
     PreparedQuery storedUser = datastore.prepare(userQuery);
 
    return storedUser.countEntities() == 0;
