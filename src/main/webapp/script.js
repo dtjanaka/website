@@ -49,7 +49,12 @@ async function updateComments(isProfile) {
  */
 function createCommentElement(comment) {
   const nameElement = document.createElement('h3');
-  nameElement.innerText = comment.username;
+  nameElement.innerHTML =
+    '<a class="username-link" href="javascript:void(0);" onclick="filterUsername(\'' +
+    comment.username +
+    '\')">' +
+    comment.username +
+    '</a>';
   nameElement.className = 'commenter-name';
 
   const trashHtml =
@@ -155,7 +160,9 @@ async function onloadPage(page) {
           '\')">' +
           result.username +
           '</a>:';
-          document.getElementById('single-username').value = document.getElementById('delete-username').value = '';
+        document.getElementById(
+          'single-username'
+        ).value = document.getElementById('delete-username').value = '';
         updateComments(false);
         if (result.isAdmin) {
           document.getElementById('delete-comment-div').style.display =
@@ -223,12 +230,15 @@ function filterUsername(username) {
   activityHeader.innerText = 'Viewing activity for ' + username;
 
   document.getElementById('delete-username').value = username;
-  document.getElementById('delete-comment').innerText = 'Delete ' + username + '\'s comments';
+  document.getElementById('delete-comment').innerText =
+    'Delete ' + username + "'s comments";
 
   let buttonElement = document.createElement('button');
   buttonElement.classList.add('center', 'misc-button');
   buttonElement.innerText = 'Back to all comments';
-  buttonElement.onclick = function() { backToAllComments(); };
+  buttonElement.onclick = function () {
+    backToAllComments();
+  };
 
   singleProfileView.appendChild(buttonElement);
 }
@@ -236,7 +246,9 @@ function filterUsername(username) {
 function backToAllComments() {
   const singleProfileView = document.getElementById('single-profile-view');
   singleProfileView.style.display = 'none';
-  document.getElementById('single-username').value = document.getElementById('delete-username').value = '';
+  document.getElementById('single-username').value = document.getElementById(
+    'delete-username'
+  ).value = '';
   document.getElementById('delete-comment').innerText = 'Delete all comments';
   document.getElementById('comment-form-container').style.display = 'initial';
   updateComments(false);
