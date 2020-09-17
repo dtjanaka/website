@@ -150,7 +150,7 @@ async function onloadPage(page) {
         .appendChild(createLoginLogout(true, result.url));
       if (page === 'comments') {
         document.getElementById('commenting-as').innerHTML =
-          'Commenting as <a href="javascript:void(0);" onclick="filterUsername(\'' + result.username + '\')">' + result.username + '</a>:';
+          'Commenting as <a class="username-link" href="javascript:void(0);" onclick="filterUsername(\'' + result.username + '\')">' + result.username + '</a>:';
         updateComments(false);
         if (result.isAdmin) {
           document.getElementById('delete-comment-div').style.display =

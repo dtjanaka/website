@@ -486,3 +486,11 @@ button:hover {
   margin-top: 0px;
   margin-bottom: 0px;
 }
+
+.username-link {
+  color: black;
+}
+
+.username-link:hover {
+  font-weight: 500;
+}
