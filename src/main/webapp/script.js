@@ -222,12 +222,16 @@ function filterUsername(username) {
   const activityHeader = document.getElementById('activity-header');
   activityHeader.innerText = 'Viewing activity for ' + username;
 
+  const inputElement = document.createElement('input');
+  console.log(inputElement);
+  //document.getElementById('delete-form').appendChild();
+
   let buttonElement = document.createElement('button');
   buttonElement.classList.add('center', 'misc-button');
   buttonElement.innerText = 'Back to all comments';
   buttonElement.onclick = function() { backToAllComments(); };
 
-  singleProfileView.insertBefore(buttonElement, document.getElementById('second-break'));
+  singleProfileView.appendChild(buttonElement);
 }
 
 function backToAllComments() {
