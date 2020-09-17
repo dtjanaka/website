@@ -232,15 +232,6 @@ function filterUsername(username) {
   document.getElementById('delete-username').value = username;
   document.getElementById('delete-comment').innerText =
     'Delete ' + username + "'s comments";
-
-  let buttonElement = document.createElement('button');
-  buttonElement.classList.add('center', 'misc-button');
-  buttonElement.innerText = 'Back to all comments';
-  buttonElement.onclick = function () {
-    backToAllComments();
-  };
-
-  singleProfileView.appendChild(buttonElement);
 }
 
 function backToAllComments() {
