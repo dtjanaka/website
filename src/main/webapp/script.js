@@ -1,6 +1,6 @@
 /**
  * Fetch content from data servlet and place in container.
- * 
+ *
  * @param isProfile loading comments on profile or comments page
  */
 async function updateComments(isProfile) {
@@ -21,11 +21,11 @@ async function updateComments(isProfile) {
     isProfile +
     '&lang=' +
     newLang;
-    
-    if (!isProfile) {
-      let username = document.getElementById('single-username').value;
-      url += '&username=' + username;
-    }
+
+  if (!isProfile) {
+    let username = document.getElementById('single-username').value;
+    url += '&username=' + username;
+  }
 
   const response = await fetch(url);
   const result = await response.json();
@@ -44,7 +44,7 @@ async function updateComments(isProfile) {
 
 /**
  * Creates the comment elements.
- * 
+ *
  * @param comment object holding attributes of a comment
  */
 function createCommentElement(comment) {
@@ -135,7 +135,7 @@ function createLoginLogout(type, url) {
 /**
  * Runs when the body of a login-restricted page loads.
  * Either displays login button or full page and logout button.
- * 
+ *
  * @param page  the page the function is called from
  */
 async function onloadPage(page) {
@@ -150,7 +150,11 @@ async function onloadPage(page) {
         .appendChild(createLoginLogout(true, result.url));
       if (page === 'comments') {
         document.getElementById('commenting-as').innerHTML =
-          'Commenting as <a class="username-link" href="javascript:void(0);" onclick="filterUsername(\'' + result.username + '\')">' + result.username + '</a>:';
+          'Commenting as <a class="username-link" href="javascript:void(0);" onclick="filterUsername(\'' +
+          result.username +
+          '\')">' +
+          result.username +
+          '</a>:';
         updateComments(false);
         if (result.isAdmin) {
           document.getElementById('delete-comment-div').style.display =
@@ -209,4 +213,25 @@ function submitUsername() {
 function filterUsername(username) {
   document.getElementById('single-username').value = username;
   updateComments(false);
+
+  document.getElementById('comment-form-container').style.display = 'none';
+
+  const singleProfileView = document.getElementById('single-profile-view');
+  singleProfileView.style.display = 'initial';
+  const activityHeader = document.getElementById('activity-header');
+  activityHeader.innerText = 'Viewing activity for ' + username;
+
+  let buttonElement = document.createElement('button');
+  buttonElement.classList.add('center', 'misc-button');
+  buttonElement.innerText = 'Back to all comments';
+  buttonElement.onclick = 'backToAllComments()';
+
+  singleProfileView.insertBefore(butonElement, activityHeader);
+}
+
+function backToAllComments() {
+  const singleProfileView = document.getElementById('single-profile-view');
+  singleProfileView.innerHTML = '';
+  singleProfileView.style.display = 'none';
+  document.getElementById('comment-form-container').style.display = 'initial';
 }
