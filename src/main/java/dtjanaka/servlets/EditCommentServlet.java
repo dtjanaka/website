@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 public class EditCommentServlet extends HttpServlet {
 
   /**
-   * Handles POST requests for deleting comments.
+   * Handles POST requests for editing comments.
    * @param     {HttpServletRequest}    request
    * @param     {HttpServletResponse}   response
    * @return    {void}
@@ -39,7 +39,5 @@ public class EditCommentServlet extends HttpServlet {
     for (Entity comment : storedComments) {
       datastore.delete(comment.getKey());
     }
-
-    response.sendRedirect("/comments.html");
   }
 }

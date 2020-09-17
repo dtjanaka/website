@@ -1,5 +1,7 @@
 /**
  * Fetch content from data servlet and place in container.
+ * 
+ * @param isProfile loading comments on profile or comments page
  */
 async function updateComments(isProfile) {
   let numCom = document.getElementById('num-comments');
@@ -37,6 +39,8 @@ async function updateComments(isProfile) {
 
 /**
  * Creates the comment elements.
+ * 
+ * @param comment object holding attributes of a comment
  */
 function createCommentElement(comment) {
   const nameElement = document.createElement('h3');
@@ -126,6 +130,8 @@ function createLoginLogout(type, url) {
 /**
  * Runs when the body of a login-restricted page loads.
  * Either displays login button or full page and logout button.
+ * 
+ * @param page  the page the function is called from
  */
 async function onloadPage(page) {
   let url = '/users' + '?page=' + page + '.html';
@@ -163,6 +169,9 @@ async function onloadPage(page) {
   }
 }
 
+/**
+ * Returns whether a given username is legal and unique.
+ */
 async function checkUniqueUsername() {
   let username = document.getElementById('username-input').value;
   let url = '/usernames?' + 'username=' + username;
@@ -183,6 +192,9 @@ async function checkUniqueUsername() {
   return result.available;
 }
 
+/**
+ * Handler for registration form.
+ */
 function submitUsername() {
   if (checkUniqueUsername()) {
     document.getElementById('register-form').submit();
