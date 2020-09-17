@@ -494,3 +494,11 @@ button:hover {
 .username-link:hover {
   font-weight: 700;
 }
+
+#single-profile-view h2 {
+  margin-bottom: 0px;
+}
+
+#single-profile-view button {
+  margin-top: 20px;
+}

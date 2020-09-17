@@ -155,6 +155,7 @@ async function onloadPage(page) {
           '\')">' +
           result.username +
           '</a>:';
+        document.getElementById('single-username').value = '';  
         updateComments(false);
         if (result.isAdmin) {
           document.getElementById('delete-comment-div').style.display =
@@ -224,14 +225,16 @@ function filterUsername(username) {
   let buttonElement = document.createElement('button');
   buttonElement.classList.add('center', 'misc-button');
   buttonElement.innerText = 'Back to all comments';
-  buttonElement.onclick = 'backToAllComments()';
+  buttonElement.onclick = function() { backToAllComments(); };
 
-  singleProfileView.insertBefore(butonElement, activityHeader);
+  singleProfileView.insertBefore(buttonElement, activityHeader);
 }
 
 function backToAllComments() {
   const singleProfileView = document.getElementById('single-profile-view');
   singleProfileView.innerHTML = '';
   singleProfileView.style.display = 'none';
+  document.getElementById('single-username').value = '';
   document.getElementById('comment-form-container').style.display = 'initial';
+  updateComments(false);
 }
