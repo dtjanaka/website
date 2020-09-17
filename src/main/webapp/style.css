@@ -379,15 +379,10 @@ button:hover {
   float: left;
 }
 
-#content-logged-in {
-  display: none;
-}
-
-#register-div {
-  display: none;
-}
-
-#delete-comment-div {
+#content-logged-in,
+#register-div,
+#delete-comment-div,
+#single-profile-view {
   display: none;
 }
 

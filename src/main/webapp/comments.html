@@ -26,7 +26,13 @@
           <form id="register-form" action="/users" method="POST">
             <label for="username">Select a username to comment:</label>
             <br />
-            <input type="text" name="username" id="username-input" oninput="checkUniqueUsername()" required />
+            <input
+              type="text"
+              name="username"
+              id="username-input"
+              oninput="checkUniqueUsername()"
+              required
+            />
             <br />
             <div id="username-message-container">
               <img id="message-icon" />
@@ -50,25 +56,28 @@
             My profile
           </button>
         </a>
-        <p class="no-pad">Leave a comment below.</p>
-        <form id="comment-form" action="/comments" method="POST">
-          <label for="comment-box" id="commenting-as">Comment:</label>
-          <br />
-          <textarea name="comment" id="comment-box" required></textarea>
-          <br />
-          <div style="text-align: center; height: 78px">
-            <div id="recaptcha" style="display: inline-block"></div>
-          </div>
-          <br />
-          <button
-            type="button"
-            id="submit-comment"
-            class="center misc-button"
-            onclick="verifyRecaptcha()"
-          >
-            Submit
-          </button>
-        </form>
+        <div id="comment-form-container">
+          <p class="no-pad">Leave a comment below.</p>
+          <form id="comment-form" action="/comments" method="POST">
+            <label for="comment-box" id="commenting-as"></label>
+            <br />
+            <textarea name="comment" id="comment-box" required></textarea>
+            <br />
+            <div style="text-align: center; height: 78px">
+              <div id="recaptcha" style="display: inline-block"></div>
+            </div>
+            <br />
+            <button
+              type="button"
+              id="submit-comment"
+              class="center misc-button"
+              onclick="verifyRecaptcha()"
+            >
+              Submit
+            </button>
+          </form>
+        </div>
+        <div id="single-profile-view"></div>
         <div id="delete-comment-div">
           <br />
           <form id="delete-form" action="/delete-comment" method="POST">
@@ -80,6 +89,7 @@
         <br />
         <form>
           <div id="options-container" class="row">
+            <input type="hidden" id="single-username" value="" onchange="updateComments(false)" />
             <div>
               <label for="num-comments">Show:</label>
               <select

@@ -21,6 +21,11 @@ async function updateComments(isProfile) {
     isProfile +
     '&lang=' +
     newLang;
+    
+    if (!isProfile) {
+      let username = document.getElementById('single-username').value;
+      url += '&username=' + username;
+    }
 
   const response = await fetch(url);
   const result = await response.json();
@@ -144,8 +149,8 @@ async function onloadPage(page) {
         .getElementById('gatekeeper')
         .appendChild(createLoginLogout(true, result.url));
       if (page === 'comments') {
-        document.getElementById('commenting-as').innerText =
-          'Commenting as ' + result.username + ':';
+        document.getElementById('commenting-as').innerHTML =
+          'Commenting as <a href="javascript:void(0);" onclick="filterUsername(\'' + result.username + '\')">' + result.username + '</a>:';
         updateComments(false);
         if (result.isAdmin) {
           document.getElementById('delete-comment-div').style.display =
@@ -193,10 +198,14 @@ async function checkUniqueUsername() {
 }
 
 /**
- * Handler for registration form.
+ * Submit handler for registration form.
  */
 function submitUsername() {
   if (checkUniqueUsername()) {
     document.getElementById('register-form').submit();
   }
+}
+
+function filterUsername(username) {
+  document.getElementById('single-username').value = username;
 }

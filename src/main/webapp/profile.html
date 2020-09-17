@@ -26,7 +26,13 @@
           <form id="register-form" action="/users" method="POST">
             <label for="username">Select a username to comment:</label>
             <br />
-            <input type="text" name="username" id="username-input" oninput="checkUniqueUsername()" required />
+            <input
+              type="text"
+              name="username"
+              id="username-input"
+              oninput="checkUniqueUsername()"
+              required
+            />
             <br />
             <div id="username-message-container">
               <img id="message-icon" />

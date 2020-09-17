@@ -147,6 +147,7 @@ public class CommentServlet extends HttpServlet {
     String sortType = request.getParameter("sort-type");
     String forProfileString = request.getParameter("profile");
     String newLang = request.getParameter("lang");
+    String username = request.getParameter("username");
     int numComments = 10; // Show 10 comments by default
     boolean forProfile = false;
 
@@ -177,7 +178,7 @@ public class CommentServlet extends HttpServlet {
     try {
       forProfile = Boolean.parseBoolean(forProfileString);
     } catch (Exception e) {
-      throw new IOException("Error parsing argument to boolean");
+      throw new IOException("Error parsing argument to boolean.");
     }
 
     Query query = new Query(DataUtils.COMMENT)
@@ -186,10 +187,18 @@ public class CommentServlet extends HttpServlet {
                                           : SortDirection.DESCENDING);
 
     if (forProfile) {
-      Filter propertyFilter =
+      Filter profileFilter =
           new FilterPredicate("uid", FilterOperator.EQUAL, uid);
 
-      query.setFilter(propertyFilter);
+      query.setFilter(profileFilter);
+    } else if (!DataUtils.isEmptyParameter(username)) {
+      String usernameUid = DataUtils.getUidFromUsername(username);
+      if (usernameUid != null) {
+        Filter usernameFilter =
+            new FilterPredicate("uid", FilterOperator.EQUAL, usernameUid);
+
+        query.setFilter(usernameFilter);
+      }
     }
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();

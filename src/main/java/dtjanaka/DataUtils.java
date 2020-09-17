@@ -115,7 +115,7 @@ public final class DataUtils {
 
   /**
    * Returns if the given String contains alphanumeric characters
-   * and the underscore only. 
+   * and the underscore only.
    * @return    {boolean}
    */
   public static boolean hasLegalCharacters(String string) {
@@ -131,7 +131,23 @@ public final class DataUtils {
                               username.toLowerCase()));
     PreparedQuery storedUser = datastore.prepare(userQuery);
 
-   return storedUser.countEntities() == 0;
+    return storedUser.countEntities() == 0;
+  }
+
+  public static String getUidFromUsername(String username) {
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+
+    Query userQuery = new Query(DataUtils.USER)
+                          .setFilter(new FilterPredicate(
+                              "username-lowercase", FilterOperator.EQUAL,
+                              username.toLowerCase()));
+    PreparedQuery storedUser = datastore.prepare(userQuery);
+
+    if (storedUser.countEntities() == 0) {
+      return null;
+    }
+
+    return storedUser.asSingleEntity().getProperty("uid");
   }
 
   private DataUtils() {}
