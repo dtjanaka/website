@@ -227,12 +227,11 @@ function filterUsername(username) {
   buttonElement.innerText = 'Back to all comments';
   buttonElement.onclick = function() { backToAllComments(); };
 
-  singleProfileView.insertBefore(buttonElement, activityHeader);
+  singleProfileView.insertBefore(buttonElement, document.getElementById('second-break'));
 }
 
 function backToAllComments() {
   const singleProfileView = document.getElementById('single-profile-view');
-  singleProfileView.innerHTML = '';
   singleProfileView.style.display = 'none';
   document.getElementById('single-username').value = '';
   document.getElementById('comment-form-container').style.display = 'initial';

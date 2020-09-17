@@ -496,9 +496,6 @@ button:hover {
 }
 
 #single-profile-view h2 {
+  margin-top: 0px;
   margin-bottom: 0px;
-}
-
-#single-profile-view button {
-  margin-top: 20px;
 }
