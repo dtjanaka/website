@@ -155,7 +155,7 @@ async function onloadPage(page) {
           '\')">' +
           result.username +
           '</a>:';
-        document.getElementById('single-username').value = '';  
+          document.getElementById('single-username').value = document.getElementById('delete-username').value = '';
         updateComments(false);
         if (result.isAdmin) {
           document.getElementById('delete-comment-div').style.display =
@@ -222,9 +222,8 @@ function filterUsername(username) {
   const activityHeader = document.getElementById('activity-header');
   activityHeader.innerText = 'Viewing activity for ' + username;
 
-  const inputElement = document.createElement('input');
-  console.log(inputElement);
-  //document.getElementById('delete-form').appendChild();
+  document.getElementById('delete-username').value = username;
+  document.getElementById('delete-comment').innerText = 'Delete ' + username + '\'s comments';
 
   let buttonElement = document.createElement('button');
   buttonElement.classList.add('center', 'misc-button');
@@ -237,7 +236,8 @@ function filterUsername(username) {
 function backToAllComments() {
   const singleProfileView = document.getElementById('single-profile-view');
   singleProfileView.style.display = 'none';
-  document.getElementById('single-username').value = '';
+  document.getElementById('single-username').value = document.getElementById('delete-username').value = '';
+  document.getElementById('delete-comment').innerText = 'Delete all comments';
   document.getElementById('comment-form-container').style.display = 'initial';
   updateComments(false);
 }
