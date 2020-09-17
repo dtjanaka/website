@@ -147,7 +147,7 @@ public final class DataUtils {
       return null;
     }
 
-    return storedUser.asSingleEntity().getProperty("uid");
+    return (String)storedUser.asSingleEntity().getProperty("uid");
   }
 
   private DataUtils() {}
