@@ -208,4 +208,5 @@ function submitUsername() {
 
 function filterUsername(username) {
   document.getElementById('single-username').value = username;
+  updateComments(false);
 }
