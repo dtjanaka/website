@@ -301,6 +301,7 @@ button:hover {
 }
 
 .commenter-name {
+  font-weight: 500;
   margin-top: 0px;
   margin-bottom: 0px;
 }

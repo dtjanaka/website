@@ -37,7 +37,9 @@ async function updateComments(isProfile) {
     commentContainer.innerHTML = 'Nothing to show'.italics();
   } else {
     for (let numComment = 0; numComment < result.length; numComment++) {
-      commentContainer.appendChild(createCommentElement(result[numComment]));
+      commentContainer.appendChild(
+        createCommentElement(result[numComment], isProfile)
+      );
     }
   }
 }
@@ -46,15 +48,17 @@ async function updateComments(isProfile) {
  * Creates the comment elements.
  *
  * @param comment object holding attributes of a comment
+ * @param isProfile loading comments on profile or comments page
  */
-function createCommentElement(comment) {
+function createCommentElement(comment, isProfile) {
   const nameElement = document.createElement('h3');
-  nameElement.innerHTML =
-    '<a class="username-link" href="javascript:void(0);" onclick="filterUsername(\'' +
-    comment.username +
-    '\')">' +
-    comment.username +
-    '</a>';
+  nameElement.innerHTML = isProfile
+    ? comment.username
+    : '<a class="username-link" href="javascript:void(0);" onclick="filterUsername(\'' +
+      comment.username +
+      '\')">' +
+      comment.username +
+      '</a>';
   nameElement.className = 'commenter-name';
 
   const trashHtml =
