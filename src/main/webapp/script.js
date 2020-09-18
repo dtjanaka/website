@@ -266,7 +266,7 @@ function massDeleteHandler() {
   if (
     confirm(deleteText + '?\nThis cannot be undone!') &&
     prompt(
-      'Type\n"' +
+      'Type "' +
         document.getElementById('delete-comment').innerText +
         '" to proceed.'
     ) === deleteText
