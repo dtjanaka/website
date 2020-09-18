@@ -64,7 +64,7 @@ public class DeleteCommentServlet extends HttpServlet {
       if (uidFromUsername != null &&
           (userService.isUserAdmin() || uid.equals(uidFromUsername))) {
         Filter usernameFilter =
-            new FilterPredicate("username", FilterOperator.EQUAL, username);
+            new FilterPredicate("uid", FilterOperator.EQUAL, uidFromUsername);
 
         commentQuery.setFilter(usernameFilter);
       } else {
