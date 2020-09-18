@@ -91,8 +91,6 @@ public class CommentServlet extends HttpServlet {
       throws IOException {
     UserService userService = UserServiceFactory.getUserService();
 
-    String comment = request.getParameter("comment");
-    String uid = userService.getCurrentUser().getUserId();
     String token = request.getParameter("g-recaptcha-response");
 
     Query query = new Query("Secret").setFilter(new FilterPredicate(
@@ -110,6 +108,8 @@ public class CommentServlet extends HttpServlet {
       return;
     }
 
+    String comment = request.getParameter("comment");
+    String uid = userService.getCurrentUser().getUserId();
     String now = Instant.now().toString();
 
     Entity commentEntity = new Entity(DataUtils.COMMENT);
@@ -118,6 +118,7 @@ public class CommentServlet extends HttpServlet {
     commentEntity.setProperty("utc", now);
     commentEntity.setProperty(
         "comment-id", KeyFactory.keyToString(datastore.put(commentEntity)));
+    commentEntity.setProperty("edited", now);
 
     datastore.put(commentEntity);
 
@@ -192,10 +193,10 @@ public class CommentServlet extends HttpServlet {
 
       query.setFilter(profileFilter);
     } else if (!DataUtils.isEmptyParameter(username)) {
-      String usernameUid = DataUtils.getUidFromUsername(username);
-      if (usernameUid != null) {
+      String uidFromUsername = DataUtils.getUidFromUsername(username);
+      if (uidFromUsername != null) {
         Filter usernameFilter =
-            new FilterPredicate("uid", FilterOperator.EQUAL, usernameUid);
+            new FilterPredicate("uid", FilterOperator.EQUAL, uidFromUsername);
 
         query.setFilter(usernameFilter);
       }
@@ -228,9 +229,11 @@ public class CommentServlet extends HttpServlet {
       boolean editable = ((String)entity.getProperty("uid")).equals(uid);
       boolean deletable = userService.isUserAdmin() || editable;
 
+      boolean edited = (String)(entity.getProperty("edited")) != utc;
+
       maxComments++;
-      comments.add(
-          new Comment(userRegistered, comment, utc, cid, deletable, editable));
+      comments.add(new Comment(userRegistered, comment, utc, cid, deletable,
+                               editable, edited));
       if (!numCommentsString.equals(ALL_COMMENTS) &&
           maxComments >= numComments) {
         break;

@@ -307,6 +307,13 @@ button:hover {
 }
 
 .commenter-time {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.commenter-time p {
   margin-top: 0px;
 }
 

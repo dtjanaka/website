@@ -29,6 +29,15 @@ public class EditCommentServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response)
       throws IOException {
+    if (!DataUtils.isCurrentUserRegistered()) {
+      response.sendRedirect("/comments.html");
+      return;
+    }
+
+    UserService userService = UserServiceFactory.getUserService();
+
+    String cid = request.getParameter("cid");
+    String uid = userService.getCurrentUser().getUserId();
 
     Query query = new Query(DataUtils.COMMENT);
 

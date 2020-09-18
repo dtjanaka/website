@@ -29,15 +29,74 @@ public class DeleteCommentServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response)
       throws IOException {
+    if (!DataUtils.isCurrentUserRegistered()) {
+      response.sendRedirect("/comments.html");
+      return;
+    }
 
-    Query query = new Query(DataUtils.COMMENT);
+    UserService userService = UserServiceFactory.getUserService();
+
+    String uid = userService.getCurrentUser().getUserId();
+
+    String username = request.getParameter("username");
+    String cid = request.getParameter("cid");
+    String deleteAllString = request.getParameter("delete-all");
+    boolean deleteAll = false;
+
+    if (!DataUtils.isEmptyParameter(deleteAllString)) {
+      try {
+        deleteAll = Boolean.parseBoolean(deleteAllString);
+      } catch (Exception e) {
+        throw new IOException("Error parsing argument to boolean.");
+      }
+    }
+
+    Query commentQuery = new Query(DataUtils.COMMENT);
+
+    if (deleteAll) {
+      if (!userService.isUserAdmin()) {
+        response.sendRedirect("/comments.html");
+        return;
+      }
+    } else if (!DataUtils.isEmptyParameter(username)) {
+      String uidFromUsername = DataUtils.getUidFromUsername(username);
+      if (uidFromUsername != null &&
+          (userService.isUserAdmin() || uid.equals(uidFromUsername))) {
+        Filter usernameFilter =
+            new FilterPredicate("username", FilterOperator.EQUAL, username);
+
+        commentQuery.setFilter(usernameFilter);
+      } else {
+        response.sendRedirect("/comments.html");
+        return;
+      }
+    } else if (!DataUtils.isEmptyParameter(cid)) {
+      Entity commentFromCid = DataUtils.getCommentFromCid(cid);
+      if (commentFromCid != null &&
+          (userService.isUserAdmin() ||
+           ((String)commentFromCid.getProperty("uid")).equals(uid))) {
+        Filter cidFilter =
+            new FilterPredicate("cid", FilterOperator.EQUAL, cid);
+
+        commentQuery.setFilter(cidFilter);
+      } else {
+        response.sendRedirect("/comments.html");
+        return;
+      }
+    } else {
+      response.sendRedirect("/comments.html");
+      return;
+    }
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+
     List<Entity> storedComments =
-        datastore.prepare(query).asList(FetchOptions.Builder.withDefaults());
+        datastore.prepare(commentQuery).asList(FetchOptions.Builder.withDefaults());
 
     for (Entity comment : storedComments) {
       datastore.delete(comment.getKey());
     }
+
+    response.sendRedirect("/comments.html");
   }
 }

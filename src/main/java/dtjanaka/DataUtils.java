@@ -150,5 +150,20 @@ public final class DataUtils {
     return (String)storedUser.asSingleEntity().getProperty("uid");
   }
 
+  public static Entity getCommentFromCid(String cid) {
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+
+    Query commentQuery = new Query(DataUtils.COMMENT)
+                             .setFilter(new FilterPredicate(
+                                 " comment-id", FilterOperator.EQUAL, cid));
+    PreparedQuery storedComment = datastore.prepare(commentQuery);
+
+    if (storedComment.countEntities() == 0) {
+      return null;
+    }
+
+    return (Entity)storedComment.asSingleEntity();
+  }
+
   private DataUtils() {}
 }

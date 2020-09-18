@@ -72,12 +72,19 @@ function createCommentElement(comment, isProfile) {
   editDiv.className = 'edit-div';
   editDiv.innerHTML = editHtml;
 
+  const timeContainer = document.createElement('div');
   const timeElement = document.createElement('p');
   let tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
   timeElement.innerText = moment(comment.utc)
     .tz(tz)
     .format('D MMM YYYY [at] h:mm a');
-  timeElement.className = 'commenter-time';
+  timeContainer.className = 'commenter-time';
+  timeContainer.appendChild(timeElement);
+  if (comment.edited) {
+    const editedElement = document.createElement('p');
+    editedElement.innerHTML = 'Edited'.italics();
+    timeContainer.appendChild(editedElement);
+  }
 
   const commentElement = document.createElement('p');
   commentElement.innerText = comment.comment;
