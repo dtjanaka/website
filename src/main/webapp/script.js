@@ -82,8 +82,8 @@ function createCommentElement(comment, isProfile) {
   timeContainer.appendChild(timeElement);
   console.log(comment);
   if (comment.edited) {
-    const editedElement = document.createElement('p');
-    editedElement.innerText = 'Edited';
+    const editedElement = document.createElement('div');
+    editedElement.innerHTML = 'Edited'.italics();
     timeContainer.appendChild(editedElement);
     console.log('appended');
   }
@@ -109,7 +109,7 @@ function createCommentElement(comment, isProfile) {
 
   let bigCommentDiv = document.createElement('div');
   bigCommentDiv.appendChild(commentHeaderDiv);
-  bigCommentDiv.appendChild(timeElement);
+  bigCommentDiv.appendChild(timeContainer);
   bigCommentDiv.appendChild(commentElement);
   return bigCommentDiv;
 }
