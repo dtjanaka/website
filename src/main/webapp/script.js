@@ -89,6 +89,7 @@ function createCommentElement(comment, isProfile) {
 
   const commentElement = document.createElement('p');
   commentElement.innerText = comment.comment;
+  commentElement.className = 'comment-text';
 
   let commentButtonDiv = document.createElement('div');
   commentButtonDiv.className = 'comment-button-div';
