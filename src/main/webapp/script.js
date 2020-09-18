@@ -297,7 +297,7 @@ function massDeleteHandler() {
 
 function singleDeleteHandler(formButton) {
   const form = formButton.parentElement;
-  if (confirm('Delete this comment?\n This cannot be undone!')) {
+  if (confirm('Delete this comment?\nThis cannot be undone!')) {
     form.submit();
   }
 }
