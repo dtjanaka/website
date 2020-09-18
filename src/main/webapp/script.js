@@ -82,9 +82,10 @@ function createCommentElement(comment, isProfile) {
   timeContainer.appendChild(timeElement);
   console.log(comment);
   if (comment.edited) {
-    const editedElement = document.createElement('div');
-    editedElement.innerHTML = 'Edited'.italics();
+    const editedElement = document.createElement('p');
+    editedElement.innerText = 'Edited';
     timeContainer.appendChild(editedElement);
+    console.log('appended');
   }
 
   const commentElement = document.createElement('p');
