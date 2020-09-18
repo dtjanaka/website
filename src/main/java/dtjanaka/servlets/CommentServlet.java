@@ -91,6 +91,7 @@ public class CommentServlet extends HttpServlet {
       throws IOException {
     UserService userService = UserServiceFactory.getUserService();
 
+    String comment = request.getParameter("comment");
     String token = request.getParameter("g-recaptcha-response");
 
     Query query = new Query("Secret").setFilter(new FilterPredicate(
@@ -108,7 +109,6 @@ public class CommentServlet extends HttpServlet {
       return;
     }
 
-    String comment = request.getParameter("comment");
     String uid = userService.getCurrentUser().getUserId();
     String now = Instant.now().toString();
 
