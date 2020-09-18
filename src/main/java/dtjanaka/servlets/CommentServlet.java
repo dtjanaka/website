@@ -229,7 +229,7 @@ public class CommentServlet extends HttpServlet {
       boolean editable = ((String)entity.getProperty("uid")).equals(uid);
       boolean deletable = userService.isUserAdmin() || editable;
 
-      boolean edited = !((String)(entity.getProperty("edited")).equals(utc));
+      boolean edited = !(((String)(entity.getProperty("edited"))).equals(utc));
 
       maxComments++;
       comments.add(new Comment(userRegistered, comment, utc, cid, deletable,
