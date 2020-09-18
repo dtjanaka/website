@@ -77,7 +77,7 @@ public class DeleteCommentServlet extends HttpServlet {
           (userService.isUserAdmin() ||
            ((String)commentFromCid.getProperty("uid")).equals(uid))) {
         Filter cidFilter =
-            new FilterPredicate("cid", FilterOperator.EQUAL, cid);
+            new FilterPredicate("comment-id", FilterOperator.EQUAL, cid);
 
         commentQuery.setFilter(cidFilter);
       } else {
