@@ -315,6 +315,7 @@ button:hover {
 
 .commenter-time p {
   margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 #view-comments {
