@@ -34,7 +34,7 @@ async function updateComments(isProfile) {
 
   commentContainer.innerHTML = '';
   if (result.length === 0) {
-    commentContainer.innerHTML = 'Nothing to show'.italics();
+    commentContainer.innerHTML = '<br />' + 'Nothing to show'.italics();
   } else {
     for (let numComment = 0; numComment < result.length; numComment++) {
       commentContainer.appendChild(

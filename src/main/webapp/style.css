@@ -516,3 +516,7 @@ button:hover {
 .comment-text {
   margin-top: 8px;
 }
+
+#comment-container {
+  margin-bottom: 24px;
+}
