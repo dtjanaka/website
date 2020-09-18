@@ -508,3 +508,7 @@ button:hover {
   margin-top: 0px;
   margin-bottom: 0px;
 }
+
+.edited-comment {
+  font-size: small;
+}

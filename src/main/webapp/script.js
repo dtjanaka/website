@@ -80,12 +80,11 @@ function createCommentElement(comment, isProfile) {
     .format('D MMM YYYY [at] h:mm a');
   timeContainer.className = 'commenter-time';
   timeContainer.appendChild(timeElement);
-  console.log(comment);
   if (comment.edited) {
     const editedElement = document.createElement('div');
     editedElement.innerHTML = 'Edited'.italics();
+    editedElement.className = 'edited-comment'; 
     timeContainer.appendChild(editedElement);
-    console.log('appended');
   }
 
   const commentElement = document.createElement('p');
