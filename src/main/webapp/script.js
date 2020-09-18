@@ -61,13 +61,33 @@ function createCommentElement(comment, isProfile) {
       '</a>';
   nameElement.className = 'commenter-name';
 
-  const trashHtml =
-    '<button class="trash-button comment-button"><img class="comment-icon" src="/images/icons/trash_icon.svg" /></button>';
-  const editHtml =
-    '<button class="edit-button comment-button"><img class="comment-icon" src="/images/icons/edit_icon.svg" /></button>';
+
+
+  const trashForm = document.createElement('form');
+  trashForm.action = '/delete-comment';
+  trashForm.method = 'POST';
+  
+  const cidInput = document.createElement('input');
+  cidInput.type = 'hidden';
+  cidInput.name = 'cid';
+  cidInput.value = comment.cid;
+
+  trashForm.appendChild(cidInput);
+  
+
+  const trashButton = document.createElement('button');
+  trashButton.onclick = function() { singleDeleteHandler(this); };
+  trashButton.classList.add('trash-button', 'comment-button');
+  trashButton.innerHTML = '<img class="comment-icon" src="/images/icons/trash_icon.svg" />';
+  
+  trashForm.appendChild(trashButton);
+
   let trashDiv = document.createElement('div');
   trashDiv.className = 'trash-div';
-  trashDiv.innerHTML = trashHtml;
+  trashDiv.appendChild(trashForm);
+
+  const editHtml =
+  '<button class="edit-button comment-button"><img class="comment-icon" src="/images/icons/edit_icon.svg" /></button>';
   let editDiv = document.createElement('div');
   editDiv.className = 'edit-div';
   editDiv.innerHTML = editHtml;
@@ -272,5 +292,12 @@ function massDeleteHandler() {
     ) === deleteText
   ) {
     document.getElementById('delete-form').submit();
+  }
+}
+
+function singleDeleteHandler(formButton) {
+  const form = formButton.parentElement;
+  if (confirm('Delete this comment?\n This cannot be undone!')) {
+    form.submit();
   }
 }
