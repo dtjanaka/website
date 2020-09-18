@@ -76,6 +76,7 @@ function createCommentElement(comment, isProfile) {
   
 
   const trashButton = document.createElement('button');
+  trashButton.type = 'button';
   trashButton.onclick = function() { singleDeleteHandler(this); };
   trashButton.classList.add('trash-button', 'comment-button');
   trashButton.innerHTML = '<img class="comment-icon" src="/images/icons/trash_icon.svg" />';
