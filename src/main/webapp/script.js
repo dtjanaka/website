@@ -83,7 +83,7 @@ function createCommentElement(comment, isProfile) {
   if (comment.edited) {
     const editedElement = document.createElement('div');
     editedElement.innerHTML = 'Edited'.italics();
-    editedElement.className = 'edited-comment'; 
+    editedElement.className = 'edited-comment';
     timeContainer.appendChild(editedElement);
   }
 
@@ -178,6 +178,7 @@ async function onloadPage(page) {
         ).value = document.getElementById('delete-username').value = '';
         updateComments(false);
         if (result.isAdmin) {
+          document.getElementById('delete-all').value = 'true';
           document.getElementById('delete-comment-div').style.display =
             'initial';
         }
@@ -243,6 +244,7 @@ function filterUsername(username) {
   activityHeader.innerText = 'Viewing activity for ' + username;
 
   document.getElementById('delete-username').value = username;
+  document.getElementById('delete-all').value = 'false';
   document.getElementById('delete-comment').innerText =
     'Delete ' + username + "'s comments";
 }
@@ -253,7 +255,22 @@ function backToAllComments() {
   document.getElementById('single-username').value = document.getElementById(
     'delete-username'
   ).value = '';
+  document.getElementById('delete-all').value = 'true';
   document.getElementById('delete-comment').innerText = 'Delete all comments';
   document.getElementById('comment-form-container').style.display = 'initial';
   updateComments(false);
+}
+
+function massDeleteHandler() {
+  const deleteText = document.getElementById('delete-comment').innerText;
+  if (
+    confirm(deleteText + '?\nThis cannot be undone!') &&
+    prompt(
+      'Type\n"' +
+        document.getElementById('delete-comment').innerText +
+        '" to proceed.'
+    ) === deleteText
+  ) {
+    document.getElementById('delete-form').submit();
+  }
 }

@@ -96,10 +96,15 @@
               type="hidden"
               id="delete-username"
               name="username"
-              ;
               value=""
             />
-            <button id="delete-comment" class="center misc-button">
+            <input
+              type="hidden"
+              id="delete-all"
+              name="delete-all"
+              value="true"
+            />
+            <button id="delete-comment" class="center misc-button" onclick="massDeleteHandler()">
               Delete all comments
             </button>
           </form>
