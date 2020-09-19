@@ -136,7 +136,7 @@ function createCommentElement(comment, isProfile) {
   editForm.appendChild(cidInput);
 
   const commentTextArea = document.createElement('textarea');
-  commentTextArea.classList = ('comment-box', 'edit-comment-box');
+  commentTextArea.classList.add('comment-box', 'edit-comment-box');
   commentTextArea.name = 'comment';
   commentTextArea.required = true;
   editForm.appendChild(commentTextArea);
@@ -154,6 +154,7 @@ function createCommentElement(comment, isProfile) {
   cancelEditButton.className = 'edit-box-button';
 
   const editBoxButtonDiv = document.createElement('div');
+  editBoxButtonDiv.className = 'edit-buttons-div';
   editBoxButtonDiv.appendChild(submitEditButton);
   editBoxButtonDiv.appendChild(cancelEditButton);
 

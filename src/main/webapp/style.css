@@ -211,7 +211,8 @@ iframe {
   float: left;
 }
 
-.misc-button {
+.misc-button,
+.edit-box-button {
   height: 50px;
   width: 50%;
   background-color: #00aff5;
@@ -351,8 +352,7 @@ button:hover {
   margin-right: auto;
 }
 
-.slideshow-button,
-.edit-box-button {
+.slideshow-button {
   float: left;
   height: 50px;
   width: 50%;
@@ -361,10 +361,14 @@ button:hover {
   color: white;
   cursor: pointer;
   font-size: large;
+  margin-bottom: 16px;
 }
 
-.slideshow-button {
-  margin-bottom: 16px;
+.edit-buttons-div {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 #half-content-container {
