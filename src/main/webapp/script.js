@@ -83,7 +83,7 @@ function createCommentElement(comment, isProfile) {
   const trashDiv = document.createElement('div');
   trashDiv.className = 'trash-div';
   trashDiv.appendChild(trashForm);
-
+  
   const editButton = document.createElement('button');
   editButton.type = 'button';
   editButton.onclick = function() { editCommentHandler(this); };
@@ -128,11 +128,25 @@ function createCommentElement(comment, isProfile) {
     commentHeaderDiv.appendChild(commentButtonDiv);
   }
 
+  const editForm = document.createElement('form');
+  editForm.action = '/edit-comment';
+  editForm.method = 'POST';
+  editForm.className = 'edit-form';
+  editForm.style.display = 'none';
+  editForm.appendChild(cidInput);
+
+  const commentTextArea = document.createElement('textarea');
+  commentTextArea.className = 'comment-box';
+  commentTextArea.name = 'comment';
+  commentTextArea.required = true;
+  editForm.appendChild(commentTextArea);
+
   let bigCommentDiv = document.createElement('div');
   bigCommentDiv.className = 'comment';
   bigCommentDiv.appendChild(commentHeaderDiv);
   bigCommentDiv.appendChild(timeContainer);
   bigCommentDiv.appendChild(commentElement);
+  bigCommentDiv.appendChild(editForm);
   return bigCommentDiv;
 }
 
@@ -306,6 +320,11 @@ function singleDeleteHandler(trashButton) {
 
 function editCommentHandler(editButton) {
   const comment = editButton.closest('.comment');
-  const commentText = comment.querySelector('.comment-text');
-  console.log(commentText.innerText);
+  const commentTextElement = comment.querySelector('.comment-text');
+  const commentText = commentTextElement.innerText;
+  commentTextElement.style.display = 'none';
+
+  const editForm = comment.querySelector('.edit-form');
+  editForm.querySelector('textarea').value = commentText;
+  editForm.style.display = 'initial';
 }
