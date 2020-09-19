@@ -47,9 +47,7 @@ public class EditCommentServlet extends HttpServlet {
 
     if (!DataUtils.isEmptyParameter(cid)) {
       Entity commentFromCid = DataUtils.getCommentFromCid(cid);
-      if (commentFromCid != null &&
-          (userService.isUserAdmin() ||
-           ((String)commentFromCid.getProperty("uid")).equals(uid))) {
+      if (commentFromCid != null && ((String)commentFromCid.getProperty("uid")).equals(uid)) {
         Filter cidFilter =
             new FilterPredicate("comment-id", FilterOperator.EQUAL, cid);
 
