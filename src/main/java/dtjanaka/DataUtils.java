@@ -155,7 +155,7 @@ public final class DataUtils {
 
     Query commentQuery = new Query(DataUtils.COMMENT)
                              .setFilter(new FilterPredicate(
-                                 " comment-id", FilterOperator.EQUAL, cid));
+                                 "comment-id", FilterOperator.EQUAL, cid));
     PreparedQuery storedComment = datastore.prepare(commentQuery);
 
     if (storedComment.countEntities() == 0) {
