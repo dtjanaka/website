@@ -61,8 +61,6 @@ function createCommentElement(comment, isProfile) {
       '</a>';
   nameElement.className = 'commenter-name';
 
-
-
   const trashForm = document.createElement('form');
   trashForm.action = '/delete-comment';
   trashForm.method = 'POST';
@@ -73,7 +71,6 @@ function createCommentElement(comment, isProfile) {
   cidInput.value = comment.cid;
 
   trashForm.appendChild(cidInput);
-  
 
   const trashButton = document.createElement('button');
   trashButton.type = 'button';
@@ -83,15 +80,18 @@ function createCommentElement(comment, isProfile) {
   
   trashForm.appendChild(trashButton);
 
-  let trashDiv = document.createElement('div');
+  const trashDiv = document.createElement('div');
   trashDiv.className = 'trash-div';
   trashDiv.appendChild(trashForm);
 
-  const editHtml =
-  '<button class="edit-button comment-button"><img class="comment-icon" src="/images/icons/edit_icon.svg" /></button>';
-  let editDiv = document.createElement('div');
+  const editButton = document.createElement('button');
+  editButton.type = 'button';
+  editButton.onclick = function() { editCommentHandler(this); };
+  editButton.classList.add('edit-button', 'comment-button');
+  editButton.innerHTML = '<img class="comment-icon" src="/images/icons/edit_icon.svg" />';
+  const editDiv = document.createElement('div');
   editDiv.className = 'edit-div';
-  editDiv.innerHTML = editHtml;
+  editDiv.appendChild(editButton);
 
   const timeContainer = document.createElement('div');
   const timeElement = document.createElement('p');
@@ -296,9 +296,14 @@ function massDeleteHandler() {
   }
 }
 
-function singleDeleteHandler(formButton) {
-  const form = formButton.parentElement;
+function singleDeleteHandler(trashButton) {
+  const form = trashButton.parentElement;
   if (confirm('Delete this comment?\nThis cannot be undone!')) {
     form.submit();
   }
+}
+
+function editCommentHandler(editButton) {
+  const commentText = editButton.closest('.comment-text');
+  console.log(commentText.innerText);
 }
