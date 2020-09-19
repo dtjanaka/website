@@ -520,3 +520,8 @@ button:hover {
 #comment-container {
   margin-bottom: 24px;
 }
+
+#goto-profile,
+#goto-settings {
+  background-color: #0abaff;
+}
