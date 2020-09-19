@@ -292,6 +292,10 @@ button:hover {
   margin-bottom: 24px;
 }
 
+.edit-comment-box {
+  margin-top: 8px;
+}
+
 .comment-header {
   display: flex;
   flex-flow: row nowrap;
@@ -347,7 +351,8 @@ button:hover {
   margin-right: auto;
 }
 
-.slideshow-button {
+.slideshow-button,
+.edit-box-button {
   float: left;
   height: 50px;
   width: 50%;
@@ -356,6 +361,9 @@ button:hover {
   color: white;
   cursor: pointer;
   font-size: large;
+}
+
+.slideshow-button {
   margin-bottom: 16px;
 }
 

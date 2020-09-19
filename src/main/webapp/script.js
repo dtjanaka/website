@@ -112,7 +112,7 @@ function createCommentElement(comment, isProfile) {
   commentElement.innerText = comment.comment;
   commentElement.className = 'comment-text';
 
-  let commentButtonDiv = document.createElement('div');
+  const commentButtonDiv = document.createElement('div');
   commentButtonDiv.className = 'comment-button-div';
   if (comment.editable) {
     commentButtonDiv.appendChild(editDiv);
@@ -121,7 +121,7 @@ function createCommentElement(comment, isProfile) {
     commentButtonDiv.appendChild(trashDiv);
   }
 
-  let commentHeaderDiv = document.createElement('div');
+  const commentHeaderDiv = document.createElement('div');
   commentHeaderDiv.className = 'comment-header';
   commentHeaderDiv.appendChild(nameElement);
   if (comment.deletable || comment.editable) {
@@ -136,12 +136,30 @@ function createCommentElement(comment, isProfile) {
   editForm.appendChild(cidInput);
 
   const commentTextArea = document.createElement('textarea');
-  commentTextArea.className = 'comment-box';
+  commentTextArea.classList = ('comment-box', 'edit-comment-box');
   commentTextArea.name = 'comment';
   commentTextArea.required = true;
   editForm.appendChild(commentTextArea);
 
-  let bigCommentDiv = document.createElement('div');
+  const submitEditButton = document.createElement('button');
+  submitEditButton.innerText = 'Update';
+  submitEditButton.type = 'button';
+  submitEditButton.onclick = '';
+  submitEditButton.className = 'edit-box-button';
+
+  const cancelEditButton = document.createElement('button');  
+  cancelEditButton.innerText = 'Cancel';
+  cancelEditButton.type = 'button';
+  submitEditButton.onclick = '';
+  cancelEditButton.className = 'edit-box-button';
+
+  const editBoxButtonDiv = document.createElement('div');
+  editBoxButtonDiv.appendChild(submitEditButton);
+  editBoxButtonDiv.appendChild(cancelEditButton);
+
+  editForm.appendChild(editBoxButtonDiv);
+
+  const bigCommentDiv = document.createElement('div');
   bigCommentDiv.className = 'comment';
   bigCommentDiv.appendChild(commentHeaderDiv);
   bigCommentDiv.appendChild(timeContainer);
@@ -177,9 +195,9 @@ function verifyRecaptcha() {
  * @param url   link for login/logout
  */
 function createLoginLogout(type, url) {
-  let link = document.createElement('a');
+  const link = document.createElement('a');
   link.href = url;
-  let buttonElement = document.createElement('button');
+  const buttonElement = document.createElement('button');
   buttonElement.classList.add('center', 'misc-button');
   buttonElement.innerText = type ? 'Logout' : 'Login';
   link.appendChild(buttonElement);
