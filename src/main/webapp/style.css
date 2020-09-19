@@ -214,7 +214,7 @@ iframe {
 .misc-button {
   height: 50px;
   width: 50%;
-  background-color: #009ddc;
+  background-color: #00aff5;
   border: none;
   color: white;
   cursor: pointer;
@@ -321,7 +321,7 @@ button:hover {
 #view-comments {
   height: 30px;
   width: 25%;
-  background-color: #009ddc;
+  background-color: #00aff5;
   border: none;
   color: white;
   cursor: pointer;
@@ -351,7 +351,7 @@ button:hover {
   float: left;
   height: 50px;
   width: 50%;
-  background-color: #009ddc;
+  background-color: #00aff5;
   border: none;
   color: white;
   cursor: pointer;
@@ -470,7 +470,7 @@ button:hover {
 }
 
 .edit-button {
-  background-color: #009ddc;
+  background-color: #00aff5;
 }
 
 .comment-icon {
