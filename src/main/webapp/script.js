@@ -122,13 +122,14 @@ function createCommentElement(comment, isProfile) {
   }
 
   let commentHeaderDiv = document.createElement('div');
-  commentHeaderDiv.className = 'comment';
+  commentHeaderDiv.className = 'comment-header';
   commentHeaderDiv.appendChild(nameElement);
   if (comment.deletable || comment.editable) {
     commentHeaderDiv.appendChild(commentButtonDiv);
   }
 
   let bigCommentDiv = document.createElement('div');
+  bigCommentDiv.className = 'comment';
   bigCommentDiv.appendChild(commentHeaderDiv);
   bigCommentDiv.appendChild(timeContainer);
   bigCommentDiv.appendChild(commentElement);
@@ -304,6 +305,7 @@ function singleDeleteHandler(trashButton) {
 }
 
 function editCommentHandler(editButton) {
-  const commentText = editButton.closest('.comment-text');
+  const comment = editButton.closest('.comment');
+  const commentText = comment.querySelector('.comment-text');
   console.log(commentText.innerText);
 }
