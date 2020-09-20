@@ -143,8 +143,7 @@ function createCommentElement(comment, isProfile) {
 
   const submitEditButton = document.createElement('button');
   submitEditButton.innerText = 'Update';
-  submitEditButton.type = 'button';
-  submitEditButton.onclick = function() { submitEditHandler(this); };
+  submitEditButton.type = 'submit';
   submitEditButton.className = 'edit-box-button';
 
   const cancelEditButton = document.createElement('button');  
@@ -348,10 +347,10 @@ function editCommentHandler(editButton) {
   editForm.style.display = 'initial';
 }
 
-function submitEditHandler(submitButton) {
-
-}
-
 function cancelEditHandler(cancelButton) {
-
+  const comment = cancelButton.closest('.comment');
+  const commentTextElement = comment.querySelector('.comment-text');
+  commentTextElement.style.display = 'initial';
+  const editForm = comment.querySelector('.edit-form');
+  editForm.style.display = 'none';
 }
