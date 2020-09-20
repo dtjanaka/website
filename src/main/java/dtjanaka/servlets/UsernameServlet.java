@@ -12,6 +12,8 @@ import com.google.appengine.api.users.UserServiceFactory;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.IOException;
+import java.time.Duration;
+import java.time.Instant;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -33,6 +35,8 @@ public class UsernameServlet extends HttpServlet {
       false, "Usernames must only contain alphanumeric characters."));
   private static final String USERNAME_TAKEN =
       gson.toJson(new UsernameInfo(false, "This username is not available."));
+  private static final String USERNAME_COOLDOWN = gson.toJson(
+      new UsernameInfo(false, "You cannot change your username right now."));
   private static final String USERNAME_AVAILABLE =
       gson.toJson(new UsernameInfo(true, "Username available."));
 
@@ -50,9 +54,24 @@ public class UsernameServlet extends HttpServlet {
 
     UserService userService = UserServiceFactory.getUserService();
 
+    Instant now = Instant.now();
+
     if (!userService.isUserLoggedIn()) {
       response.sendRedirect("/comments.html");
       return;
+    }
+
+    if (DataUtils.isCurrentUserRegistered()) {
+      Entity userEntity = DataUtils.getCurrentUser();
+
+      Instant then =
+          Instant.parse((String)userEntity.getProperty("last-changed"));
+
+      if (Duration.between(then, now).toDays() <
+          DataUtils.USERNAME_CHANGE_COOLDOWN) {
+        response.getWriter().println(USERNAME_COOLDOWN);
+        return;
+      }
     }
 
     String username = request.getParameter("username");

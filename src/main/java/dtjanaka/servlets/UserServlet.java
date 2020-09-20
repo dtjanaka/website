@@ -8,6 +8,8 @@ import com.google.appengine.api.users.UserServiceFactory;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.IOException;
+import java.time.Duration;
+import java.time.Instant;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -29,17 +31,34 @@ public class UserServlet extends HttpServlet {
     UserService userService = UserServiceFactory.getUserService();
 
     String uid = userService.getCurrentUser().getUserId();
+    Instant now = Instant.now();
+    String nowString = now.toString();
     String username = request.getParameter("username");
 
     if (!userService.isUserLoggedIn() || DataUtils.isEmptyParameter(username) ||
         !DataUtils.isUsernameUnique(username)) {
       response.sendRedirect("/comments.html");
+      return;
     }
 
     Entity userEntity = new Entity(DataUtils.USER);
+    if (DataUtils.isCurrentUserRegistered()) {
+      userEntity = DataUtils.getCurrentUser();
+
+      Instant then =
+          Instant.parse((String)userEntity.getProperty("last-changed"));
+
+      if (Duration.between(then, now).toDays() <
+          DataUtils.USERNAME_CHANGE_COOLDOWN) {
+        response.sendRedirect("/comments.html");
+        return;
+      }
+    }
+
     userEntity.setProperty("uid", uid);
     userEntity.setProperty("username", username);
     userEntity.setProperty("username-lowercase", username.toLowerCase());
+    userEntity.setProperty("last-changed"), nowString);
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(userEntity);

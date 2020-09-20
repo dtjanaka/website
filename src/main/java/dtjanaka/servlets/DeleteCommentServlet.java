@@ -92,7 +92,8 @@ public class DeleteCommentServlet extends HttpServlet {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
     List<Entity> storedComments =
-        datastore.prepare(commentQuery).asList(FetchOptions.Builder.withDefaults());
+        datastore.prepare(commentQuery)
+            .asList(FetchOptions.Builder.withDefaults());
 
     for (Entity comment : storedComments) {
       datastore.delete(comment.getKey());

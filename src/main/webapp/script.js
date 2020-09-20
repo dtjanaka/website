@@ -64,7 +64,7 @@ function createCommentElement(comment, isProfile) {
   const trashForm = document.createElement('form');
   trashForm.action = '/delete-comment';
   trashForm.method = 'POST';
-  
+
   const cidInput = document.createElement('input');
   cidInput.type = 'hidden';
   cidInput.name = 'cid';
@@ -74,21 +74,27 @@ function createCommentElement(comment, isProfile) {
 
   const trashButton = document.createElement('button');
   trashButton.type = 'button';
-  trashButton.onclick = function() { singleDeleteHandler(this); };
+  trashButton.onclick = function () {
+    singleDeleteHandler(this);
+  };
   trashButton.classList.add('trash-button', 'comment-button');
-  trashButton.innerHTML = '<img class="comment-icon" src="/images/icons/trash_icon.svg" />';
-  
+  trashButton.innerHTML =
+    '<img class="comment-icon" src="/images/icons/trash_icon.svg" />';
+
   trashForm.appendChild(trashButton);
 
   const trashDiv = document.createElement('div');
   trashDiv.className = 'trash-div';
   trashDiv.appendChild(trashForm);
-  
+
   const editButton = document.createElement('button');
   editButton.type = 'button';
-  editButton.onclick = function() { editCommentHandler(this); };
+  editButton.onclick = function () {
+    editCommentHandler(this);
+  };
   editButton.classList.add('edit-button', 'comment-button');
-  editButton.innerHTML = '<img class="comment-icon" src="/images/icons/edit_icon.svg" />';
+  editButton.innerHTML =
+    '<img class="comment-icon" src="/images/icons/edit_icon.svg" />';
   const editDiv = document.createElement('div');
   editDiv.className = 'edit-div';
   editDiv.appendChild(editButton);
@@ -146,10 +152,12 @@ function createCommentElement(comment, isProfile) {
   submitEditButton.type = 'submit';
   submitEditButton.className = 'edit-box-button';
 
-  const cancelEditButton = document.createElement('button');  
+  const cancelEditButton = document.createElement('button');
   cancelEditButton.innerText = 'Cancel';
   cancelEditButton.type = 'button';
-  cancelEditButton.onclick = function() { cancelEditHandler(this); };
+  cancelEditButton.onclick = function () {
+    cancelEditHandler(this);
+  };
   cancelEditButton.className = 'edit-box-button';
 
   const editBoxButtonDiv = document.createElement('div');
@@ -217,8 +225,7 @@ async function onloadPage(page) {
   if (result.loggedIn) {
     if (result.registered) {
       document.getElementById('content-logged-in').style.display = 'initial';
-      document
-        .getElementById('gatekeeper').innerHTML = '';
+      document.getElementById('gatekeeper').innerHTML = '';
       document
         .getElementById('gatekeeper')
         .appendChild(createLoginLogout(true, result.url));

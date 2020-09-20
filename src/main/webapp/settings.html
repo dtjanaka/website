@@ -51,7 +51,9 @@
         <div id="change-username-div">
           <h2 id="change-username-header">Change Username</h2>
           <form id="register-form" action="/users" method="POST">
-            <label for="username">You may change your username every 60 days.</label>
+            <label for="username"
+              >You may change your username every 60 days.</label
+            >
             <br />
             <input
               type="text"
@@ -90,7 +92,12 @@
               name="delete-all"
               value="true"
             />
-            <button type="button" id="delete-comment" class="center misc-button" onclick="massDeleteHandler()">
+            <button
+              type="button"
+              id="delete-comment"
+              class="center misc-button"
+              onclick="massDeleteHandler()"
+            >
               Delete all comments
             </button>
           </form>

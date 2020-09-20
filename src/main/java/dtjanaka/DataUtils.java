@@ -25,6 +25,7 @@ public final class DataUtils {
   public static final String DESCENDING_SORT = "dsc";
   public static final String USER = "User";
   public static final String COMMENT = "Comment";
+  public static final Integer USERNAME_CHANGE_COOLDOWN = 60;
 
   private static final UserRegistered NOT_REGISTERED =
       new UserRegistered(false, null);
@@ -163,6 +164,24 @@ public final class DataUtils {
     }
 
     return (Entity)storedComment.asSingleEntity();
+  }
+
+  public static Entity getCurrentUser() {
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    UserService userService = UserServiceFactory.getUserService();
+
+    String uid = userService.getCurrentUser().getUserId();
+
+    Query userQuery =
+        new Query(DataUtils.USER)
+            .setFilter(new FilterPredicate("uid", FilterOperator.EQUAL, uid));
+    PreparedQuery storedUser = datastore.prepare(userQuery);
+
+    if (storedUser.countEntities() == 0) {
+      return null;
+    }
+
+    return storedUser.asSingleEntity();
   }
 
   private DataUtils() {}
