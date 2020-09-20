@@ -350,7 +350,7 @@ function editCommentHandler(editButton) {
 function cancelEditHandler(cancelButton) {
   const comment = cancelButton.closest('.comment');
   const commentTextElement = comment.querySelector('.comment-text');
-  commentTextElement.style.display = 'initial';
+  commentTextElement.style.display = 'inline-block';
   const editForm = comment.querySelector('.edit-form');
   editForm.style.display = 'none';
 }
