@@ -218,6 +218,8 @@ async function onloadPage(page) {
     if (result.registered) {
       document.getElementById('content-logged-in').style.display = 'initial';
       document
+        .getElementById('gatekeeper').innerHTML = '';
+      document
         .getElementById('gatekeeper')
         .appendChild(createLoginLogout(true, result.url));
       if (page === 'comments') {
