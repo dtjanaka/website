@@ -149,7 +149,7 @@ function createCommentElement(comment, isProfile) {
   const cancelEditButton = document.createElement('button');  
   cancelEditButton.innerText = 'Cancel';
   cancelEditButton.type = 'button';
-  submitEditButton.onclick = function() { cancelEditHandler(this); };
+  cancelEditButton.onclick = function() { cancelEditHandler(this); };
   cancelEditButton.className = 'edit-box-button';
 
   const editBoxButtonDiv = document.createElement('div');
