@@ -333,6 +333,10 @@ button:hover {
   font-size: small;
 }
 
+#change-username-header {
+  margin-bottom: 8px;
+}
+
 #submit-register {
   margin-top: 20px;
   margin-bottom: 20px;
