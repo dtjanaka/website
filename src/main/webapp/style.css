@@ -1,6 +1,3 @@
-/*
- *      General
- */
 * {
   box-sizing: border-box;
 }
@@ -10,10 +7,20 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
-#content {
-  margin-left: auto;
-  margin-right: auto;
-  width: 40%;
+button,
+input,
+select,
+option {
+  font-family: "Poppins", sans-serif;
+}
+
+button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+#gallery img {
+  cursor: pointer;
 }
 
 h1 {
@@ -35,6 +42,22 @@ a {
   text-decoration: none;
 }
 
+#content {
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+}
+
+#content-container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#widgets {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 table,
 th,
 td {
@@ -52,83 +75,18 @@ td {
   padding: 10px;
 }
 
-button,
-input,
-select,
-option {
-  font-family: "Poppins", sans-serif;
+.puzzle {
+  text-align: center;
 }
 
-button:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
-}
-
-button:hover {
-  opacity: 0.7;
+.times {
+  text-align: right;
 }
 
 .text-block {
   text-align: justify;
 }
-/* General */
 
-/*
- *      Responsiveness
- */
-@media only screen and (max-width: 1600px) {
-  #map,
-  #half-content-container {
-    width: 100%;
-  }
-
-  #half-content-container {
-    padding-left: 0px;
-    margin-top: 20px;
-  }
-  .misc-button {
-    width: 100%;
-  }
-  .responsive {
-    width: 75%;
-  }
-  p:not(.no-pad),
-  h3 {
-    padding-left: 5px;
-    padding-right: 5px;
-  }
-  #misc-link {
-    background-color: #16c172;
-  }
-  [class*="col-"] {
-    width: 100%;
-  }
-  .fa {
-    margin-top: 0px;
-    margin-bottom: 0px;
-  }
-  .fa-linkedin {
-    margin-top: 20px;
-  }
-}
-
-@media only screen and (max-width: 1000px) {
-  #content {
-    width: 75%;
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  #content,
-  .responsive {
-    width: 100%;
-  }
-}
-/* Responsiveness */
-
-/*
- *      Social Icons
- */
 .fa {
   padding: 10px;
   width: 100%;
@@ -161,11 +119,38 @@ button:hover {
   background: #125688;
   color: white;
 }
-/* Social Icons */
 
-/*
- *      Columns
- */
+#links button,
+#links-2 button {
+  width: 100%;
+  height: 50px;
+}
+
+#links,
+#links-2 {
+  text-align: center;
+}
+
+#canvas-1 {
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.center,
+iframe {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.responsive {
+  width: 50%;
+  height: auto;
+}
+
 .row::after {
   content: "";
   clear: both;
@@ -209,59 +194,6 @@ button:hover {
   width: 100%;
 }
 
-[class*="col-"] {
-  float: left;
-}
-/* Columns */
-
-#gallery img {
-  cursor: pointer;
-}
-
-#widgets {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.puzzle {
-  text-align: center;
-}
-
-.times {
-  text-align: right;
-}
-
-#links button,
-#links-2 button {
-  width: 100%;
-  height: 50px;
-}
-
-#links,
-#links-2 {
-  text-align: center;
-}
-
-#canvas-1 {
-  padding-left: 0;
-  padding-right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-}
-
-.center,
-iframe {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.responsive {
-  width: 50%;
-  height: auto;
-}
-
 .tac-cont {
   font-size: 0px;
 }
@@ -273,6 +205,10 @@ iframe {
   font-size: 25px;
   background-color: black;
   vertical-align: top;
+}
+
+[class*="col-"] {
+  float: left;
 }
 
 .misc-button,
@@ -303,6 +239,10 @@ iframe {
 
 .even {
   background-color: #0ccf75;
+}
+
+button:hover {
+  opacity: 0.7;
 }
 
 #up-down {
@@ -475,9 +415,56 @@ iframe {
   margin-top: 20px;
 }
 
-/*
- *      Comment Buttons 
- */
+@media only screen and (max-width: 1600px) {
+  #map,
+  #half-content-container {
+    width: 100%;
+  }
+
+  #half-content-container {
+    padding-left: 0px;
+    margin-top: 20px;
+  }
+  .misc-button {
+    width: 100%;
+  }
+  .responsive {
+    width: 75%;
+  }
+  p:not(.no-pad),
+  h3 {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  #misc-link {
+    background-color: #16c172;
+  }
+  [class*="col-"] {
+    width: 100%;
+  }
+  .fa {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  .fa-linkedin {
+    margin-top: 20px;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  #content {
+    width: 75%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #content,
+  .responsive {
+    width: 100%;
+  }
+}
+
+/* Comment Buttons */
 .comment-button-div {
   display: flex;
   flex-flow: row nowrap;
