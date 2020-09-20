@@ -58,7 +58,7 @@ public class UserServlet extends HttpServlet {
     userEntity.setProperty("uid", uid);
     userEntity.setProperty("username", username);
     userEntity.setProperty("username-lowercase", username.toLowerCase());
-    userEntity.setProperty("last-changed"), nowString);
+    userEntity.setProperty("last-changed", nowString);
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(userEntity);
