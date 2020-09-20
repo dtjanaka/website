@@ -48,7 +48,55 @@
           </form>
         </div>
       </div>
-      <div id="content-logged-in"></div>
+      <div id="content-logged-in">
+        <div id="change-username-div">
+          <h2>Change Username</h2>
+          <form id="register-form" action="/users" method="POST">
+            <label for="username">You may change your username every 60 days.</label>
+            <br />
+            <input
+              type="text"
+              name="username"
+              id="username-input"
+              oninput="checkUniqueUsername()"
+              required
+            />
+            <br />
+            <div id="username-message-container">
+              <img id="message-icon" />
+              <p id="message-text"></p>
+            </div>
+            <button
+              type="button"
+              id="submit-register"
+              class="center misc-button"
+              onclick="submitUsername()"
+            >
+              Submit
+            </button>
+          </form>
+        </div>
+        <h2>Delete My Comments</h2>
+        <div id="delete-my-comments-div">
+          <form id="delete-form" action="/delete-comment" method="POST">
+            <input
+              type="hidden"
+              id="delete-username"
+              name="username"
+              value=""
+            />
+            <input
+              type="hidden"
+              id="delete-all"
+              name="delete-all"
+              value="true"
+            />
+            <button type="button" id="delete-comment" class="center misc-button" onclick="massDeleteHandler()">
+              Delete all comments
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
   </body>
 </html>
