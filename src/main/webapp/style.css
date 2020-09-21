@@ -225,17 +225,26 @@ iframe {
   font-size: large;
 }
 
+.interest-button.odd {
+  background-color: #16c172;
+}
+
+.interest-button.even {
+  background-color: #0ccf75;
+}
+
+.blue.odd {
+  background-color: #00aff5;
+}
+
+.blue.even {
+  background-color: #0abaff;
+}
+
 #delete-comment {
   background-color: #d00000;
 }
 
-.odd {
-  background-color: #16c172;
-}
-
-.even {
-  background-color: #0ccf75;
-}
 
 #up-down {
   background-color: #f0f0f8;
