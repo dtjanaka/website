@@ -295,6 +295,13 @@ function submitUsername() {
   }
 }
 
+
+/**
+ * Displays comments for a given user on the comments page (not the profile).
+ * Hides the comment input.
+ *
+ * @param username the user of interest
+ */
 function filterUsername(username) {
   document.getElementById('single-username').value = username;
   updateComments(false);
@@ -312,6 +319,9 @@ function filterUsername(username) {
     'Delete ' + username + "'s comments";
 }
 
+/**
+ * Closes the display for only one user's comments and restores comment input.
+ */
 function backToAllComments() {
   const singleProfileView = document.getElementById('single-profile-view');
   singleProfileView.style.display = 'none';
@@ -324,6 +334,9 @@ function backToAllComments() {
   updateComments(false);
 }
 
+/**
+ * Handles mass deletion of comments (admin action only).
+ */
 function massDeleteHandler() {
   const deleteText = document.getElementById('delete-comment').innerText;
   if (
@@ -338,6 +351,9 @@ function massDeleteHandler() {
   }
 }
 
+/**
+ * Handles deletion of individual comments.
+ */
 function singleDeleteHandler(trashButton) {
   const form = trashButton.parentElement;
   if (confirm('Delete this comment?\nThis cannot be undone!')) {
@@ -345,6 +361,11 @@ function singleDeleteHandler(trashButton) {
   }
 }
 
+/**
+ * Opens the editing form when the edit button is clicked. 
+ * 
+ * @param editButton the clicked element
+ */
 function editCommentHandler(editButton) {
   const comment = editButton.closest('.comment');
   const commentTextElement = comment.querySelector('.comment-text');
@@ -356,6 +377,11 @@ function editCommentHandler(editButton) {
   editForm.style.display = 'initial';
 }
 
+/**
+ * Closes the editing form. 
+ * 
+ * @param cancelButton the clicked element
+ */
 function cancelEditHandler(cancelButton) {
   const comment = cancelButton.closest('.comment');
   const commentTextElement = comment.querySelector('.comment-text');
