@@ -52,16 +52,6 @@ a {
   width: 40%;
 }
 
-#content-container {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-#widgets {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
 table,
 th,
 td {
@@ -417,6 +407,12 @@ iframe {
   margin-top: 20px;
 }
 
+#content-container {
+  display: none;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 /* Responsiveness */
 @media only screen and (max-width: 1600px) {
   #map,
@@ -448,9 +444,6 @@ iframe {
   .fa {
     margin-top: 0px;
     margin-bottom: 0px;
-  }
-  .fa-linkedin {
-    margin-top: 20px;
   }
 }
 
