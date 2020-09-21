@@ -18,7 +18,7 @@ function addRandomPrequelQuote() {
   ];
 
   const quoteContainer = document.getElementById('content-container');
-  quoteContainer.style.display = 'inline-block';
+  quoteContainer.style.display = 'block';
 
   // Pick a random different quote.
   let quote = quoteContainer.innerText;
