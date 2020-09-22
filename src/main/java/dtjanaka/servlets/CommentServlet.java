@@ -3,7 +3,6 @@ package dtjanaka.servlets;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
-import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
@@ -37,48 +36,6 @@ import org.json.JSONObject;
 public class CommentServlet extends HttpServlet {
   private static final String ALL_COMMENTS = "All";
   private static final String ASCENDING_COMMENTS = "asc";
-
-  /**
-   * Handles server-side reCAPTCHA verification.
-   * https://stackoverflow.com/questions/47622506/how-to-validate-recaptcha-v2-java-servlet
-   * @param     {String}    secretKey
-   * @param     {String}    response
-   * @return    {boolean}
-   */
-  public synchronized boolean isValidCaptcha(String secretKey, String response)
-      throws IOException {
-    try {
-      String url = "https://www.google.com/recaptcha/api/siteverify",
-             params = "secret=" + secretKey + "&response=" + response;
-
-      HttpURLConnection http =
-          (HttpURLConnection) new URL(url).openConnection();
-      http.setDoOutput(true);
-      http.setRequestMethod("POST");
-      http.setRequestProperty(
-          "Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-      OutputStream out = http.getOutputStream();
-      out.write(params.getBytes("UTF-8"));
-      out.flush();
-      out.close();
-
-      InputStream in = http.getInputStream();
-      BufferedReader br =
-          new BufferedReader(new InputStreamReader(in, "UTF-8"));
-
-      StringBuilder sb = new StringBuilder();
-      int cp;
-      while ((cp = br.read()) != -1) {
-        sb.append((char)cp);
-      }
-      JSONObject json = new JSONObject(sb.toString());
-      in.close();
-
-      return json.getBoolean("success");
-    } catch (Exception e) {
-      throw new IOException("Error verifying reCAPTCHA.");
-    }
-  }
 
   /**
    * Handles POST requests for comments.
@@ -245,5 +202,47 @@ public class CommentServlet extends HttpServlet {
         new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
     String jsonComments = gson.toJson(comments);
     response.getWriter().println(jsonComments);
+  }
+
+  /**
+   * Handles server-side reCAPTCHA verification.
+   * https://stackoverflow.com/questions/47622506/how-to-validate-recaptcha-v2-java-servlet
+   * @param     {String}    secretKey
+   * @param     {String}    response
+   * @return    {boolean}
+   */
+  public synchronized boolean isValidCaptcha(String secretKey, String response)
+      throws IOException {
+    try {
+      String url = "https://www.google.com/recaptcha/api/siteverify",
+             params = "secret=" + secretKey + "&response=" + response;
+
+      HttpURLConnection http =
+          (HttpURLConnection) new URL(url).openConnection();
+      http.setDoOutput(true);
+      http.setRequestMethod("POST");
+      http.setRequestProperty(
+          "Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+      OutputStream out = http.getOutputStream();
+      out.write(params.getBytes("UTF-8"));
+      out.flush();
+      out.close();
+
+      InputStream in = http.getInputStream();
+      BufferedReader br =
+          new BufferedReader(new InputStreamReader(in, "UTF-8"));
+
+      StringBuilder sb = new StringBuilder();
+      int cp;
+      while ((cp = br.read()) != -1) {
+        sb.append((char)cp);
+      }
+      JSONObject json = new JSONObject(sb.toString());
+      in.close();
+
+      return json.getBoolean("success");
+    } catch (Exception e) {
+      throw new IOException("Error verifying reCAPTCHA.");
+    }
   }
 }

@@ -4,12 +4,10 @@
  * @param isProfile loading comments on profile or comments page
  */
 async function updateComments(isProfile) {
-  let numCom = document.getElementById('num-comments');
-  let numComments = numCom.options[numCom.selectedIndex].text;
-  let howSort = document.getElementById('sort-type');
-  let sortType = howSort.options[howSort.selectedIndex].value;
-  let trLang = document.getElementById('lang-comments');
-  let newLang = trLang.options[trLang.selectedIndex].value;
+  const commentOptions = new FormData(document.getElementById('options-form'));
+  let numComments = commentOptions.get('num-comments');
+  let sortType = commentOptions.get('sort-type');
+  let newLang = commentOptions.get('lang-comments');
 
   let url =
     '/comments?' +
@@ -23,7 +21,7 @@ async function updateComments(isProfile) {
     newLang;
 
   if (!isProfile) {
-    let username = document.getElementById('single-username').value;
+    let username = commentOptions.get('single-username');
     url += '&username=' + username;
   }
 
