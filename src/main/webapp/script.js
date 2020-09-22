@@ -137,7 +137,7 @@ function createCommentElement(comment, isProfile) {
   editForm.method = 'POST';
   editForm.className = 'edit-form';
   editForm.style.display = 'none';
-  editForm.appendChild(cidInput);
+  editForm.appendChild(cidInput.cloneNode(true));
 
   const commentTextArea = document.createElement('textarea');
   commentTextArea.classList.add('comment-box', 'edit-comment-box');
