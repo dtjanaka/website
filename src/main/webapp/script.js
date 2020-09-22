@@ -192,10 +192,11 @@ async function submitComment() {
 
     const response = await fetch('/comments', {
       method: 'POST',
-      body: JSON.stringify({
-        comment: commentForm.get('comment'),
-        'g-recaptcha-response': commentForm.get('g-recaptcha-response'),
-      }),
+      body:
+        'comment=' +
+        commentForm.get('comment') +
+        '\ng-recaptcha-response=' +
+        commentForm.get('g-recaptcha-response'),
     });
     const result = await response.json();
 
