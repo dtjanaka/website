@@ -34,6 +34,22 @@ import org.json.JSONObject;
 
 @WebServlet("/comments")
 public class CommentServlet extends HttpServlet {
+  private static final Gson gson =
+      new GsonBuilder().setPrettyPrinting().create();
+
+  private static final String COMMENT_LOGIN =
+      gson.toJson(new CommentPostInfo(
+          false, "You must be logged in to post a comment."));
+  private static final String COMMENT_RECAPTCHA =
+      gson.toJson(new CommentPostInfo(
+          false, "Please verify you are human!"));
+  private static final String COMMENT_LENGTH =
+      gson.toJson(new CommentPostInfo(
+          false, "A comment cannot be empty."));
+  private static final String COMMENT_SUCCESS =
+      gson.toJson(new CommentPostInfo(
+          true, "Comment successfully posted."));
+
   private static final String ALL_COMMENTS = "All";
   private static final String ASCENDING_COMMENTS = "asc";
 
@@ -59,10 +75,14 @@ public class CommentServlet extends HttpServlet {
 
     String secretKey = (String)secret.asSingleEntity().getProperty("value");
 
-    if (DataUtils.isEmptyParameter(comment) ||
-        !isValidCaptcha(secretKey, token) ||
-        !DataUtils.isCurrentUserRegistered()) {
-      response.sendRedirect("/comments.html");
+    if (DataUtils.isEmptyParameter(comment)) {
+      response.getWriter().println(COMMENT_LENGTH);
+      return;
+    } else if(!isValidCaptcha(secretKey, token)) {
+      response.getWriter().println(COMMENT_RECAPTCHA);
+      return;
+    } else if(!DataUtils.isCurrentUserRegistered()) {
+      response.getWriter().println(COMMENT_LOGIN);
       return;
     }
 
@@ -79,7 +99,7 @@ public class CommentServlet extends HttpServlet {
 
     datastore.put(commentEntity);
 
-    response.sendRedirect("/comments.html");
+    response.getWriter().println(COMMENT_SUCCESS);
   }
 
   /**
@@ -97,7 +117,7 @@ public class CommentServlet extends HttpServlet {
     String uid = userService.getCurrentUser().getUserId();
 
     if (!DataUtils.isCurrentUserRegistered()) {
-      response.sendRedirect("/comments.html");
+      response.getWriter().println(gson.toJson("Access denied."));
       return;
     }
 
@@ -198,9 +218,9 @@ public class CommentServlet extends HttpServlet {
     }
 
     // TODO: known issue where translated comments display &#39; instead of '
-    Gson gson =
+    Gson gsonDisableEscaping =
         new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
-    String jsonComments = gson.toJson(comments);
+    String jsonComments = gsonDisableEscaping.toJson(comments);
     response.getWriter().println(jsonComments);
   }
 

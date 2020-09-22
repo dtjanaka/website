@@ -186,9 +186,20 @@ function onloadCallback() {
 /**
  * Only submit if a reCAPTCHA response was received.
  */
-function verifyRecaptcha() {
+async function submitComment() {
   if (grecaptcha.getResponse().length !== 0) {
-    document.getElementById('comment-form').submit();
+    const commentForm = new FormData(document.getElementById('comment-form'));
+    
+    const url = '/comments';
+    const response = await fetch(url, { method: 'POST', body: commentForm});
+    const result = await response.json();
+
+    if (result.successful) {
+      commentForm.reset();
+      updateComments(false);
+    } else {
+      alert(result.message);
+    }
   } else {
     alert('Please verify you are human!');
   }
@@ -217,7 +228,7 @@ function createLoginLogout(type, url) {
  * @param page  the page the function is called from
  */
 async function onloadPage(page) {
-  let url = '/users' + '?page=' + page + '.html';
+  const url = '/users' + '?page=' + page + '.html';
   const response = await fetch(url);
   const result = await response.json();
   if (result.loggedIn) {
@@ -292,7 +303,6 @@ function submitUsername() {
     document.getElementById('register-form').submit();
   }
 }
-
 
 /**
  * Displays comments for a given user on the comments page (not the profile).
