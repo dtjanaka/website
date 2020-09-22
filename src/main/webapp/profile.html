@@ -56,13 +56,14 @@
           </button>
         </a>
         <h2 id="activity-header"></h2>
-        <form>
+        <form id="options-form">
           <div id="options-container" class="row">
             <div>
               <label for="num-comments">Show:</label>
               <select
                 type="text"
                 id="num-comments"
+                name="num-comments"
                 onchange="updateComments(false)"
               >
                 <option selected>10</option>
@@ -78,6 +79,7 @@
               <select
                 type="text"
                 id="sort-type"
+                name="sort-type"
                 onchange="updateComments(false)"
               >
                 <option value="dsc" selected>Date: new to old</option>
@@ -89,6 +91,7 @@
               <select
                 type="text"
                 id="lang-comments"
+                name="lang-comments"
                 onchange="updateComments(false)"
               >
                 <option value="en" selected>English</option>
