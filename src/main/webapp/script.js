@@ -195,7 +195,7 @@ async function submitComment() {
       body:
         'comment=' +
         commentForm.get('comment') +
-        '\ng-recaptcha-response=' +
+        '&g-recaptcha-response=' +
         commentForm.get('g-recaptcha-response'),
     });
     const result = await response.json();
