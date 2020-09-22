@@ -190,13 +190,7 @@ async function submitComment() {
   if (grecaptcha.getResponse().length !== 0) {
     const commentForm = new FormData(document.getElementById('comment-form'));
 
-    const response = await fetch('/comments', {
-      method: 'POST',
-      body: {
-        comment: commentForm.get('comment'),
-        'g-recaptcha-response': commentForm.get('g-recaptcha-response'),
-      },
-    });
+    const response = await fetch('/comments', { method: 'POST', body: commentForm});
     const result = await response.json();
 
     if (result.successful) {
@@ -375,8 +369,8 @@ function singleDeleteHandler(trashButton) {
 }
 
 /**
- * Opens the editing form when the edit button is clicked.
- *
+ * Opens the editing form when the edit button is clicked. 
+ * 
  * @param editButton the clicked element
  */
 function editCommentHandler(editButton) {
@@ -391,8 +385,8 @@ function editCommentHandler(editButton) {
 }
 
 /**
- * Closes the editing form.
- *
+ * Closes the editing form. 
+ * 
  * @param cancelButton the clicked element
  */
 function cancelEditHandler(cancelButton) {
