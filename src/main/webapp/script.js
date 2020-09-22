@@ -188,7 +188,8 @@ function onloadCallback() {
  */
 async function submitComment() {
   if (grecaptcha.getResponse().length !== 0) {
-    const commentForm = new FormData(document.getElementById('comment-form'));
+    const commentForm = document.getElementById('comment-form');
+    const commentFormData = new FormData(commentForm);
 
     const response = await fetch('/comments', {
       method: 'POST',
@@ -203,9 +204,9 @@ async function submitComment() {
       },
       body:
         'comment=' +
-        commentForm.get('comment') +
+        commentFormData.get('comment') +
         '&g-recaptcha-response=' +
-        commentForm.get('g-recaptcha-response'),
+        commentFormData.get('g-recaptcha-response'),
     });
     const result = await response.json();
 
