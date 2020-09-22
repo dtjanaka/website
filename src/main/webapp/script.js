@@ -213,7 +213,7 @@ async function submitComment() {
     if (result.successful) {
       commentForm.reset();
       grecaptcha.reset();
-      updateComments(false);
+      await updateComments(false);
     }
     alert(result.message);
   } else {
