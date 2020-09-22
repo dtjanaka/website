@@ -212,10 +212,10 @@ async function submitComment() {
 
     if (result.successful) {
       commentForm.reset();
+      grecaptcha.reset();
       updateComments(false);
-    } else {
-      alert(result.message);
     }
+    alert(result.message);
   } else {
     alert('Please verify you are human!');
   }
