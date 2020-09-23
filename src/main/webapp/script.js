@@ -147,7 +147,10 @@ function createCommentElement(comment, isProfile) {
 
   const submitEditButton = document.createElement('button');
   submitEditButton.innerText = 'Update';
-  submitEditButton.type = 'submit';
+  submitEditButton.type = 'button';
+  submitEditButton.onclick = function () {
+    submitEditHandler(this);
+  };
   submitEditButton.className = 'edit-box-button';
 
   const cancelEditButton = document.createElement('button');
@@ -194,8 +197,6 @@ async function submitComment() {
     const response = await fetch('/comments', {
       method: 'POST',
       headers: {
-        'User-Agent':
-          'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:80.0) Gecko/20100101 Firefox/80.0',
         Accept:
           'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
         'Accept-Language': 'en-US,en;q=0.5',
@@ -314,9 +315,29 @@ async function checkUniqueUsername() {
 /**
  * Submit handler for registration form.
  */
-function submitUsername() {
+async function submitUsername() {
   if (checkUniqueUsername()) {
-    document.getElementById('register-form').submit();
+    const registerForm = document.getElementById('register-form');
+    const registerFormData = new FormData(registerForm);
+
+    const response = await fetch('/users', {
+      method: 'POST',
+      headers: {
+        Accept:
+          'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+        'Accept-Language': 'en-US,en;q=0.5',
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Upgrade-Insecure-Requests': '1',
+      },
+      body: registerFormData,
+    });
+    const result = await response.json();
+
+    if (result.successful) {
+      location.reload();
+    } else {
+      alert(result.message);
+    }
   }
 }
 
@@ -361,8 +382,10 @@ function backToAllComments() {
 /**
  * Handles mass deletion of comments (admin action only).
  */
-function massDeleteHandler() {
+async function massDeleteHandler() {
   const deleteText = document.getElementById('delete-comment').innerText;
+  const trashForm = document.getElementById('delete-form');
+  const trashFormData = new FormData(trashForm);
   if (
     confirm(deleteText + '?\nThis cannot be undone!') &&
     prompt(
@@ -371,17 +394,50 @@ function massDeleteHandler() {
         '" to proceed.'
     ) === deleteText
   ) {
-    document.getElementById('delete-form').submit();
+    const response = await fetch('/delete-comment', {
+      method: 'POST',
+      headers: {
+        Accept:
+          'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+        'Accept-Language': 'en-US,en;q=0.5',
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Upgrade-Insecure-Requests': '1',
+      },
+      body: trashFormData,
+    });
+    const result = await response.json();
+
+    if (result.successful) {
+      await updateComments(window.location.href.includes('profile'));
+    }
+    alert(result.message);
   }
 }
 
 /**
  * Handles deletion of individual comments.
  */
-function singleDeleteHandler(trashButton) {
-  const form = trashButton.parentElement;
+async function singleDeleteHandler(trashButton) {
+  const trashForm = trashButton.parentElement;
+  const trashFormData = new FormData(trashForm);
   if (confirm('Delete this comment?\nThis cannot be undone!')) {
-    form.submit();
+    const response = await fetch('/delete-comment', {
+      method: 'POST',
+      headers: {
+        Accept:
+          'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+        'Accept-Language': 'en-US,en;q=0.5',
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Upgrade-Insecure-Requests': '1',
+      },
+      body: trashFormData,
+    });
+    const result = await response.json();
+
+    if (result.successful) {
+      await updateComments(window.location.href.includes('profile'));
+    }
+    alert(result.message);
   }
 }
 
@@ -412,4 +468,33 @@ function cancelEditHandler(cancelButton) {
   commentTextElement.style.display = 'inline-block';
   const editForm = comment.querySelector('.edit-form');
   editForm.style.display = 'none';
+}
+
+/**
+ * Submits the editing form.
+ *
+ * @param submitButton the clicked element
+ */
+async function submitEditHandler(submitButton) {
+  const comment = submitButton.closest('.comment');
+  const editForm = comment.querySelector('.edit-form');
+  const editFormData = new FormData(editForm);
+
+  const response = await fetch('/edit-comment', {
+    method: 'POST',
+    headers: {
+      Accept:
+        'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+      'Accept-Language': 'en-US,en;q=0.5',
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Upgrade-Insecure-Requests': '1',
+    },
+    body: editFormData,
+  });
+  const result = await response.json();
+
+  if (result.successful) {
+    await updateComments(window.location.href.includes('profile'));
+  }
+  alert(result.message);
 }
