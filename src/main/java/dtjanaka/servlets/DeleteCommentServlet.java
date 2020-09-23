@@ -19,6 +19,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * Handles comment deletion.
+ */
 @WebServlet("/delete-comment")
 public class DeleteCommentServlet extends HttpServlet {
   private static final Gson gson =

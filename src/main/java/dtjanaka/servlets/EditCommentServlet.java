@@ -18,6 +18,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * Handles comment edits.
+ */
 @WebServlet("/edit-comment")
 public class EditCommentServlet extends HttpServlet {
   private static final Gson gson =

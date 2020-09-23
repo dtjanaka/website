@@ -32,6 +32,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.json.JSONObject;
 
+/**
+ * Handles new comments and returns existing comments.
+ */
 @WebServlet("/comments")
 public class CommentServlet extends HttpServlet {
   private static final Gson gson =

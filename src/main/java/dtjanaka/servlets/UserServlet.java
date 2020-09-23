@@ -16,6 +16,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.json.JSONObject;
 
+/**
+ * Handles registration and update of users and returns details about the
+ * current logged in user.
+ */
 @WebServlet("/users")
 public class UserServlet extends HttpServlet {
   private static final Gson gson =
