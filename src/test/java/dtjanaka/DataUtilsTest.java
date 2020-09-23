@@ -103,7 +103,9 @@ public final class DataUtilsTest {
     Entity userEntity = new Entity(DataUtils.USER);
     String uid = userService.getCurrentUser().getUserId();
     userEntity.setProperty("uid", uid);
-    userEntity.setProperty("username", "abc");
+    userEntity.setProperty("username", "Abc");
+    userEntity.setProperty("username-lowercase", "abc");
+    userEntity.setProperty("last-changed", "2020-06-20T22:29:22.048Z");
 
     datastore.put(userEntity);
 
@@ -147,7 +149,9 @@ public final class DataUtilsTest {
     Entity userEntity = new Entity(DataUtils.USER);
     String uid = userService.getCurrentUser().getUserId();
     userEntity.setProperty("uid", uid);
-    userEntity.setProperty("username", "abc");
+    userEntity.setProperty("username", "Abc");
+    userEntity.setProperty("username-lowercase", "abc");
+    userEntity.setProperty("last-changed", "2020-06-20T22:29:22.048Z");
 
     datastore.put(userEntity);
 
@@ -195,5 +199,103 @@ public final class DataUtilsTest {
   public void nonAlphanum() {
     assertEquals(false,
                  DataUtils.hasLegalCharacters("#abc123~"));
+  }
+
+  /**
+   * Should check if username is unique, ignoring case.
+   */
+  @Test
+  public void isUsernameUnique() {
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    UserService userService = UserServiceFactory.getUserService();
+
+    assertEquals(0,
+                 datastore.prepare(new Query(DataUtils.USER)).countEntities());
+
+    Entity userEntity = new Entity(DataUtils.USER);
+    String uid = userService.getCurrentUser().getUserId();
+    userEntity.setProperty("uid", uid);
+    userEntity.setProperty("username", "Abc");
+    userEntity.setProperty("username-lowercase", "abc");
+    userEntity.setProperty("last-changed", "2020-06-20T22:29:22.048Z");
+
+    datastore.put(userEntity);
+
+    assertEquals(true, DataUtils.isUsernameUnique("def"));
+    assertEquals(false, DataUtils.isUsernameUnique("aBc"));
+    assertEquals(false, DataUtils.isUsernameUnique("abc"));
+  }
+
+  /**
+   * Should find the uid for a registered username, ignoring case.
+   */
+  @Test
+  public void getUidFromUsername() {
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    UserService userService = UserServiceFactory.getUserService();
+
+    assertEquals(0,
+                 datastore.prepare(new Query(DataUtils.USER)).countEntities());
+
+    Entity userEntity = new Entity(DataUtils.USER);
+    String uid = userService.getCurrentUser().getUserId();
+    userEntity.setProperty("uid", uid);
+    userEntity.setProperty("username", "Abc");
+    userEntity.setProperty("username-lowercase", "abc");
+    userEntity.setProperty("last-changed", "2020-06-20T22:29:22.048Z");
+
+    datastore.put(userEntity);
+
+    assertEquals(uid, DataUtils.getUidFromUsername("Abc"));
+    assertEquals(uid, DataUtils.getUidFromUsername("abc"));
+    assertEquals(null, DataUtils.getUidFromUsername("abcd"));
+  }
+
+  /**
+   * Should find the comment given its comment ID.
+   */
+  @Test
+  public void getCommentFromCid() {
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    UserService userService = UserServiceFactory.getUserService();
+
+    assertEquals(0,
+                 datastore.prepare(new Query(DataUtils.COMMENT)).countEntities());
+
+    Entity commentEntity = new Entity(DataUtils.COMMENT);
+    String uid = userService.getCurrentUser().getUserId();
+    commentEntity.setProperty("uid", uid);
+    commentEntity.setProperty("comment", "Hi");
+    commentEntity.setProperty("comment-id", "xyz");
+    commentEntity.setProperty("edited", "2020-06-20T22:29:22.048Z");
+    commentEntity.setProperty("utc", "2020-06-20T22:29:22.048Z");
+
+    datastore.put(commentEntity);
+
+    assertEquals(commentEntity, DataUtils.getCommentFromCid("xyz"));
+    assertEquals(null, DataUtils.getCommentFromCid("uvw"));
+  }
+
+  /**
+   * Should find the current user in the database.
+   */
+  @Test
+  public void getCurrentUser() {
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    UserService userService = UserServiceFactory.getUserService();
+
+    assertEquals(0,
+                 datastore.prepare(new Query(DataUtils.USER)).countEntities());
+
+    Entity userEntity = new Entity(DataUtils.USER);
+    String uid = userService.getCurrentUser().getUserId();
+    userEntity.setProperty("uid", uid);
+    userEntity.setProperty("username", "Abc");
+    userEntity.setProperty("username-lowercase", "abc");
+    userEntity.setProperty("last-changed", "2020-06-20T22:29:22.048Z");
+
+    datastore.put(userEntity);
+
+    assertEquals(userEntity, DataUtils.getCurrentUser());
   }
 }

@@ -124,21 +124,31 @@ public final class DataUtils {
     return string.matches("\\A\\w*\\z");
   }
 
+
   /**
-   * Returns if the given username is unique within the database.
-   * @param     {String}  username
-   * @return    {boolean}
+   * Returns the query containing the User entity corresponding to
+   * the given username if present in database. 
+   * @param     {String}        username
+   * @return    {PreparedQuery}
    */
-  public static boolean isUsernameUnique(String username) {
+  private static PreparedQuery getUserFromUsername(String username) {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
     Query userQuery = new Query(DataUtils.USER)
                           .setFilter(new FilterPredicate(
                               "username-lowercase", FilterOperator.EQUAL,
                               username.toLowerCase()));
-    PreparedQuery storedUser = datastore.prepare(userQuery);
+    
+    return datastore.prepare(userQuery);
+  }
 
-    return storedUser.countEntities() == 0;
+  /**
+   * Returns if the given username is unique within the database.
+   * @param     {String}  username
+   * @return    {boolean}
+   */
+  public static boolean isUsernameUnique(String username) {
+    return getUserFromUsername(username).countEntities() == 0;
   }
 
   /**
@@ -147,13 +157,7 @@ public final class DataUtils {
    * @return    {String}
    */
   public static String getUidFromUsername(String username) {
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-
-    Query userQuery = new Query(DataUtils.USER)
-                          .setFilter(new FilterPredicate(
-                              "username-lowercase", FilterOperator.EQUAL,
-                              username.toLowerCase()));
-    PreparedQuery storedUser = datastore.prepare(userQuery);
+    PreparedQuery storedUser = getUserFromUsername(username);
 
     if (storedUser.countEntities() == 0) {
       return null;
