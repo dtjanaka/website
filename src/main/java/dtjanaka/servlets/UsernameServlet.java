@@ -3,11 +3,6 @@ package dtjanaka.servlets;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
-import com.google.appengine.api.datastore.PreparedQuery;
-import com.google.appengine.api.datastore.Query;
-import com.google.appengine.api.datastore.Query.Filter;
-import com.google.appengine.api.datastore.Query.FilterOperator;
-import com.google.appengine.api.datastore.Query.FilterPredicate;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.google.gson.Gson;
@@ -29,9 +24,8 @@ public class UsernameServlet extends HttpServlet {
   private static final Gson gson =
       new GsonBuilder().setPrettyPrinting().create();
 
-  private static final String USERNAME_LOGIN =
-      gson.toJson(new UsernameInfo(
-          false, "You must be logged in to select a username."));
+  private static final String USERNAME_LOGIN = gson.toJson(
+      new UsernameInfo(false, "You must be logged in to select a username."));
   private static final String USERNAME_BAD_LENGTH =
       gson.toJson(new UsernameInfo(
           false, "Usernames must be between one and twenty characters."));

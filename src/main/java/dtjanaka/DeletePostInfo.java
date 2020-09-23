@@ -1,13 +1,13 @@
 package dtjanaka.servlets;
 
 /**
- * Holds status of attempted comment POST and a message.
+ * Holds status of attempted delete POST and a message.
  */
-class CommentPostInfo {
+class DeletePostInfo {
   boolean successful;
   String message;
 
-  public CommentPostInfo(boolean successful, String message) {
+  public DeletePostInfo(boolean successful, String message) {
     this.successful = successful;
     this.message = message;
   }

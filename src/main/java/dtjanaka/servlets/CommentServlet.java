@@ -37,18 +37,14 @@ public class CommentServlet extends HttpServlet {
   private static final Gson gson =
       new GsonBuilder().setPrettyPrinting().create();
 
-  private static final String COMMENT_LOGIN =
-      gson.toJson(new CommentPostInfo(
-          false, "You must be logged in to post a comment."));
+  private static final String COMMENT_LOGIN = gson.toJson(
+      new CommentPostInfo(false, "You must be logged in to post a comment."));
   private static final String COMMENT_RECAPTCHA =
-      gson.toJson(new CommentPostInfo(
-          false, "Please verify you are human!"));
+      gson.toJson(new CommentPostInfo(false, "Please verify you are human!"));
   private static final String COMMENT_LENGTH =
-      gson.toJson(new CommentPostInfo(
-          false, "A comment cannot be empty."));
+      gson.toJson(new CommentPostInfo(false, "A comment cannot be empty."));
   private static final String COMMENT_SUCCESS =
-      gson.toJson(new CommentPostInfo(
-          true, "Comment successfully posted."));
+      gson.toJson(new CommentPostInfo(true, "Comment successfully posted."));
 
   private static final String ALL_COMMENTS = "All";
   private static final String ASCENDING_COMMENTS = "asc";
@@ -78,10 +74,10 @@ public class CommentServlet extends HttpServlet {
     if (DataUtils.isEmptyParameter(comment)) {
       response.getWriter().println(comment);
       return;
-    } else if(!isValidCaptcha(secretKey, token)) {
+    } else if (!isValidCaptcha(secretKey, token)) {
       response.getWriter().println(COMMENT_RECAPTCHA);
       return;
-    } else if(!DataUtils.isCurrentUserRegistered()) {
+    } else if (!DataUtils.isCurrentUserRegistered()) {
       response.getWriter().println(COMMENT_LOGIN);
       return;
     }

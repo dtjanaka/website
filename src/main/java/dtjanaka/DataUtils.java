@@ -117,12 +117,18 @@ public final class DataUtils {
   /**
    * Returns if the given String contains alphanumeric characters
    * and the underscore only.
+   * @param     {String}  string
    * @return    {boolean}
    */
   public static boolean hasLegalCharacters(String string) {
     return string.matches("\\A\\w*\\z");
   }
 
+  /**
+   * Returns if the given username is unique within the database.
+   * @param     {String}  username
+   * @return    {boolean}
+   */
   public static boolean isUsernameUnique(String username) {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
@@ -135,6 +141,11 @@ public final class DataUtils {
     return storedUser.countEntities() == 0;
   }
 
+  /**
+   * Returns the uid of the given username if stored in the database.
+   * @param     {String}  username
+   * @return    {String}
+   */
   public static String getUidFromUsername(String username) {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
@@ -151,6 +162,11 @@ public final class DataUtils {
     return (String)storedUser.asSingleEntity().getProperty("uid");
   }
 
+  /**
+   * Returns the Comment object from the given comment ID.
+   * @param     {String}  cid
+   * @return    {Entity}
+   */
   public static Entity getCommentFromCid(String cid) {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
@@ -166,6 +182,10 @@ public final class DataUtils {
     return (Entity)storedComment.asSingleEntity();
   }
 
+  /**
+   * Returns the User object of the currently logged in user.
+   * @return    {Entity}
+   */
   public static Entity getCurrentUser() {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     UserService userService = UserServiceFactory.getUserService();

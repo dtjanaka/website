@@ -4,13 +4,14 @@ import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.FetchOptions;
-import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.Filter;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.FilterPredicate;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.annotation.WebServlet;
@@ -20,9 +21,28 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/delete-comment")
 public class DeleteCommentServlet extends HttpServlet {
+  private static final Gson gson =
+      new GsonBuilder().setPrettyPrinting().create();
+
+  private static final String DELETE_LOGIN = gson.toJson(
+      new DeletePostInfo(false, "You must be logged in to delete a comment."));
+  private static final String DELETE_ADMIN = gson.toJson(new DeletePostInfo(
+      false, "You must be an admin to delete this comment."));
+  private static final String DELETE_USERNAME = gson.toJson(
+      new DeletePostInfo(false, "The requested user was not found."));
+  private static final String DELETE_CID = gson.toJson(
+      new DeletePostInfo(false, "The requested comment was not found."));
+  private static final String DELETE_NO_PERMISSION = gson.toJson(
+      new DeletePostInfo(false, "You cannot delete the requested comment(s)."));
+  private static final String DELETE_NO_OPTIONS = gson.toJson(
+      new DeletePostInfo(false, "No options were provided to delete."));
+  private static final String DELETE_SUCCESS =
+      gson.toJson(new DeletePostInfo(true, "Comment(s) successfully deleted."));
 
   /**
    * Handles POST requests for deleting comments.
+   * Options for deleting a single comment, all of a user's comments,
+   * or all comments.
    * @param     {HttpServletRequest}    request
    * @param     {HttpServletResponse}   response
    * @return    {void}
@@ -30,8 +50,10 @@ public class DeleteCommentServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response)
       throws IOException {
+    response.setContentType("application/json");
+
     if (!DataUtils.isCurrentUserRegistered()) {
-      response.sendRedirect("/comments.html");
+      response.getWriter().println(DELETE_LOGIN);
       return;
     }
 
@@ -56,36 +78,38 @@ public class DeleteCommentServlet extends HttpServlet {
 
     if (deleteAll) {
       if (!userService.isUserAdmin()) {
-        response.sendRedirect("/comments.html");
+        response.getWriter().println(DELETE_ADMIN);
         return;
       }
     } else if (!DataUtils.isEmptyParameter(username)) {
       String uidFromUsername = DataUtils.getUidFromUsername(username);
-      if (uidFromUsername != null &&
-          (userService.isUserAdmin() || uid.equals(uidFromUsername))) {
-        Filter usernameFilter =
-            new FilterPredicate("uid", FilterOperator.EQUAL, uidFromUsername);
-
-        commentQuery.setFilter(usernameFilter);
-      } else {
-        response.sendRedirect("/comments.html");
+      if (uidFromUsername == null) {
+        response.getWriter().println(DELETE_USERNAME);
+        return;
+      } else if (!userService.isUserAdmin() && !uid.equals(uidFromUsername)) {
+        response.getWriter().println(DELETE_NO_PERMISSION);
         return;
       }
+      Filter usernameFilter =
+          new FilterPredicate("uid", FilterOperator.EQUAL, uidFromUsername);
+
+      commentQuery.setFilter(usernameFilter);
     } else if (!DataUtils.isEmptyParameter(cid)) {
       Entity commentFromCid = DataUtils.getCommentFromCid(cid);
-      if (commentFromCid != null &&
-          (userService.isUserAdmin() ||
-           ((String)commentFromCid.getProperty("uid")).equals(uid))) {
-        Filter cidFilter =
-            new FilterPredicate("comment-id", FilterOperator.EQUAL, cid);
-
-        commentQuery.setFilter(cidFilter);
-      } else {
-        response.sendRedirect("/comments.html");
+      if (commentFromCid == null) {
+        response.getWriter().println(DELETE_CID);
+        return;
+      } else if (!userService.isUserAdmin() &&
+                 !(((String)commentFromCid.getProperty("uid")).equals(uid))) {
+        response.getWriter().println(DELETE_NO_PERMISSION);
         return;
       }
+      Filter cidFilter =
+          new FilterPredicate("comment-id", FilterOperator.EQUAL, cid);
+
+      commentQuery.setFilter(cidFilter);
     } else {
-      response.sendRedirect("/comments.html");
+      response.getWriter().println(DELETE_NO_OPTIONS);
       return;
     }
 
@@ -99,6 +123,6 @@ public class DeleteCommentServlet extends HttpServlet {
       datastore.delete(comment.getKey());
     }
 
-    response.sendRedirect("/comments.html");
+    response.getWriter().println(DELETE_SUCCESS);
   }
 }

@@ -13,11 +13,23 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/error")
 public class ErrorServlet extends HttpServlet {
 
+  /**
+   * Handles GET requests for errors.
+   * @param     {HttpServletRequest}    request
+   * @param     {HttpServletResponse}   response
+   * @return    {void}
+   */
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     processError(request, response);
   }
 
+  /**
+   * Handles POST requests for errors.
+   * @param     {HttpServletRequest}    request
+   * @param     {HttpServletResponse}   response
+   * @return    {void}
+   */
   protected void doPost(HttpServletRequest request,
                         HttpServletResponse response)
       throws ServletException, IOException {
@@ -37,16 +49,17 @@ public class ErrorServlet extends HttpServlet {
 
     String code = request.getParameter("code");
     if (!DataUtils.isEmptyParameter(code)) {
-      response.getWriter().println("<h1>" + code + "</h1>");
+      response.getWriter().println("<div id='content'><h1>" + code + "</h1>");
       switch (code) {
       case "404":
-        response.getWriter().println("<p>Page not found.</p>");
+        response.getWriter().println("<p>Page not found.</p></div>");
         return;
       case "500":
-        response.getWriter().println("<p>Internal server error.</p>");
+        response.getWriter().println("<p>Internal server error.</p></div>");
         return;
       default:
-        response.getWriter().println("<p>Something unexpected occurred.</p>");
+        response.getWriter().println(
+            "<p>Something unexpected occurred.</p></div>");
         return;
       }
     }
@@ -66,11 +79,12 @@ public class ErrorServlet extends HttpServlet {
       requestUri = "Unknown";
     }
 
-    response.getWriter().println("<h1>" + statusCode + "</h1>"
+    response.getWriter().println("<div id='content'><h1>" + statusCode + "</h1>"
                                  + "<p>" + throwable.getMessage() + "</p>"
                                  + "<p>"
                                  + "on " + servletName + "</p>"
                                  + "<p>"
-                                 + "when accessing " + requestUri + "</p>");
+                                 + "when accessing " + requestUri +
+                                 "</p></div>");
   }
 }
