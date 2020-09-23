@@ -329,7 +329,7 @@ async function submitUsername() {
         'Content-Type': 'application/x-www-form-urlencoded',
         'Upgrade-Insecure-Requests': '1',
       },
-      body: registerFormData,
+      body: 'username=' + registerFormData.get('username'),
     });
     const result = await response.json();
 
@@ -403,7 +403,11 @@ async function massDeleteHandler() {
         'Content-Type': 'application/x-www-form-urlencoded',
         'Upgrade-Insecure-Requests': '1',
       },
-      body: trashFormData,
+      body:
+        'username=' +
+        trashFormData.get('username') +
+        '&delete-all=' +
+        trashFormData.get('delete-all'),
     });
     const result = await response.json();
 
@@ -430,7 +434,7 @@ async function singleDeleteHandler(trashButton) {
         'Content-Type': 'application/x-www-form-urlencoded',
         'Upgrade-Insecure-Requests': '1',
       },
-      body: trashFormData,
+      body: 'cid=' + trashFormData.get('cid'),
     });
     const result = await response.json();
 
@@ -489,7 +493,11 @@ async function submitEditHandler(submitButton) {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Upgrade-Insecure-Requests': '1',
     },
-    body: editFormData,
+    body:
+      'comment=' +
+      editFormData.get('comment') +
+      '&cid=' +
+      commentFormData.get('cid'),
   });
   const result = await response.json();
 
