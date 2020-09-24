@@ -58,22 +58,6 @@ function inversePaint(src, w, h) {
     }
   });
 
-  c.addEventListener('touchstart', (e) => {
-    let rect = e.currentTarget.getBoundingClientRect();
-    x = Math.floor(e.clientX - rect.left);
-    y = Math.floor(e.clientY - rect.top);
-    isMoving = true;
-  });
-
-  c.addEventListener('touchmove', (e) => {
-    if (isMoving === true) {
-      invertLocally();
-      let rect = e.currentTarget.getBoundingClientRect();
-      x = Math.floor(e.clientX - rect.left);
-      y = Math.floor(e.clientY - rect.top);
-    }
-  });
-
   window.addEventListener('mouseup', () => {
     if (isMoving === true) {
       invertLocally();
@@ -81,12 +65,71 @@ function inversePaint(src, w, h) {
     }
   });
 
-  window.addEventListener('touchend', () => {
-    if (isMoving === true) {
-      invertLocally();
-      isMoving = false;
-    }
-  });
+  // Set up touch events for mobile
+  c.addEventListener(
+    'touchstart',
+    function (e) {
+      let touch = e.touches[0];
+      let mouseEvent = new MouseEvent('mousedown', {
+        clientX: touch.clientX,
+        clientY: touch.clientY,
+      });
+      c.dispatchEvent(mouseEvent);
+    },
+    false
+  );
+
+  c.addEventListener(
+    'touchend',
+    function (e) {
+      let mouseEvent = new MouseEvent('mouseup', {});
+      c.dispatchEvent(mouseEvent);
+    },
+    false
+  );
+
+  c.addEventListener(
+    'touchmove',
+    function (e) {
+      let touch = e.touches[0];
+      let mouseEvent = new MouseEvent('mousemove', {
+        clientX: touch.clientX,
+        clientY: touch.clientY,
+      });
+
+      c.dispatchEvent(mouseEvent);
+    },
+    false
+  );
+
+  // Prevent scrolling when touching the canvas
+  document.body.addEventListener(
+    'touchstart',
+    function (e) {
+      if (e.target == c) {
+        e.preventDefault();
+      }
+    },
+    false
+  );
+  document.body.addEventListener(
+    'touchend',
+    function (e) {
+      if (e.target == c) {
+        e.preventDefault();
+      }
+    },
+    false
+  );
+  document.body.addEventListener(
+    'touchmove',
+    function (e) {
+      if (e.target == c) {
+        e.preventDefault();
+      }
+    },
+    false
+  );
 }
 
 function squarePixels(x, y, s, w, h) {
