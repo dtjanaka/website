@@ -115,7 +115,7 @@ public final class DataUtilsTest {
     UserRegistered userRegistered = DataUtils.getNameCurrentUser();
 
     assertEquals(true, userRegistered.registered);
-    assertEquals("abc", userRegistered.username);
+    assertEquals("Abc", userRegistered.username);
   }
 
   /**
@@ -161,7 +161,7 @@ public final class DataUtilsTest {
     UserRegistered userRegistered = DataUtils.getNameFromUid(uid);
 
     assertEquals(true, userRegistered.registered);
-    assertEquals("abc", userRegistered.username);
+    assertEquals("Abc", userRegistered.username);
   }
 
   /**
