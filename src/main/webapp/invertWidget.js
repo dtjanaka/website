@@ -58,7 +58,30 @@ function inversePaint(src, w, h) {
     }
   });
 
+  c.addEventListener('touchstart', (e) => {
+    let rect = e.currentTarget.getBoundingClientRect();
+    x = Math.floor(e.clientX - rect.left);
+    y = Math.floor(e.clientY - rect.top);
+    isMoving = true;
+  });
+
+  c.addEventListener('touchmove', (e) => {
+    if (isMoving === true) {
+      invertLocally();
+      let rect = e.currentTarget.getBoundingClientRect();
+      x = Math.floor(e.clientX - rect.left);
+      y = Math.floor(e.clientY - rect.top);
+    }
+  });
+
   window.addEventListener('mouseup', () => {
+    if (isMoving === true) {
+      invertLocally();
+      isMoving = false;
+    }
+  });
+
+  window.addEventListener('touchend', () => {
     if (isMoving === true) {
       invertLocally();
       isMoving = false;
