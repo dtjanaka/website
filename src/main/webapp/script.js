@@ -411,7 +411,7 @@ async function massDeleteHandler() {
     });
     const result = await response.json();
 
-    if (result.successful) {
+    if (result.successful && !window.location.href.includes('settings')) {
       await updateComments(window.location.href.includes('profile'));
     }
     alert(result.message);
@@ -497,7 +497,7 @@ async function submitEditHandler(submitButton) {
       'comment=' +
       editFormData.get('comment') +
       '&cid=' +
-      commentFormData.get('cid'),
+      editFormData.get('cid'),
   });
   const result = await response.json();
 
