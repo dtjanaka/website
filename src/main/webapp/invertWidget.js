@@ -9,7 +9,9 @@ function inversePaint(src, w, h) {
   let ctx = c.getContext('2d');
   let imgElement = document.createElement('img');
   imgElement.src = src;
-  imgElement.onload = function() { ctx.drawImage(imgElement, 0, 0); };
+  imgElement.onload = function () {
+    ctx.drawImage(imgElement, 0, 0);
+  };
 
   let isMoving = false;
   let x = 0;
@@ -21,14 +23,16 @@ function inversePaint(src, w, h) {
     id = ctx.getImageData(0, 0, c.width, c.height);
     let pixels = id.data;
     let brushSizeInput = document.getElementById('brush-size');
-    let side = Math.max(Math.min(+brushSizeInput.value, +brushSizeInput.max), 
-                        +brushSizeInput.min);
+    let side = Math.max(
+      Math.min(+brushSizeInput.value, +brushSizeInput.max),
+      +brushSizeInput.min
+    );
     let toInvert = squarePixels(x, y, side, c.width, c.height);
     for (let point = 0; point < toInvert.length; point++) {
       if (prevInv[toInvert[point].y * id.width + toInvert[point].x] === 0) {
         // row-major ordering
         let startIndex =
-            toInvert[point].y * id.width * 4 + toInvert[point].x * 4;
+          toInvert[point].y * id.width * 4 + toInvert[point].x * 4;
         pixels[startIndex] = 255 - pixels[startIndex];
         pixels[startIndex + 1] = 255 - pixels[startIndex + 1];
         pixels[startIndex + 2] = 255 - pixels[startIndex + 2];
@@ -54,12 +58,84 @@ function inversePaint(src, w, h) {
     }
   });
 
-  window.addEventListener('mouseup', () => {
+  c.addEventListener('mouseup', () => {
     if (isMoving === true) {
       invertLocally();
       isMoving = false;
     }
   });
+
+  // Set up touch events for mobile
+  c.addEventListener(
+    'touchstart',
+    function (e) {
+      let touch = e.touches[0];
+      let mouseEvent = new MouseEvent('mousedown', {
+        clientX: touch.clientX,
+        clientY: touch.clientY,
+      });
+      c.dispatchEvent(mouseEvent);
+    },
+    false
+  );
+
+  c.addEventListener(
+    'touchend',
+    function (e) {
+      let mouseEvent = new MouseEvent('mouseup', {});
+      c.dispatchEvent(mouseEvent);
+    },
+    false
+  );
+
+  c.addEventListener(
+    'touchmove',
+    function (e) {
+      let touch = e.touches[0];
+      let mouseEvent = new MouseEvent('mousemove', {
+        clientX: touch.clientX,
+        clientY: touch.clientY,
+      });
+      c.dispatchEvent(mouseEvent);
+    },
+    false
+  );
+
+  // Prevent scrolling when touching the canvas
+  document.body.addEventListener(
+    'touchstart',
+    function (e) {
+      if (e.target === c) {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
+    },
+    /* https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Improving_scrolling_performance_with_passive_listeners */
+    { capture: false, passive: false }
+  );
+  document.body.addEventListener(
+    'touchend',
+    function (e) {
+      if (e.target === c) {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
+    },
+    { capture: false, passive: false }
+  );
+  document.body.addEventListener(
+    'touchmove',
+    function (e) {
+      if (e.target === c) {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
+    },
+    { capture: false, passive: false }
+  );
 }
 
 function squarePixels(x, y, s, w, h) {
@@ -69,7 +145,7 @@ function squarePixels(x, y, s, w, h) {
   for (let i = leftX; i < leftX + s; i++) {
     for (let j = topY; j < topY + s; j++) {
       if (i >= 0 && i < w && j >= 0 && j < h) {
-        toInvert.push({x : i, y : j});
+        toInvert.push({ x: i, y: j });
       }
     }
   }

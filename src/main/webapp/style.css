@@ -19,6 +19,10 @@ button:disabled {
   cursor: not-allowed;
 }
 
+button:hover {
+  opacity: 0.7;
+}
+
 #gallery img {
   cursor: pointer;
 }
@@ -48,16 +52,6 @@ a {
   width: 40%;
 }
 
-#content-container {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-#widgets {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
 table,
 th,
 td {
@@ -72,7 +66,11 @@ table {
 
 th,
 td {
-  padding: 10px;
+  padding: 5px;
+}
+
+th {
+  font-size: 75%;
 }
 
 .puzzle {
@@ -87,6 +85,7 @@ td {
   text-align: justify;
 }
 
+/* Social Icons */
 .fa {
   padding: 10px;
   width: 100%;
@@ -119,6 +118,7 @@ td {
   background: #125688;
   color: white;
 }
+/* Social Icons */
 
 #links button,
 #links-2 button {
@@ -194,6 +194,10 @@ iframe {
   width: 100%;
 }
 
+[class*="col-"] {
+  float: left;
+}
+
 .tac-cont {
   font-size: 0px;
 }
@@ -207,14 +211,11 @@ iframe {
   vertical-align: top;
 }
 
-[class*="col-"] {
-  float: left;
-}
-
-.misc-button {
+.misc-button,
+.edit-box-button {
   height: 50px;
   width: 50%;
-  background-color: #009ddc;
+  background-color: #00aff5;
   border: none;
   color: white;
   cursor: pointer;
@@ -228,22 +229,44 @@ iframe {
   font-size: large;
 }
 
-.odd {
+.interest-button.odd {
   background-color: #16c172;
 }
 
-.even {
+.interest-button.even {
   background-color: #0ccf75;
 }
 
-button:hover {
-  opacity: 0.7;
+.blue.odd {
+  background-color: #00aff5;
+}
+
+.blue.even {
+  background-color: #0abaff;
+}
+
+#delete-comment {
+  background-color: #d00000;
+}
+
+
+#up-down {
+  background-color: #f0f0f8;
+  margin: auto;
+}
+
+#dvd-logo {
+  width: 5vw;
 }
 
 .resp-container {
   position: relative;
   overflow: hidden;
   padding-top: 56.25%;
+}
+
+#options-container div {
+  display: inline-block;
 }
 
 #resp-strava {
@@ -269,30 +292,6 @@ button:hover {
   margin-bottom: 20px;
 }
 
-#comment-box {
-  width: 100%;
-  height: 100px;
-  margin-bottom: 20px;
-}
-
-.commenter-name {
-  margin-bottom: 0px;
-}
-
-.commenter-time {
-  margin-top: 0px;
-}
-
-#view-comments {
-  height: 30px;
-  width: 25%;
-  background-color: #009ddc;
-  border: none;
-  color: white;
-  cursor: pointer;
-  font-size: small;
-}
-
 #map {
   height: 650px;
   width: 100%;
@@ -311,7 +310,7 @@ button:hover {
   float: left;
   height: 50px;
   width: 50%;
-  background-color: #009ddc;
+  background-color: #00aff5;
   border: none;
   color: white;
   cursor: pointer;
@@ -348,7 +347,72 @@ button:hover {
   float: left;
 }
 
-#content-logged-in {
+.comment-box {
+  width: 100%;
+  height: 100px;
+  margin-bottom: 24px;
+}
+
+.edit-comment-box {
+  margin-top: 8px;
+}
+
+.comment-header {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 24px;
+}
+
+.commenter-name {
+  font-weight: 500;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.commenter-time {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.commenter-time p {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+#view-comments {
+  height: 30px;
+  width: 25%;
+  background-color: #00aff5;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: small;
+}
+
+#change-username-header {
+  margin-bottom: 8px;
+}
+
+#submit-register {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.edit-buttons-div {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+#content-logged-in,
+#register-div,
+#delete-comment-div,
+#single-profile-view {
   display: none;
 }
 
@@ -356,6 +420,14 @@ button:hover {
   margin-top: 20px;
 }
 
+#content-container {
+  display: none;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* Responsiveness */
 @media only screen and (max-width: 1600px) {
   #map,
   #half-content-container {
@@ -373,7 +445,6 @@ button:hover {
     width: 75%;
   }
   p:not(.no-pad),
-  h2,
   h3 {
     padding-left: 5px;
     padding-right: 5px;
@@ -388,9 +459,6 @@ button:hover {
     margin-top: 0px;
     margin-bottom: 0px;
   }
-  .fa-linkedin {
-    margin-top: 20px;
-  }
 }
 
 @media only screen and (max-width: 1000px) {
@@ -404,4 +472,83 @@ button:hover {
   .responsive {
     width: 100%;
   }
+}
+/* Responsiveness */
+
+/* Comment Buttons */
+.comment-button-div {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.comment-button {
+  border: none;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.trash-button {
+  background-color: #d00000;
+}
+
+.edit-button {
+  background-color: #00aff5;
+}
+
+.comment-icon {
+  width: 20px;
+  height: 20px;
+}
+/* Comment Buttons */
+
+#message-icon {
+  width: 20px;
+  height: 20px;
+}
+
+#username-message-container {
+  display: none;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin-top: 10px;
+}
+
+#username-message-container p {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.username-link {
+  color: black;
+}
+
+.username-link:hover {
+  font-weight: 700;
+}
+
+#single-profile-view h2 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.edited-comment {
+  font-size: small;
+}
+
+.comment-text {
+  margin-top: 8px;
+}
+
+#comment-container {
+  margin-bottom: 24px;
+}
+
+#goto-profile,
+#goto-settings {
+  background-color: #0abaff;
 }

@@ -1,8 +1,6 @@
-This directory is where you'll write all of your code!
+# Source Code for Website of Dylon Tjanaka
+---
+- Google App Engine Java 8 web application
+- Java servlets with bare HTML/CSS/JS
 
-By default it contains a barebones web app. To run a local server, execute this
-command:
-
-```bash
-mvn package appengine:run
-```
+[live website](https://www.dtjanaka.com)

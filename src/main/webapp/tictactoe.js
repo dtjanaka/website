@@ -2,8 +2,8 @@
 // Top row, middle row, bottom row, L col, M col, R col,
 // upper left to lower right diag, lower left to upper right diag
 let xando = [
-  [ 0, 0, 0, 0, 0, 0, 0, 0 ] /* Xs */,
-  [ 0, 0, 0, 0, 0, 0, 0, 0 ] /* Os */,
+  [0, 0, 0, 0, 0, 0, 0, 0] /* Xs */,
+  [0, 0, 0, 0, 0, 0, 0, 0] /* Os */,
 ];
 let playerTurn = 0;
 
@@ -50,7 +50,7 @@ function ticTacToe(cell) {
       document.getElementById(i).onclick = null;
     }
     document.getElementById('player-turn').innerText =
-        'Player ' + (winner ? 'O' : 'X') + ' wins!';
+      'Player ' + (winner ? 'O' : 'X') + ' wins!';
     return;
   }
 
@@ -66,7 +66,7 @@ function ticTacToe(cell) {
     document.getElementById('player-turn').innerText = 'Draw! No winner.';
   } else {
     document.getElementById('player-turn').innerText =
-        'Player ' + (playerTurn ? 'X' : 'O') + ', make your move.';
+      'Player ' + (playerTurn ? 'X' : 'O') + ', make your move.';
     playerTurn = +!playerTurn;
   }
 }
@@ -76,14 +76,16 @@ function ticTacToe(cell) {
  */
 function resetTicTacToe() {
   xando = [
-    [ 0, 0, 0, 0, 0, 0, 0, 0 ],
-    [ 0, 0, 0, 0, 0, 0, 0, 0 ],
+    [0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0],
   ];
   for (let i = 1; i < 10; i++) {
     document.getElementById(i).innerText = '';
-    document.getElementById(i).onclick = function() { ticTacToe(i); };
+    document.getElementById(i).onclick = function () {
+      ticTacToe(i);
+    };
     playerTurn = 0;
     document.getElementById('player-turn').innerText =
-        'Player X, make your move.';
+      'Player X, make your move.';
   }
 }

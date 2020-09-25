@@ -3,51 +3,106 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="UTF-8" />
-    <title>My Profile</title>
-    <link rel="icon" href="/images/IMG_1502_circular.ico" type="image/x-icon" />
+    <title>Dylon Tjanaka | My Profile</title>
+    <link
+      rel="icon"
+      href="/images/pfps/pfp_def_circular.ico"
+      type="image/x-icon"
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
-    <script src="moment.js"></script>      
-    <script src="moment-timezone.js"></script>
+    <script src="/lib/moment/moment.js"></script>
+    <script src="/lib/moment/moment-timezone.js"></script>
     <script src="script.js"></script>
   </head>
   <body onload="onloadPage('profile')">
     <div id="content">
       <h1>My Profile</h1>
-      <div id="login-logout"></div>
+      <div id="gatekeeper">
+        <div id="register-div">
+          <form id="register-form" action="/users" method="POST">
+            <label for="username">Select a username to comment:</label>
+            <br />
+            <input
+              type="text"
+              name="username"
+              id="username-input"
+              oninput="checkUniqueUsername()"
+              required
+            />
+            <br />
+            <div id="username-message-container">
+              <img id="message-icon" />
+              <p id="message-text"></p>
+            </div>
+            <button
+              type="button"
+              id="submit-register"
+              class="center misc-button"
+              onclick="submitUsername()"
+            >
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
       <div id="content-logged-in">
-        <h2>Activity</h2>
-        <form>
-          <label for="num-comments">Show:</label>
-          <select type="text" id="num-comments" onchange="updateComments(true)">
-            <option selected>10</option>
-            <option>20</option>
-            <option>30</option>
-            <option>40</option>
-            <option>50</option>
-            <option>All</option>
-          </select>
-          <label for="sort-type">Sort by:</label>
-          <select type="text" id="sort-type" onchange="updateComments(true)">
-            <option value="dsc" selected>Date: new to old</option>
-            <option value="asc">Date: old to new</option>
-          </select>
-          <label for="lang-comments">Language:</label>
-          <select
-            type="text"
-            id="lang-comments"
-            onchange="updateComments(false)"
-          >
-            <option value="en" selected>English</option>
-            <option value="fr">French</option>
-            <option value="zh">Chinese</option>
-            <option value="es">Spanish</option>
-          </select>
+        <a href="https://www.dtjanaka.com/settings.html"
+          ><button id="goto-settings" class="center misc-button">
+            Settings
+          </button>
+        </a>
+        <h2 id="activity-header"></h2>
+        <form id="options-form">
+          <div id="options-container" class="row">
+            <div>
+              <label for="num-comments">Show:</label>
+              <select
+                type="text"
+                id="num-comments"
+                name="num-comments"
+                onchange="updateComments(false)"
+              >
+                <option selected>10</option>
+                <option>20</option>
+                <option>30</option>
+                <option>40</option>
+                <option>50</option>
+                <option>All</option>
+              </select>
+            </div>
+            <div>
+              <label for="sort-type">Sort by:</label>
+              <select
+                type="text"
+                id="sort-type"
+                name="sort-type"
+                onchange="updateComments(false)"
+              >
+                <option value="dsc" selected>Date: new to old</option>
+                <option value="asc">Date: old to new</option>
+              </select>
+            </div>
+            <div>
+              <label for="lang-comments">Language:</label>
+              <select
+                type="text"
+                id="lang-comments"
+                name="lang-comments"
+                onchange="updateComments(false)"
+              >
+                <option value="en" selected>English</option>
+                <option value="fr">French</option>
+                <option value="zh">Chinese</option>
+                <option value="es">Spanish</option>
+              </select>
+            </div>
+          </div>
         </form>
-        <div id="content-container"></div>
+        <div id="comment-container"></div>
       </div>
     </div>
   </body>
