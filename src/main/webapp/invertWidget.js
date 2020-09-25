@@ -1,35 +1,3 @@
-  // Prevent scrolling when touching the canvas
-  document.body.addEventListener(
-    'touchstart',
-    function (e) {
-      if (e.target === c) {
-        e.preventDefault();
-        e.stopPropagation();
-      }
-    },
-    false
-  );
-  document.body.addEventListener(
-    'touchend',
-    function (e) {
-      if (e.target === c) {
-        e.preventDefault();
-        e.stopPropagation();
-      }
-    },
-    false
-  );
-  document.body.addEventListener(
-    'touchmove',
-    function (e) {
-      if (e.target === c) {
-        e.preventDefault();
-        e.stopPropagation();
-      }
-    },
-    false
-  );
-
 /**
  * Load an image on a canvas and allow user to invert pixels with
  * variable size brush.
@@ -130,6 +98,41 @@ function inversePaint(src, w, h) {
       });
 
       c.dispatchEvent(mouseEvent);
+    },
+    false
+  );
+
+  // Prevent scrolling when touching the canvas
+  document.body.addEventListener(
+    'touchstart',
+    function (e) {
+      if (e.target === c) {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
+    },
+    false
+  );
+  document.body.addEventListener(
+    'touchend',
+    function (e) {
+      if (e.target === c) {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
+    },
+    false
+  );
+  document.body.addEventListener(
+    'touchmove',
+    function (e) {
+      if (e.target === c) {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
     },
     false
   );
