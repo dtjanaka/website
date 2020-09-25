@@ -111,7 +111,7 @@ function inversePaint(src, w, h) {
         return false;
       }
     },
-    false
+    { capture: false, passive: false }
   );
   document.addEventListener(
     'touchend',
@@ -122,7 +122,7 @@ function inversePaint(src, w, h) {
         return false;
       }
     },
-    false
+    { capture: false, passive: false }
   );
   document.addEventListener(
     'touchmove',
@@ -133,7 +133,7 @@ function inversePaint(src, w, h) {
         return false;
       }
     },
-    false
+    { capture: false, passive: false }
   );
 }
 
