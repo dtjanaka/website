@@ -3,4 +3,4 @@
 - Google App Engine Java 8 web application
 - Java servlets with bare HTML/CSS/JS
 
-[live website](https://www.dtjanaka.com)
+[live website](https://old.dtjanaka.com)
