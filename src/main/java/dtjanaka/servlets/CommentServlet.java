@@ -75,7 +75,7 @@ public class CommentServlet extends HttpServlet {
     String secretKey = (String)secret.asSingleEntity().getProperty("value");
 
     if (DataUtils.isEmptyParameter(comment)) {
-      response.getWriter().println(comment);
+      response.getWriter().println(COMMENT_LENGTH);
       return;
     } else if (!isValidCaptcha(secretKey, token)) {
       response.getWriter().println(COMMENT_RECAPTCHA);
