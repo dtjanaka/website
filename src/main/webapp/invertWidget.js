@@ -111,6 +111,7 @@ function inversePaint(src, w, h) {
         return false;
       }
     },
+    /* https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Improving_scrolling_performance_with_passive_listeners */
     { capture: false, passive: false }
   );
   document.addEventListener(
