@@ -58,7 +58,7 @@ function inversePaint(src, w, h) {
     }
   });
 
-  window.addEventListener('mouseup', () => {
+  c.addEventListener('mouseup', () => {
     if (isMoving === true) {
       invertLocally();
       isMoving = false;
@@ -76,7 +76,7 @@ function inversePaint(src, w, h) {
       });
       c.dispatchEvent(mouseEvent);
     },
-    false
+    true
   );
 
   c.addEventListener(
@@ -85,7 +85,7 @@ function inversePaint(src, w, h) {
       let mouseEvent = new MouseEvent('mouseup', {});
       c.dispatchEvent(mouseEvent);
     },
-    false
+    true
   );
 
   c.addEventListener(
@@ -99,7 +99,7 @@ function inversePaint(src, w, h) {
 
       c.dispatchEvent(mouseEvent);
     },
-    false
+    true
   );
 
   // Prevent scrolling when touching the canvas
@@ -112,7 +112,7 @@ function inversePaint(src, w, h) {
         return false;
       }
     },
-    false
+    true
   );
   document.body.addEventListener(
     'touchend',
@@ -123,7 +123,7 @@ function inversePaint(src, w, h) {
         return false;
       }
     },
-    false
+    true
   );
   document.body.addEventListener(
     'touchmove',
@@ -134,7 +134,7 @@ function inversePaint(src, w, h) {
         return false;
       }
     },
-    false
+    true
   );
 }
 
