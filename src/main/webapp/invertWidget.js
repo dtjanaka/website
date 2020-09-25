@@ -4,6 +4,7 @@
     function (e) {
       if (e.target === c) {
         e.preventDefault();
+        e.stopPropagation();
       }
     },
     false
@@ -13,6 +14,7 @@
     function (e) {
       if (e.target === c) {
         e.preventDefault();
+        e.stopPropagation();
       }
     },
     false
@@ -22,6 +24,7 @@
     function (e) {
       if (e.target === c) {
         e.preventDefault();
+        e.stopPropagation();
       }
     },
     false
