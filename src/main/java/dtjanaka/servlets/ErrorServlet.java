@@ -58,6 +58,8 @@ public class ErrorServlet extends HttpServlet {
           +
           "<link rel='icon' href='/images/pfps/pfp_def_circular.ico' type='image/x-icon' />"
           +
+          "<link href='https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap' rel='stylesheet' />"
+          +
           "<link rel='stylesheet' href='style.css' /></head><body><div id='content'><h1>" +
           code + "</h1>");
       switch (code) {
@@ -98,10 +100,10 @@ public class ErrorServlet extends HttpServlet {
         +
         "<link rel='icon' href='/images/pfps/pfp_def_circular.ico' type='image/x-icon' />"
         +
+        "<link href='https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap' rel='stylesheet' />"
+        +
         "<link rel='stylesheet' href='style.css' /></head><body><div id='content'><h1>" +
-        statusCode +
-        " < / h1 >
-        "
+        statusCode + "</h1>"
         + "<p>" + throwable.getMessage() + "</p>"
         + "<p>"
         + "on " + servletName + "</p>"
