@@ -102,7 +102,7 @@ function inversePaint(src, w, h) {
   );
 
   // Prevent scrolling when touching the canvas
-  document.addEventListener(
+  document.body.addEventListener(
     'touchstart',
     function (e) {
       if (e.target === c) {
@@ -114,7 +114,7 @@ function inversePaint(src, w, h) {
     /* https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Improving_scrolling_performance_with_passive_listeners */
     { capture: false, passive: false }
   );
-  document.addEventListener(
+  document.body.addEventListener(
     'touchend',
     function (e) {
       if (e.target === c) {
@@ -125,7 +125,7 @@ function inversePaint(src, w, h) {
     },
     { capture: false, passive: false }
   );
-  document.addEventListener(
+  document.body.addEventListener(
     'touchmove',
     function (e) {
       if (e.target === c) {

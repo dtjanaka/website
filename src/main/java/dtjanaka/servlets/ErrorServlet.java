@@ -49,7 +49,17 @@ public class ErrorServlet extends HttpServlet {
 
     String code = request.getParameter("code");
     if (!DataUtils.isEmptyParameter(code)) {
-      response.getWriter().println("<div id='content'><h1>" + code + "</h1>");
+      response.getWriter().println(
+          "<head>"
+          +
+          "<meta name='viewport' content='width=device-width, initial-scale=1.0' />"
+          + "<meta charset='UTF-8' />"
+          + "<title>Dylon Tjanaka | Error " + code + "</title>"
+          +
+          "<link rel='icon' href='/images/pfps/pfp_def_circular.ico' type='image/x-icon' />"
+          +
+          "<link rel='stylesheet' href='style.css' /></head><body><div id='content'><h1>" +
+          code + "</h1>");
       switch (code) {
       case "404":
         response.getWriter().println("<p>Page not found.</p></div>");
@@ -59,7 +69,7 @@ public class ErrorServlet extends HttpServlet {
         return;
       default:
         response.getWriter().println(
-            "<p>Something unexpected occurred.</p></div>");
+            "<p>Something unexpected occurred.</p></div></body>");
         return;
       }
     }
@@ -79,12 +89,23 @@ public class ErrorServlet extends HttpServlet {
       requestUri = "Unknown";
     }
 
-    response.getWriter().println("<div id='content'><h1>" + statusCode + "</h1>"
-                                 + "<p>" + throwable.getMessage() + "</p>"
-                                 + "<p>"
-                                 + "on " + servletName + "</p>"
-                                 + "<p>"
-                                 + "when accessing " + requestUri +
-                                 "</p></div>");
+    response.getWriter().println(
+        "<head>"
+        +
+        "<meta name='viewport' content='width=device-width, initial-scale=1.0' />"
+        + "<meta charset='UTF-8' />"
+        + "<title>Dylon Tjanaka | Error " + statusCode + "</title>"
+        +
+        "<link rel='icon' href='/images/pfps/pfp_def_circular.ico' type='image/x-icon' />"
+        +
+        "<link rel='stylesheet' href='style.css' /></head><body><div id='content'><h1>" +
+        statusCode +
+        " < / h1 >
+        "
+        + "<p>" + throwable.getMessage() + "</p>"
+        + "<p>"
+        + "on " + servletName + "</p>"
+        + "<p>"
+        + "when accessing " + requestUri + "</p></div>");
   }
 }
