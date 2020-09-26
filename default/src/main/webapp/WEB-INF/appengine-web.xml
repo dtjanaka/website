@@ -3,7 +3,7 @@
   <threadsafe>false</threadsafe>
   <sessions-enabled>true</sessions-enabled>
   <application>website</application>
-  <service>default</service>
+  <module>default</module>
   <runtime>java8</runtime>
   <static-files>
     <!-- prevent unwanted caching when accessing via the web preview server -->
