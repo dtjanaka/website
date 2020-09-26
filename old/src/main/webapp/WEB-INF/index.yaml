@@ -1,0 +1,16 @@
+#gcloud config set project [project ID]
+#gcloud datastore indexes create ~/website/src/main/webapp/WEB-INF/index.yaml
+#gcloud datastore indexes cleanup ~/website/src/main/webapp/WEB-INF/index.yaml
+
+indexes:
+
+- kind: Comment
+  properties:
+  - name: uid
+  - name: utc
+    direction: desc
+
+- kind: Comment
+  properties:
+  - name: uid
+  - name: utc
