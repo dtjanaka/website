@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" />
+    <title>Dylon Tjanaka | Widgets</title>
+    <link
+      rel="icon"
+      href="/images/pfps/pfp_def_circular.ico"
+      type="image/x-icon"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="tictactoe.js"></script>
+    <script src="invertWidget.js"></script>
+  </head>
+  <body onload="inversePaint('/images/angular.png', 256, 256)">
+    <div id="content">
+      <h1>Widgets</h1>
+      <h2>Tic-Tac-Toe</h2>
+      <p id="player-turn">Player X, make your move.</p>
+      <div style="text-align: center">
+        <div class="tac-cont">
+          <button id="1" class="tictactoe" onclick="ticTacToe(1)"></button>
+          <button id="2" class="tictactoe" onclick="ticTacToe(2)"></button>
+          <button id="3" class="tictactoe" onclick="ticTacToe(3)"></button>
+        </div>
+        <div class="tac-cont">
+          <button id="4" class="tictactoe" onclick="ticTacToe(4)"></button>
+          <button id="5" class="tictactoe" onclick="ticTacToe(5)"></button>
+          <button id="6" class="tictactoe" onclick="ticTacToe(6)"></button>
+        </div>
+        <div class="tac-cont">
+          <button id="7" class="tictactoe" onclick="ticTacToe(7)"></button>
+          <button id="8" class="tictactoe" onclick="ticTacToe(8)"></button>
+          <button id="9" class="tictactoe" onclick="ticTacToe(9)"></button>
+        </div>
+        <button
+          id="reset"
+          class="center misc-button"
+          onclick="resetTicTacToe()"
+        >
+          Reset board
+        </button>
+      </div>
+      <h2>Image Manipulation</h2>
+      <canvas id="canvas-1" width="256" height="256"> </canvas>
+      <form id="brush-options">
+        <label for="brush-size">Brush size:</label>
+        <input
+          type="number"
+          id="brush-size"
+          name="brush-size"
+          min="1"
+          max="25"
+          value="5"
+        />
+      </form>
+    </div>
+  </body>
+</html>
