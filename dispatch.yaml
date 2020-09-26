@@ -1,0 +1,6 @@
+# https://cloud.google.com/appengine/docs/standard/java/reference/dispatch-yaml
+# gcloud app deploy ~/website/dispatch.yaml
+
+dispatch:
+    - url: "old.dtjanaka.com/*"
+      service: old
