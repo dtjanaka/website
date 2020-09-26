@@ -8,6 +8,12 @@
   <version>1</version>
   <packaging>pom</packaging>
 
+  <!-- 
+  https://cloud.google.com/appengine/docs/standard/java/tools/uploadinganapp#deploy_multi
+  https://cloud.google.com/appengine/docs/standard/java/configuration-files
+  https://cloud.google.com/appengine/docs/standard/java/configuration-files
+  https://books.sonatype.com/mvnex-book/reference/multimodule-sect-intro.html
+  -->
   <modules>
     <module>default</module>
     <module>old</module>
