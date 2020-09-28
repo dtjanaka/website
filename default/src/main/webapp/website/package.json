@@ -49,7 +49,7 @@
     }
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx}": [
+    "src/**/*.{js,jsx,ts,tsx }": [
     "prettier --write --single-quote --jsx-single-quote"
     ]
   }
