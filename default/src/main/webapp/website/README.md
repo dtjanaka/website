@@ -3,7 +3,7 @@
 For Windows (npx issue with spaces in pathname)
 npm install create-react-app
 
-npx create-react-app [appName] --use-npm --template typescript
+npx create-react-app [appName] --use-npm
 npm install --save react-router
 npm install --save @material-ui/core
 npm install --save-dev husky lint-staged prettier
