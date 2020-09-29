@@ -1,6 +1,7 @@
 target/
 .idea
 .script.js.swp
+.vscode/
 
 # dependencies
 node_modules/

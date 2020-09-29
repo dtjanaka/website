@@ -15,7 +15,7 @@ Add to package.json:
     }
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx}": [
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
     "prettier --write --single-quote --jsx-single-quote"
     ]
   }
