@@ -19,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// Use App Bar from Material
 function Header(props) {
   const classes = useStyles();
   return (
@@ -45,7 +44,7 @@ function Header(props) {
 }
 
 const headerStyle = {
-  backgroundColor: '#40ad93', //5c5c, 5c5cff, #4dc9b0, #40ad93
+  backgroundColor: '#40ad93', //#5c5c, #5c5cff, #4dc9b0, #40ad93
 };
 
 export default Header;
