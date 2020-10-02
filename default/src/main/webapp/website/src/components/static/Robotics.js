@@ -3,6 +3,7 @@ import React from 'react';
 function Robotics() {
   return (
     <div className='content'>
+      <br />
       <h1>Robotics</h1>
       <p className='text-block'>
         86868: The Resistance was a high school robotics team from Santa Clara,
@@ -15,12 +16,15 @@ function Robotics() {
         accolades and winning the 2018 California State Championship. In total,
         The Resistance received 93 awards in its three-season career.
       </p>
+      <br />
       <hr />
+      <br />
       <h2>86868 Season Recap 2016-2017</h2>
       <p>
         A recap of 86868's first VEX season, Starstruck, which culminated in a
         World Championship title in Louisville, Kentucky.
       </p>
+      <br />
       <div className='resp-container'>
         <iframe
           className='responsive-iframe'
@@ -28,14 +32,16 @@ function Robotics() {
           frameborder='0'
           allow='accelerometer; autoplay; encrypted-media; gyroscope;
 	        picture-in-picture'
-          allowfullscreen
+          allowFullScreen
         ></iframe>
       </div>
+      <br />
       <h2>86868: THE RESISTANCE - 86868R VEX In The Zone Season Recap</h2>
       <p>
         A recap of 86868's second VEX season, In The Zone during which the team
         won the California State Championship.
       </p>
+      <br />
       <div className='resp-container'>
         <iframe
           className='responsive-iframe'
@@ -43,15 +49,17 @@ function Robotics() {
           frameborder='0'
           allow='accelerometer; autoplay; encrypted-media; gyroscope;
 	        picture-in-picture'
-          allowfullscreen
+          allowFullScreen
         ></iframe>
       </div>
+      <br />
       <h2>2017 VRC Engr Q110 - 200D 2S vs 86868 333X - 24 to 29</h2>
       <p className='text-block'>
         An example Starstruck match played at the World Championships. 86868's
         robot is on the blue alliance, starting in the lower righthand corner of
         the screen.
       </p>
+      <br />
       <div className='resp-container'>
         <iframe
           className='responsive-iframe'
@@ -59,15 +67,17 @@ function Robotics() {
           frameborder='0'
           allow='accelerometer; autoplay; encrypted-media; gyroscope;
 	        picture-in-picture'
-          allowfullscreen
+          allowFullScreen
         ></iframe>
       </div>
+      <br />
       <h2>2018 VRC Arts Q73 - 7536B 86868R vs 8192B 20785B - 140 to 66</h2>
       <p className='text-block'>
         An example In The Zone match played at the World Championships. 86868's
         robot is on the red alliance, visible on the left side of the screen at
         the beginning.
       </p>
+      <br />
       <div className='resp-container'>
         <iframe
           className='responsive-iframe'
@@ -75,9 +85,10 @@ function Robotics() {
           frameborder='0'
           allow='accelerometer; autoplay; encrypted-media; gyroscope;
 	        picture-in-picture'
-          allowfullscreen
+          allowFullScreen
         ></iframe>
       </div>
+      <br />
     </div>
   );
 }

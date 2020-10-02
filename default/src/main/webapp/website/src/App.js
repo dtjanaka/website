@@ -8,6 +8,7 @@ import {
   Link,
 } from 'react-router-dom';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import Comments from './components/Comments';
 import Profile from './components/Profile';
 import Settings from './components/Settings';
@@ -27,6 +28,7 @@ function App() {
           <Route path='/' component={StaticContent} />
         </Switch>
       </div>
+      <Footer />
     </Router>
   );
 }
