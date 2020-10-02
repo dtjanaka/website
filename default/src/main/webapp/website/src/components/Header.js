@@ -23,7 +23,7 @@ function Header(props) {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <AppBar position='static'>
+      <AppBar position='fixed'>
         <Toolbar style={headerStyle}>
           <IconButton
             edge='start'
@@ -37,8 +37,10 @@ function Header(props) {
             {props.name}
           </Typography>
           <Button color='inherit'>Login</Button>
-        </Toolbar>
+        </Toolbar>{' '}
+        {/*https://material-ui.com/components/app-bar/#fixed-placement*/}
       </AppBar>
+      <Toolbar />
     </div>
   );
 }
