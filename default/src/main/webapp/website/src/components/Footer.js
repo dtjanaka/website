@@ -13,6 +13,7 @@ import {
   Route,
   Link,
 } from 'react-router-dom';
+import logo from '../images/logo.svg';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,9 +24,6 @@ const useStyles = makeStyles((theme) => ({
   about: {
     display: 'flex',
     flexFlow: 'column',
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
   },
 }));
 
@@ -39,7 +37,9 @@ function Footer(props) {
         <Typography variant='body1'>Website</Typography>
       </div>
       <div className={classes.logo}>
-        <Link to='/'>Hi</Link>
+        <Link to='/'>
+          <img src={logo} alt='DT logo' />
+        </Link>
       </div>
     </div>
   );
