@@ -77,7 +77,7 @@ function createCommentElement(comment, isProfile) {
   };
   trashButton.classList.add('trash-button', 'comment-button');
   trashButton.innerHTML =
-    '<img class="comment-icon" src="/images/icons/trash_icon.svg" />';
+    '<img class="comment-icon" src="images/icons/trash_icon.svg" />';
 
   trashForm.appendChild(trashButton);
 
@@ -92,7 +92,7 @@ function createCommentElement(comment, isProfile) {
   };
   editButton.classList.add('edit-button', 'comment-button');
   editButton.innerHTML =
-    '<img class="comment-icon" src="/images/icons/edit_icon.svg" />';
+    '<img class="comment-icon" src="images/icons/edit_icon.svg" />';
   const editDiv = document.createElement('div');
   editDiv.className = 'edit-div';
   editDiv.appendChild(editButton);
@@ -303,9 +303,9 @@ async function checkUniqueUsername() {
 
   if (result.available) {
     document.getElementById('message-icon').src =
-      '/images/icons/checkmark_icon.svg';
+      'images/icons/checkmark_icon.svg';
   } else {
-    document.getElementById('message-icon').src = '/images/icons/x.svg';
+    document.getElementById('message-icon').src = 'images/icons/x.svg';
   }
   document.getElementById('message-text').innerText = result.message;
 

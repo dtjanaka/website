@@ -55,8 +55,8 @@ function createMap() {
     }
     const mapInfoContainer = document.getElementById('half-content-container');
     mapInfoContainer.innerHTML =
-      '<a href="/images/IMG_2686.jpg">' +
-      '<img src="/images/IMG_2686.jpg" style="width: 100%" /></a>';
+      '<a href="images/IMG_2686.jpg">' +
+      '<img src="images/IMG_2686.jpg" style="width: 100%" /></a>';
     mapInfoContainer.appendChild(
       createPElement('Me at the start of the trail! I ride here frequently.')
     );
@@ -77,8 +77,8 @@ function createMap() {
     }
     const mapInfoContainer = document.getElementById('half-content-container');
     mapInfoContainer.innerHTML =
-      '<a href="/images/IMG_2744.jpg">' +
-      '<img src="/images/IMG_2744.jpg" style="width: 100%" /></a>';
+      '<a href="images/IMG_2744.jpg">' +
+      '<img src="images/IMG_2744.jpg" style="width: 100%" /></a>';
     mapInfoContainer.appendChild(
       createPElement(
         'River Oaks Bridge across the Guadalupe River ' +
@@ -95,8 +95,8 @@ function createMap() {
     }
     const mapInfoContainer = document.getElementById('half-content-container');
     mapInfoContainer.innerHTML =
-      '<a href="/images/IMG_2751.jpg">' +
-      '<img src="/images/IMG_2751.jpg" style="width: 100%" /></a>';
+      '<a href="images/IMG_2751.jpg">' +
+      '<img src="images/IMG_2751.jpg" style="width: 100%" /></a>';
     mapInfoContainer.appendChild(
       createPElement(
         'The trail passes right next to Mineta San Jose ' +
@@ -140,7 +140,7 @@ function changeSlide(slideshowNum, direction) {
     curShowIdxs[slideshowNum] += 3;
   }
 
-  const img = '/images/' + show[slideshowNum][curShowIdxs[slideshowNum]];
+  const img = 'images/' + show[slideshowNum][curShowIdxs[slideshowNum]];
   if (!slideshowNum) {
     document.getElementById('show0').src = img;
     document.getElementById('show0-link').href = img;
