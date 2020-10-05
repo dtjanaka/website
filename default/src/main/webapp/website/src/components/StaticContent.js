@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Redirect,
-  Switch,
-  Route,
-  Link,
-} from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
 import Robotics from './static/Robotics';
 import Printing from './static/Printing';
 import Cubing from './static/Cubing';

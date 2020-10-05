@@ -1,18 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import {
-  BrowserRouter as Router,
-  Redirect,
-  Switch,
-  Route,
-  Link,
-} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import logo from '../images/logo.svg';
 
 const useStyles = makeStyles((theme) => ({
@@ -20,26 +9,45 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexFlow: 'row nowrap',
     justifyContent: 'space-between',
+    alignItems: 'top',
+    margin: '0px 24px 0px 24px',
   },
   about: {
     display: 'flex',
     flexFlow: 'column',
+    marginTop: '24px',
+  },
+  logoBox: {
+    width: 'auto',
+    height: 'auto',
+  },
+  logo: {
+    width: '115px',
+    height: 'auto',
+    display: 'block',
+    margin: '24px 0px 24px 24px',
   },
 }));
 
 function Footer(props) {
   const classes = useStyles();
   return (
-    <div className={classes.root}>
-      <div className={classes.about}>
-        <Typography variant='h6'>About</Typography>
-        <Typography variant='body1'>Dylon</Typography>
-        <Typography variant='body1'>Website</Typography>
-      </div>
-      <div className={classes.logo}>
-        <Link to='/'>
-          <img src={logo} alt='DT logo' />
-        </Link>
+    <div style={headerStyle}>
+      <div className={classes.root}>
+        <div className={classes.about}>
+          <Typography variant='h6'>About</Typography>
+          <Link to='/'>
+            <Typography variant='body1'>Dylon</Typography>
+          </Link>
+          <Link to='/about/website'>
+            <Typography variant='body1'>Website</Typography>
+          </Link>
+        </div>
+        <div className={classes.logoBox}>
+          <Link to='/'>
+            <img src={logo} className={classes.logo} alt='DT logo' />
+          </Link>
+        </div>
       </div>
     </div>
   );

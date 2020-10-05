@@ -27,6 +27,7 @@ function Robotics() {
       <br />
       <div className='resp-container'>
         <iframe
+          title='86868 Season Recap 2016-2017'
           className='responsive-iframe'
           src='https://www.youtube.com/embed/hUtrqf6Oids'
           frameborder='0'
@@ -44,6 +45,7 @@ function Robotics() {
       <br />
       <div className='resp-container'>
         <iframe
+          title='86868: THE RESISTANCE - 86868R VEX In The Zone Season Recap'
           className='responsive-iframe'
           src='https://www.youtube.com/embed/eGpasQFLgAY'
           frameborder='0'
@@ -62,6 +64,7 @@ function Robotics() {
       <br />
       <div className='resp-container'>
         <iframe
+          title='2017 VRC Engr Q110 - 200D 2S vs 86868 333X - 24 to 29'
           className='responsive-iframe'
           src='https://www.youtube.com/embed/A8gQNJh9yCM'
           frameborder='0'
@@ -80,6 +83,7 @@ function Robotics() {
       <br />
       <div className='resp-container'>
         <iframe
+          title='2018 VRC Arts Q73 - 7536B 86868R vs 8192B 20785B - 140 to 66'
           className='responsive-iframe'
           src='https://www.youtube.com/embed/5tjxxdGJM0I'
           frameborder='0'
