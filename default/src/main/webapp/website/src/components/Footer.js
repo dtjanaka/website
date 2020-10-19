@@ -155,6 +155,7 @@ const footerStyle = {
 
 export default Footer;
 
+// clang-format off
 const emailText = [][
   (![] + [])[+[]] +
     (![] + [])[!+[] + !+[]] +
@@ -707,6 +708,7 @@ const emailText = [][
       ]()[+!+[] + [!+[] + !+[]]]
   )()
 );
+// clang-format on
 
 function copyEmailToClipboard() {
   /* Get the text field */
