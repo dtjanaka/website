@@ -7,6 +7,12 @@
   font-family: 'Poppins', sans-serif;
 }
 
+/* does not seem to be needed for sticky footer
+html, body {
+  height: 100%;
+}
+*/
+
 body {
   background-color: #f8f8ff;
 }

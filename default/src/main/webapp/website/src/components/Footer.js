@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
-import { logo, logo2, fb, ig, li, gh, yt, email } from '../images';
+import { logo, logo2, logo3, fb, ig, li, gh, yt, email } from '../images';
 import { EmailText } from './Constants';
 
 const useStyles = makeStyles((theme) => ({
@@ -159,27 +159,31 @@ function Footer(props) {
         </div>
         <div className={classes.logoBox}>
           <Link to='/'>
-            <img src={logo2} className={classes.logo} alt='DT logo' />
+            <img src={logo3} className={classes.logo} alt='DT logo' />
           </Link>
         </div>
       </div>
       <div className={classes.footerFooterBox}>
+        <Link to='/privacy-policy'>
+          <Typography
+            variant='caption'
+            style={offWhite}
+            className={classes.footerFooterItem}
+          >
+            Privacy Policy
+          </Typography>
+        </Link>
+        <Link to='/sitemap'>
+          <Typography
+            variant='caption'
+            style={offWhite}
+            className={classes.footerFooterItem}
+          >
+            Sitemap
+          </Typography>
+        </Link>
         <Typography
-          variant='body1'
-          style={offWhite}
-          className={classes.footerFooterItem}
-        >
-          Privacy Policy
-        </Typography>
-        <Typography
-          variant='body1'
-          style={offWhite}
-          className={classes.footerFooterItem}
-        >
-          Sitemap
-        </Typography>
-        <Typography
-          variant='body1'
+          variant='caption'
           style={offWhite}
           className={classes.footerFooterItem}
         >

@@ -1,5 +1,6 @@
 import './App.css';
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import {
   BrowserRouter as Router,
   Redirect,
@@ -22,20 +23,34 @@ const theme = createMuiTheme({
   },
 });
 
+const useStyles = makeStyles((theme) => ({
+  App: {
+    display: 'flex',
+    minHeight: '100vh',
+    flexDirection: 'column',
+  },
+  contentBox: {
+    flex: 1,
+  },
+}));
+
 function App() {
+  const classes = useStyles();
   return (
     <Router>
       <ThemeProvider theme={theme}>
-        <div className='App'>
+        <div className={classes.App}>
           <Header name='Home' />
-          <Switch>
-            <Route exact path='/comments' component={Comments} />
-            <Route exact path='/profile' component={Profile} />
-            <Route exact path='/settings' component={Settings} />
+          <div className={classes.contentBox}>
+            <Switch>
+              <Route exact path='/comments' component={Comments} />
+              <Route exact path='/profile' component={Profile} />
+              <Route exact path='/settings' component={Settings} />
 
-            <Redirect from='/home' to='/' />
-            <Route path='/' component={StaticContent} />
-          </Switch>
+              <Redirect from='/home' to='/' />
+              <Route path='/' component={StaticContent} />
+            </Switch>
+          </div>
           <Footer />
         </div>
       </ThemeProvider>
