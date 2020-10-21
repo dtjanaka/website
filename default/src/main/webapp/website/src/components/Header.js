@@ -28,7 +28,7 @@ function Header(props) {
           <IconButton
             edge='start'
             className={classes.menuButton}
-            color='inherit'
+            color='secondary'
             aria-label='menu'
           >
             <MenuIcon />
@@ -36,7 +36,7 @@ function Header(props) {
           <Typography variant='h6' className={classes.title}>
             {props.name}
           </Typography>
-          <Button color='inherit'>Login</Button>
+          <Button color='secondary'>Login</Button>
         </Toolbar>
       </AppBar>
       {/*https://material-ui.com/components/app-bar/#fixed-placement*/}

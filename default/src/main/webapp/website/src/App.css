@@ -54,6 +54,11 @@ a:hover {
   text-align: justify;
 }
 
+.caption {
+  text-align: center;
+  margin-top: 8px;
+}
+
 /* Responsiveness */
 @media only screen and (max-width: 1600px) {
 }
@@ -77,3 +82,34 @@ a:hover {
   }
 }
 /* Responsiveness */
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.responsive {
+  width: 50%;
+  height: auto;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+table {
+  width: 100%;
+}
+
+th,
+td {
+  padding: 4px;
+}
+
+th {
+  font-size: 75%;
+}
