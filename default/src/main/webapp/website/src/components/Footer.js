@@ -4,16 +4,10 @@ import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
+// prettier-ignore
 import {
-  logo,
-  logo2,
-  logo3,
-  logotype,
-  fb,
-  ig,
-  li,
-  gh,
-  yt,
+  logo, logo2, logo3, logotype,
+  fb, ig, li, gh, yt,
   email,
 } from '../images';
 import { EmailText } from './Constants';
@@ -22,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: 'black',
   },
-  footerBox: {
+  footerHeaderBox: {
     display: 'flex',
     flexFlow: 'row wrap',
     justifyContent: 'space-between',
@@ -96,7 +90,7 @@ function Footer(props) {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <div className={classes.footerBox}>
+      <div className={classes.footerHeaderBox}>
         <div className={classes.headingBox}>
           <Typography variant='h6' style={offWhite}>
             About
