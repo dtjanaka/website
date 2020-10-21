@@ -8,6 +8,9 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
 const useStyles = makeStyles((theme) => ({
+  toolbar: {
+    backgroundColor: 'black',
+  },
   menuButton: {
     marginRight: theme.spacing(2), // 2 * 8px = 16px
   },
@@ -21,7 +24,7 @@ function Header(props) {
   return (
     <div className={classes.root}>
       <AppBar position='fixed'>
-        <Toolbar style={headerStyle}>
+        <Toolbar className={classes.toolbar}>
           <IconButton
             edge='start'
             className={classes.menuButton}
@@ -41,9 +44,5 @@ function Header(props) {
     </div>
   );
 }
-
-const headerStyle = {
-  backgroundColor: 'black', //#5c5c, #5c5cff, #4dc9b0, #40ad93
-};
 
 export default Header;

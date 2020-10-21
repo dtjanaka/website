@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   footerFooterBox: {
     display: 'flex',
     flexFlow: 'row wrap',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
     margin: '24px 12px 0px 12px',
     paddingBottom: '24px',
@@ -43,16 +43,6 @@ const useStyles = makeStyles((theme) => ({
   headingBox: {
     display: 'flex',
     flexFlow: 'column',
-    margin: '24px 12px 0px 12px',
-  },
-  logoBox: {
-    width: 'auto',
-    height: 'auto',
-  },
-  logo: {
-    width: '90px',
-    height: 'auto',
-    display: 'block',
     margin: '24px 12px 0px 12px',
   },
   email: {
@@ -180,12 +170,6 @@ function Footer(props) {
             </a>
           </div>
         </div>
-        {/*
-        <div className={classes.logoBox}>
-          <Link to='/'>
-            <img src={logo3} className={classes.logo} alt='DT logo' />
-          </Link>
-        </div>*/}
       </div>
       <div className={classes.logotypeBox}>
         <Link to='/'>
