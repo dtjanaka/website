@@ -4,7 +4,18 @@ import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
-import { logo, logo2, logo3, fb, ig, li, gh, yt, email } from '../images';
+import {
+  logo,
+  logo2,
+  logo3,
+  logotype,
+  fb,
+  ig,
+  li,
+  gh,
+  yt,
+  email,
+} from '../images';
 import { EmailText } from './Constants';
 
 const useStyles = makeStyles((theme) => ({
@@ -21,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   footerFooterBox: {
     display: 'flex',
     flexFlow: 'row wrap',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-between',
     alignItems: 'center',
     margin: '24px 12px 0px 12px',
     paddingBottom: '24px',
@@ -45,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
     margin: '24px 12px 0px 12px',
   },
   email: {
-    height: '1rem',
+    height: '0.875rem',
   },
   socialsBox: {
     display: 'flex',
@@ -60,18 +71,30 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   socialIcon: {
-    width: '50px',
+    width: '24px',
     display: 'block',
   },
   copyEmailIcon: {
     color: '#f8f8ff',
   },
   emailBox: {
-    marginTop: '-10px',
+    marginTop: '-13px',
     display: 'flex',
     flexFlow: 'row nowrap',
     justifyContent: 'flex-start',
     alignItems: 'center',
+  },
+  logotypeBox: {
+    display: 'flex',
+    flexFlow: 'row nowrap',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  logotype: {
+    width: '200px',
+    height: 'auto',
+    display: 'block',
+    margin: '24px 12px 0px 12px',
   },
 }));
 
@@ -89,12 +112,12 @@ function Footer(props) {
             About
           </Typography>
           <Link to='/about/me'>
-            <Typography variant='body1' style={offWhite}>
+            <Typography variant='body2' style={offWhite}>
               About Me
             </Typography>
           </Link>
           <Link to='/about/website'>
-            <Typography variant='body1' style={offWhite}>
+            <Typography variant='body2' style={offWhite}>
               Website
             </Typography>
           </Link>
@@ -157,11 +180,21 @@ function Footer(props) {
             </a>
           </div>
         </div>
+        {/*
         <div className={classes.logoBox}>
           <Link to='/'>
             <img src={logo3} className={classes.logo} alt='DT logo' />
           </Link>
-        </div>
+        </div>*/}
+      </div>
+      <div className={classes.logotypeBox}>
+        <Link to='/'>
+          <img
+            src={logotype}
+            className={classes.logotype}
+            alt='Dylon Tjanaka logotype'
+          />
+        </Link>
       </div>
       <div className={classes.footerFooterBox}>
         <Link to='/privacy-policy'>

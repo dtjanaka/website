@@ -1,6 +1,7 @@
 export const logo = require('./logo.svg');
 export const logo2 = require('./logo_2.svg');
 export const logo3 = require('./logo_3.svg');
+export const logotype = require('./logotype.svg');
 export const fb = require('./socials/fb.svg');
 export const ig = require('./socials/ig.svg');
 export const li = require('./socials/li.svg');
