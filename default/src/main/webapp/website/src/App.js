@@ -44,7 +44,7 @@ function App() {
     <Router>
       <ThemeProvider theme={theme}>
         <div className={classes.App}>
-          <Header name='Home' />
+          <Header name='Dylon Tjanaka | Home' />
           <div className={classes.contentBox}>
             <Switch>
               <Route exact path='/comments' component={Comments} />

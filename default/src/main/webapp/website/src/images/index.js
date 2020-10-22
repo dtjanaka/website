@@ -2,6 +2,8 @@ export const logo = require('./logo.svg');
 export const logo2 = require('./logo_2.svg');
 export const logo3 = require('./logo_3.svg');
 export const logotype = require('./logotype.svg');
+export const logotype2 = require('./logotype_2.svg');
+
 export const fb = require('./socials/fb.svg');
 export const ig = require('./socials/ig.svg');
 export const li = require('./socials/li.svg');
@@ -15,3 +17,6 @@ export const print3 = require('./printing/IMG_0593.jpg');
 export const print4 = require('./printing/IMG_0926.jpg');
 
 export const cubing1 = require('./cubing/IMG_0111.jpg');
+
+export const rat = require('./micromouse/IMG_1594.jpg');
+export const mm = require('./micromouse/IMG_2326.jpg');

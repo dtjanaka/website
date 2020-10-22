@@ -6,7 +6,7 @@ import IconButton from '@material-ui/core/IconButton';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 // prettier-ignore
 import {
-  logo, logo2, logo3, logotype,
+  logo, logo2, logo3, logotype, logotype2,
   fb, ig, li, gh, yt,
   email,
 } from '../images';
@@ -168,7 +168,7 @@ function Footer(props) {
       <div className={classes.logotypeBox}>
         <Link to='/'>
           <img
-            src={logotype}
+            src={logotype2}
             className={classes.logotype}
             alt='Dylon Tjanaka logotype'
           />
