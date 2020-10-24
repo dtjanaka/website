@@ -6,7 +6,7 @@ import IconButton from '@material-ui/core/IconButton';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 // prettier-ignore
 import {
-  logo, logo2, logo3, logotype, logotype2,
+  /*logo, logo2, logo3, logotype, */logotype2,
   fb, ig, li, gh, yt,
   email,
 } from '../images';
@@ -114,11 +114,8 @@ function Footer(props) {
           </Link>
           <div className={classes.emailBox}>
             <img src={email} className={classes.email} alt='Email' />
-            <IconButton edge='end'>
-              <FileCopyIcon
-                onClick={copyEmailToClipboard}
-                className={classes.copyEmailIcon}
-              />
+            <IconButton edge='end' onClick={copyEmailToClipboard}>
+              <FileCopyIcon className={classes.copyEmailIcon} />
             </IconButton>
           </div>
         </div>
@@ -130,6 +127,7 @@ function Footer(props) {
             <a
               href='https://www.facebook.com/profile.php?id=100014709977810'
               target='_blank'
+              rel='noopener noreferrer'
               className={classes.social}
             >
               <img src={fb} className={classes.socialIcon} alt='Facebook' />
@@ -137,6 +135,7 @@ function Footer(props) {
             <a
               href='https://www.instagram.com/dylon.tjanaka/'
               target='_blank'
+              rel='noopener noreferrer'
               className={classes.social}
             >
               <img src={ig} className={classes.socialIcon} alt='Instagram' />
@@ -144,6 +143,7 @@ function Footer(props) {
             <a
               href='https://www.linkedin.com/in/dylon-tjanaka-971508192'
               target='_blank'
+              rel='noopener noreferrer'
               className={classes.social}
             >
               <img src={li} className={classes.socialIcon} alt='LinkedIn' />
@@ -151,6 +151,7 @@ function Footer(props) {
             <a
               href='https://github.com/dtjanaka/'
               target='_blank'
+              rel='noopener noreferrer'
               className={classes.social}
             >
               <img src={gh} className={classes.socialIcon} alt='GitHub' />
@@ -158,6 +159,7 @@ function Footer(props) {
             <a
               href='https://www.youtube.com/channel/UCx1tcHdDx4esRDbmDgRIn9Q'
               target='_blank'
+              rel='noopener noreferrer'
               className={classes.social}
             >
               <img src={yt} className={classes.socialIcon} alt='YouTube' />

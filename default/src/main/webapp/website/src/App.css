@@ -70,13 +70,13 @@ a:hover {
 }
 
 @media only screen and (max-width: 600px) {
-  /*p:not(.no-pad),
+  .content p:not(.no-pad),
   .content h1,
-  h2,
-  h3 {
-    padding-left: 5px;
-    padding-right: 5px;
-  }*/
+  .content h2,
+  .content h3 {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
   .content {
     width: 100%;
   }

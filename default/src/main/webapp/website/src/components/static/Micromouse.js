@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import Header from '../Header';
 import { rat, mm } from '../../images';
 
 const Title = 'Dylon Tjanaka | Micromouse';
@@ -10,6 +11,7 @@ function Micromouse() {
       <Helmet>
         <title>{Title}</title>
       </Helmet>
+      <Header name='Dylon Tjanaka > Micromouse' />
       <div className='content'>
         <br />
         <h1>Micromouse</h1>
@@ -27,6 +29,7 @@ function Micromouse() {
           robotics experience and from my CS classes, I also gain a deep
           understanding of the EE side of things.
         </p>
+        <br />
         <p className='text text-block'>
           I have built two mice so far. The first one, a "rat," is a proven
           design provided by the Micromouse instructors in UCLA IEEE which
@@ -35,9 +38,8 @@ function Micromouse() {
           sensor setup including four IRs and two encoders.
         </p>
         <br />
-
         <a href={rat}>
-          <img className='center responsive' src={rat} />
+          <img className='center responsive' src={rat} alt='rat' />
         </a>
         <br />
         <p className='text'>
@@ -47,6 +49,7 @@ function Micromouse() {
         <br />
         <div className='resp-container'>
           <iframe
+            title='Micromouse Rat Competition Trial 3'
             className='responsive-iframe'
             src='https://www.youtube.com/embed/nHUUiYqV9mQ'
             frameborder='0'
@@ -65,7 +68,7 @@ function Micromouse() {
         </p>
         <br />
         <a href={mm}>
-          <img className='center responsive' src={mm} />
+          <img className='center responsive' src={mm} alt='micromouse' />
         </a>
         <br />
       </div>

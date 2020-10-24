@@ -18,6 +18,9 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+    '@media only screen and (max-width: 400px)': {
+      fontSize: '0.75rem',
+    },
   },
   homeIcon: {
     width: '36px',
@@ -58,6 +61,18 @@ function Header(props) {
 }
 
 export default Header;
+
+/*
+async function loggedIn(page) {
+  const url = '/users' + '?page=' + page;
+  const response = await fetch(url);
+  const result = await response.json();
+  if (result.loggedIn) {
+    result.url
+  } else {
+    result.url
+  }
+}*/
 
 function login() {}
 

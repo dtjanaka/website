@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import Header from '../Header';
 
 const Title = 'Dylon Tjanaka | Robotics';
 
@@ -9,6 +10,7 @@ function Robotics() {
       <Helmet>
         <title>{Title}</title>
       </Helmet>
+      <Header name='Dylon Tjanaka > Robotics' />
       <div className='content'>
         <br />
         <h1>Robotics</h1>

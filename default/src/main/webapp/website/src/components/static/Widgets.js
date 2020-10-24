@@ -1,22 +1,22 @@
+import { Widgets } from '@material-ui/icons';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import Header from '../Header';
 
-const Title = 'Dylon Tjanaka | Home';
+const Title = 'Dylon Tjanaka | Widgets';
 
-function Home() {
+function Widgets() {
   return (
     <>
       <Helmet>
         <title>{Title}</title>
       </Helmet>
-      <Header name='Dylon Tjanaka > Home' />
+      <Header name='Dylon Tjanaka > Widgets' />
       <div className='content'>
         <br />
-        <h1>Home</h1>
       </div>
     </>
   );
 }
 
-export default Home;
+export default Widgets;

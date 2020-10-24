@@ -6,11 +6,9 @@ import {
   Redirect,
   Switch,
   Route,
-  Link,
 } from 'react-router-dom';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
-import Header from './components/Header';
 import Footer from './components/Footer';
 import Comments from './components/Comments';
 import Profile from './components/Profile';
@@ -44,17 +42,14 @@ function App() {
     <Router>
       <ThemeProvider theme={theme}>
         <div className={classes.App}>
-          <Header name='Dylon Tjanaka | Home' />
-          <div className={classes.contentBox}>
-            <Switch>
-              <Route exact path='/comments' component={Comments} />
-              <Route exact path='/profile' component={Profile} />
-              <Route exact path='/settings' component={Settings} />
+          <Switch>
+            <Route exact path='/comments' component={Comments} />
+            <Route exact path='/profile' component={Profile} />
+            <Route exact path='/settings' component={Settings} />
 
-              <Redirect from='/home' to='/' />
-              <Route path='/' component={StaticContent} />
-            </Switch>
-          </div>
+            <Redirect from='/home' to='/' />
+            <Route path='/' component={StaticContent} />
+          </Switch>
           <Footer />
         </div>
       </ThemeProvider>

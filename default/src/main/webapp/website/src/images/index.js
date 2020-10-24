@@ -20,3 +20,7 @@ export const cubing1 = require('./cubing/IMG_0111.jpg');
 
 export const rat = require('./micromouse/IMG_1594.jpg');
 export const mm = require('./micromouse/IMG_2326.jpg');
+
+export const map1 = require('./cycling/IMG_2686.jpg');
+export const map2 = require('./cycling/IMG_2744.jpg');
+export const map3 = require('./cycling/IMG_2751.jpg');

@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Helmet } from 'react-helmet';
+import Header from '../Header';
 import Button from '@material-ui/core/Button';
 import { cubing1 } from '../../images';
 
@@ -21,6 +22,7 @@ function Cubing() {
       <Helmet>
         <title>{Title}</title>
       </Helmet>
+      <Header name='Dylon Tjanaka > Cubing' />
       <div className='content'>
         <br />
         <h1>Cubing</h1>
@@ -79,7 +81,11 @@ function Cubing() {
         </table>
         <br />
         <a href={cubing1}>
-          <img className='center responsive' src={cubing1} />
+          <img
+            className='center responsive'
+            src={cubing1}
+            alt='Solving a skewb at a WCA competition'
+          />
         </a>
         <p className='caption'>
           Solving a Skewb at the SPCS Stanford Spring 2015 competition (19 April
