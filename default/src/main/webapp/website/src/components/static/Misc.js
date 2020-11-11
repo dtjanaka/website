@@ -7,6 +7,8 @@ import Header from '../Header';
 import { GrtCoordinates } from '../Constants';
 import { map1, map2, map3 } from '../../images';
 import PropTypes from 'prop-types';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 
 const Title = 'Dylon Tjanaka | Everything Else';
 
@@ -23,6 +25,20 @@ const useStyles = makeStyles((theme) => ({
   markerImg: {
     display: 'block',
     width: '100%',
+  },
+  markerCaption: {
+    paddingLeft: '8px',
+    paddingRight: '8px',
+  },
+  map: {
+    height: '650px',
+    width: '100%',
+  },
+  dialogTitleDiv: {
+    display: 'flex',
+    flexFlow: 'row nowrap',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
 }));
 
@@ -43,10 +59,25 @@ function MarkerDialog(props) {
   const classes = useStyles();
 
   return (
-    <Dialog open={open} onClose={onClose}>
-      <DialogTitle>{titles[index]}</DialogTitle>
-      <img src={imgs[index]} className={classes.markerImg} />
-      <p>{text[index]}</p>
+    <Dialog open={open} onClose={onClose} maxWidth={'xs'}>
+      <div className={classes.dialogTitleDiv}>
+        <DialogTitle>{titles[index]}</DialogTitle>
+        <IconButton
+          aria-label='close'
+          className={classes.dialogCloseButton}
+          onClick={onClose}
+        >
+          <CloseIcon />
+        </IconButton>
+      </div>
+      <img
+        src={imgs[index]}
+        alt={titles[index]}
+        className={classes.markerImg}
+      />
+      <br />
+      <p className={classes.markerCaption}>{text[index]}</p>
+      <br />
     </Dialog>
   );
 }
@@ -155,7 +186,19 @@ function Misc() {
         ></iframe>
         <br />
         <div>
-          <div id='map' style={mapStyle}></div>
+          <div id='map' className={classes.map}></div>
+          <br />
+        </div>
+
+        <div>
+          <a href='https://www.270towin.com/maps/opQe7'>
+            <img
+              src='https://www.270towin.com/map-images/opQe7.png'
+              className={classes.map270}
+              alt='270towin map'
+            />
+            <p>Prediction made 3:30 PM PT 28 October 2020</p>
+          </a>
           <br />
         </div>
 
@@ -220,8 +263,3 @@ function Misc() {
 }
 
 export default Misc;
-
-const mapStyle = {
-  height: '650px',
-  width: '100%',
-};
