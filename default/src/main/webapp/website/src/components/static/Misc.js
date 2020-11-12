@@ -40,6 +40,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+  dialogCloseButton: {
+    marginRight: '8px',
+  },
 }));
 
 function MarkerDialog(props) {
