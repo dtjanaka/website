@@ -26,6 +26,7 @@ const theme = createMuiTheme({
 });
 
 const useStyles = makeStyles((theme) => ({
+  // for keeping Footer fixed at bottom
   App: {
     display: 'flex',
     minHeight: '100vh',
@@ -42,14 +43,16 @@ function App() {
     <Router>
       <ThemeProvider theme={theme}>
         <div className={classes.App}>
-          <Switch>
-            <Route exact path='/comments' component={Comments} />
-            <Route exact path='/profile' component={Profile} />
-            <Route exact path='/settings' component={Settings} />
+          <div className={classes.contentBox}>
+            <Switch>
+              <Route exact path='/comments' component={Comments} />
+              <Route exact path='/profile' component={Profile} />
+              <Route exact path='/settings' component={Settings} />
 
-            <Redirect from='/home' to='/' />
-            <Route path='/' component={StaticContent} />
-          </Switch>
+              <Redirect from='/home' to='/' />
+              <Route path='/' component={StaticContent} />
+            </Switch>
+          </div>
           <Footer />
         </div>
       </ThemeProvider>
