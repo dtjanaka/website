@@ -1,7 +1,7 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import { Helmet } from 'react-helmet';
 import Header from '../Header';
-import { makeStyles } from '@material-ui/core/styles';
 
 const Title = 'Dylon Tjanaka | Privacy Policy';
 
@@ -11,6 +11,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const justified = {
+  textAlign: 'justify',
+};
+
 function Privacy() {
   const classes = useStyles();
   return (
@@ -19,9 +23,8 @@ function Privacy() {
         <title>{Title}</title>
       </Helmet>
       <Header name='Dylon Tjanaka > Privacy Policy' />
-      <div className='content'>
+      <div className='content' style={justified}>
         <br />
-
         <h1>Privacy Policy</h1>
         <p>Last updated: November 14, 2020</p>
         <br />
@@ -465,9 +468,10 @@ function Privacy() {
           If you have any questions about this Privacy Policy, You can{' '}
           <u>
             <a href='/contact' rel='noopener noreferrer' target='_blank'>
-              contact us.
+              contact us
             </a>
           </u>
+          .
         </p>
         <br />
       </div>
