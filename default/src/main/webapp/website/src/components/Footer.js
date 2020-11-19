@@ -2,17 +2,13 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
-import IconButton from '@material-ui/core/IconButton';
-import FileCopyIcon from '@material-ui/icons/FileCopy';
 // prettier-ignore
 import {
   /*logo, logo2, logo3, logotype, */logotype2,
   fb, ig, li, gh, yt,
-  email,
 } from '../images';
-import { EmailText } from './Constants';
-import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert from '@material-ui/lab/Alert';
+
+// TODO: 40% for footer just like content
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,9 +37,6 @@ const useStyles = makeStyles((theme) => ({
     flexFlow: 'column',
     margin: '24px 12px 0px 12px',
   },
-  email: {
-    height: '0.875rem',
-  },
   socialsBox: {
     display: 'flex',
     flexFlow: 'row wrap',
@@ -59,16 +52,6 @@ const useStyles = makeStyles((theme) => ({
   socialIcon: {
     width: '24px',
     display: 'block',
-  },
-  copyEmailIcon: {
-    color: '#f8f8ff',
-  },
-  emailBox: {
-    marginTop: '-13px',
-    display: 'flex',
-    flexFlow: 'row nowrap',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
   },
   logotypeBox: {
     display: 'flex',
@@ -88,80 +71,25 @@ const offWhite = {
   color: '#f8f8ff',
 };
 
-function Alert(props) {
-  return <MuiAlert elevation={6} variant='filled' {...props} />;
-}
-
 function Footer(props) {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-  const handleClick = () => {
-    setOpen(true);
-  };
-
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    setOpen(false);
-  };
-
-  function copyEmailToClipboard() {
-    // create text field
-    let copyText = document.createElement('textarea');
-    copyText.value = EmailText;
-    document.body.appendChild(copyText);
-
-    // select text field
-    copyText.select();
-    copyText.setSelectionRange(0, 99999); // for mobile
-
-    // copy text from text field
-    document.execCommand('copy');
-
-    // remove text field
-    document.body.removeChild(copyText);
-
-    // alert copy confirmation
-    handleClick();
-  }
-
   return (
     <div className={classes.root}>
       <div className={classes.footerHeaderBox}>
         <div className={classes.headingBox}>
           <Typography variant='h6' style={offWhite}>
-            About
+            Site Links
           </Typography>
-          <Link to='/about/me'>
+          <Link to='/about'>
             <Typography variant='body2' style={offWhite}>
-              About Me
+              About
             </Typography>
           </Link>
-          <Link to='/about/website'>
-            <Typography variant='body2' style={offWhite}>
-              Website
-            </Typography>
-          </Link>
-        </div>
-        <div className={classes.headingBox}>
           <Link to='/contact'>
-            <Typography variant='h6' style={offWhite}>
+            <Typography variant='body2' style={offWhite}>
               Contact
             </Typography>
           </Link>
-          <div className={classes.emailBox}>
-            <img src={email} className={classes.email} alt='Email' />
-            <IconButton edge='end' onClick={copyEmailToClipboard}>
-              <FileCopyIcon className={classes.copyEmailIcon} />
-            </IconButton>
-            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-              <Alert onClose={handleClose} severity='success'>
-                Email copied to clipboard!
-              </Alert>
-            </Snackbar>
-          </div>
         </div>
         <div className={classes.headingBox}>
           <Typography variant='h6' style={offWhite}>
