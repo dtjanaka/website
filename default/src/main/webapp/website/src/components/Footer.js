@@ -8,8 +8,6 @@ import {
   fb, ig, li, gh, yt,
 } from '../images';
 
-// TODO: 40% for footer just like content
-
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: 'black',
@@ -62,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
   social: {
-    margin: '10px 10px 0px 0px',
+    margin: '4px 12px 0px 0px',
     '&:last-of-type': {
       marginRight: '0px',
     },
@@ -81,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
     width: '200px',
     height: 'auto',
     display: 'block',
-    margin: '24px 12px 0px 12px',
+    margin: '24px 24px 0px 24px',
   },
 }));
 
