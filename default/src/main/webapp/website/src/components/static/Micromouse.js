@@ -54,10 +54,10 @@ function Micromouse(props) {
             title='Micromouse Rat Competition Trial 3'
             className='responsive-iframe'
             src='https://www.youtube.com/embed/nHUUiYqV9mQ'
-            frameborder='0'
+            frameBorder='0'
             allow='accelerometer; autoplay; encrypted-media; gyroscope;
 	        picture-in-picture'
-            allowfullscreen
+            allowFullScreen
           ></iframe>
         </div>
         <br />

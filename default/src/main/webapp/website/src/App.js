@@ -58,6 +58,7 @@ function App() {
           <Header name={headerTitle} />
           <div className={classes.contentBox}>
             <Switch>
+              {/*https://learnwithparam.com/blog/how-to-pass-props-in-react-router*/}
               <Route
                 exact
                 path='/comments'
