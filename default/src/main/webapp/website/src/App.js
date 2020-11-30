@@ -14,6 +14,11 @@ import Comments from './components/Comments';
 import Profile from './components/Profile';
 import Settings from './components/Settings';
 import StaticContent from './components/StaticContent';
+import Header from './components/Header';
+
+// TODO: Helmet causes warning:
+// "Using UNSAFE_componentWillMount in strict mode is not recommended and may indicate bugs in your code."
+// try react-helmet-async
 
 const theme = createMuiTheme({
   typography: {
@@ -39,18 +44,49 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
   const classes = useStyles();
+
+  const [headerTitle, setHeaderTitle] = React.useState('Dylon Tjanaka');
+
+  const changeHeaderTitle = (title) => {
+    setHeaderTitle(title);
+  };
+
   return (
     <Router>
       <ThemeProvider theme={theme}>
         <div className={classes.App}>
+          <Header name={headerTitle} />
           <div className={classes.contentBox}>
             <Switch>
-              <Route exact path='/comments' component={Comments} />
-              <Route exact path='/profile' component={Profile} />
-              <Route exact path='/settings' component={Settings} />
+              <Route
+                exact
+                path='/comments'
+                render={(props) => (
+                  <Comments {...props} changeHeader={changeHeaderTitle} />
+                )}
+              />
+              <Route
+                exact
+                path='/profile'
+                render={(props) => (
+                  <Profile {...props} changeHeader={changeHeaderTitle} />
+                )}
+              />
+              <Route
+                exact
+                path='/settings'
+                render={(props) => (
+                  <Settings {...props} changeHeader={changeHeaderTitle} />
+                )}
+              />
 
               <Redirect from='/home' to='/' />
-              <Route path='/' component={StaticContent} />
+              <Route
+                path='/'
+                render={(props) => (
+                  <StaticContent {...props} changeHeader={changeHeaderTitle} />
+                )}
+              />
             </Switch>
           </div>
           <Footer />

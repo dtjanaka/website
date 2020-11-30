@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Helmet } from 'react-helmet';
-import Header from '../Header';
 import IconButton from '@material-ui/core/IconButton';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 // prettier-ignore
@@ -31,7 +30,7 @@ function Alert(props) {
   return <MuiAlert elevation={6} variant='filled' {...props} />;
 }
 
-function Contact() {
+function Contact(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const handleClick = () => {
@@ -66,12 +65,15 @@ function Contact() {
     handleClick();
   }
 
+  useEffect(() => {
+    props.changeHeader('Dylon Tjanaka > Contact');
+  });
+
   return (
     <>
       <Helmet>
         <title>{Title}</title>
       </Helmet>
-      <Header name='Dylon Tjanaka > Contact' />
       <div className='content'>
         <br />
         <h1>Contact</h1>

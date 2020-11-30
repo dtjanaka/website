@@ -1,17 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
-import Header from '../Header';
 import { rat, mm } from '../../images';
 
 const Title = 'Dylon Tjanaka | Micromouse';
 
-function Micromouse() {
+function Micromouse(props) {
+  useEffect(() => {
+    props.changeHeader('Dylon Tjanaka > Micromouse');
+  });
+
   return (
     <>
       <Helmet>
         <title>{Title}</title>
       </Helmet>
-      <Header name='Dylon Tjanaka > Micromouse' />
       <div className='content'>
         <br />
         <h1>Micromouse</h1>

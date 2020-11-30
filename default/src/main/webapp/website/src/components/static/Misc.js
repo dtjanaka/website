@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Helmet } from 'react-helmet';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
-import Header from '../Header';
 import { GrtCoordinates } from '../Constants';
 import { map1, map2, map3 } from '../../images';
 import PropTypes from 'prop-types';
@@ -91,8 +90,10 @@ MarkerDialog.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-function Misc() {
+function Misc(props) {
   useEffect(() => {
+    props.changeHeader('Dylon Tjanaka > Robotics');
+
     const script = document.createElement('script');
     script.src =
       'https://maps.googleapis.com/maps/api/js?key=AIzaSyAKk8han0sj_7njsLjXTyFq-5f3BEKBufw';
@@ -167,7 +168,6 @@ function Misc() {
       <Helmet>
         <title>{Title}</title>
       </Helmet>
-      <Header name='Dylon Tjanaka > Everything Else' />
       <div className='content'>
         <br />
         <h1>Everything Else</h1>

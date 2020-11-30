@@ -9,6 +9,8 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { logo3 } from '../images';
 
+// TODO: how to pass function to child and use that to change parent state?
+
 const useStyles = makeStyles((theme) => ({
   toolbar: {
     backgroundColor: 'black',

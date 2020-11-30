@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Helmet } from 'react-helmet';
-import Header from '../Header';
 import Button from '@material-ui/core/Button';
 import { cubing1 } from '../../images';
 
@@ -15,14 +14,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Cubing() {
+function Cubing(props) {
   const classes = useStyles();
+
+  useEffect(() => {
+    props.changeHeader('Dylon Tjanaka > Cubing');
+  });
+
   return (
     <>
       <Helmet>
         <title>{Title}</title>
       </Helmet>
-      <Header name='Dylon Tjanaka > Cubing' />
       <div className='content'>
         <br />
         <h1>Cubing</h1>

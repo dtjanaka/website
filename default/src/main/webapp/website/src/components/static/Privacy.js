@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Helmet } from 'react-helmet';
-import Header from '../Header';
 
 const Title = 'Dylon Tjanaka | Privacy Policy';
 
@@ -15,14 +14,18 @@ const justified = {
   textAlign: 'justify',
 };
 
-function Privacy() {
+function Privacy(props) {
   const classes = useStyles();
+
+  useEffect(() => {
+    props.changeHeader('Dylon Tjanaka > Privacy Policy');
+  });
+
   return (
     <>
       <Helmet>
         <title>{Title}</title>
       </Helmet>
-      <Header name='Dylon Tjanaka > Privacy Policy' />
       <div className='content' style={justified}>
         <br />
         <h1>Privacy Policy</h1>

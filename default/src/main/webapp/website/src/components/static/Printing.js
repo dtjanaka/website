@@ -1,17 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
-import Header from '../Header';
 import { print1, print2, print3, print4 } from '../../images';
 
 const Title = 'Dylon Tjanaka | 3D Printing';
 
-function Printing() {
+function Printing(props) {
+  useEffect(() => {
+    props.changeHeader('Dylon Tjanaka > 3D Printing');
+  });
+
   return (
     <>
       <Helmet>
         <title>{Title}</title>
       </Helmet>
-      <Header name='Dylon Tjanaka > 3D Printing' />
       <div className='content'>
         <br />
         <h1>3D Printing</h1>

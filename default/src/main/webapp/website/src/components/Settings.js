@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-function Settings() {
+function Settings(props) {
+  useEffect(() => {
+    props.changeHeader('Dylon Tjanaka > Settings');
+  });
+
   return (
     <div>
       <h1>Settings</h1>
