@@ -43,6 +43,8 @@ const useStyles = makeStyles((theme) => ({
   },
   footerFooterItem: {
     margin: '0px 12px 0px 12px',
+    display: 'block',
+    textAlign: 'center',
   },
   headingBox: {
     display: 'flex',
