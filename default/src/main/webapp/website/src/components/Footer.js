@@ -15,11 +15,23 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: 'black',
   },
   footerHeaderBox: {
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginTop: '0px',
+    marginBottom: '0px',
+    width: '40%',
     display: 'flex',
     flexFlow: 'row wrap',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
-    margin: '0px 12px 0px 12px',
+
+    '@media only screen and (max-width: 1000px)': {
+      width: '75%',
+    },
+
+    '@media only screen and (max-width: 600px)': {
+      width: '100%',
+    },
   },
   footerFooterBox: {
     display: 'flex',
@@ -35,7 +47,11 @@ const useStyles = makeStyles((theme) => ({
   headingBox: {
     display: 'flex',
     flexFlow: 'column',
-    margin: '24px 12px 0px 12px',
+    margin: '24px 0px 0px 0px',
+
+    '@media only screen and (max-width: 600px)': {
+      margin: '24px 24px 0px 24px',
+    },
   },
   socialsBox: {
     display: 'flex',
