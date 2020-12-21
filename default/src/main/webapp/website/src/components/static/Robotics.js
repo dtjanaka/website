@@ -5,7 +5,7 @@ const Title = 'Dylon Tjanaka | Robotics';
 
 function Robotics(props) {
   useEffect(() => {
-    props.changeHeader('Dylon Tjanaka > Robotics');
+    props.changeHeader(Title);
   });
 
   return (

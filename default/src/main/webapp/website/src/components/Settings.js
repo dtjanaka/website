@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 
+const Title = 'Dylon Tjanaka | Settings';
+
 function Settings(props) {
   useEffect(() => {
-    props.changeHeader('Dylon Tjanaka > Settings');
+    props.changeHeader(Title);
   });
 
   return (

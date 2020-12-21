@@ -6,7 +6,7 @@ const Title = 'Dylon Tjanaka | Micromouse';
 
 function Micromouse(props) {
   useEffect(() => {
-    props.changeHeader('Dylon Tjanaka > Micromouse');
+    props.changeHeader(Title);
   });
 
   return (

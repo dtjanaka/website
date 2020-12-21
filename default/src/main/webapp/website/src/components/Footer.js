@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 // prettier-ignore
 import {
-  /*logo, logo2, logo3, logotype, */logotype2,
+  logotype,
   fb, ig, li, gh, yt,
 } from '../images';
 
@@ -158,7 +158,7 @@ function Footer(props) {
       <div className={classes.logotypeBox}>
         <Link to='/'>
           <img
-            src={logotype2}
+            src={logotype}
             className={classes.logotype}
             alt='Dylon Tjanaka logotype'
           />

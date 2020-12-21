@@ -18,7 +18,7 @@ function Privacy(props) {
   const classes = useStyles();
 
   useEffect(() => {
-    props.changeHeader('Dylon Tjanaka > Privacy Policy');
+    props.changeHeader(Title);
   });
 
   return (

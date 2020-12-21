@@ -6,7 +6,7 @@ const Title = 'Dylon Tjanaka | Widgets';
 
 function Widgets() {
   useEffect(() => {
-    props.changeHeader('Dylon Tjanaka > Widgets');
+    props.changeHeader(Title);
   });
 
   return (

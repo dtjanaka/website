@@ -6,7 +6,7 @@ const Title = 'Dylon Tjanaka | 3D Printing';
 
 function Printing(props) {
   useEffect(() => {
-    props.changeHeader('Dylon Tjanaka > 3D Printing');
+    props.changeHeader(Title);
   });
 
   return (

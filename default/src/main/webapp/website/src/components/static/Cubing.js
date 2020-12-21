@@ -18,7 +18,7 @@ function Cubing(props) {
   const classes = useStyles();
 
   useEffect(() => {
-    props.changeHeader('Dylon Tjanaka > Cubing');
+    props.changeHeader(Title);
   });
 
   return (

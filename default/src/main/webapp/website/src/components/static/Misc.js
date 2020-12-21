@@ -92,7 +92,7 @@ MarkerDialog.propTypes = {
 
 function Misc(props) {
   useEffect(() => {
-    props.changeHeader('Dylon Tjanaka > Robotics');
+    props.changeHeader(Title);
 
     const script = document.createElement('script');
     script.src =

@@ -66,7 +66,7 @@ function Contact(props) {
   }
 
   useEffect(() => {
-    props.changeHeader('Dylon Tjanaka > Contact');
+    props.changeHeader(Title);
   });
 
   return (

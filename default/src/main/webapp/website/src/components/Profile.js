@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 
+const Title = 'Dylon Tjanaka | Profile';
+
 function Profile(props) {
   useEffect(() => {
-    props.changeHeader('Dylon Tjanaka > Profile');
+    props.changeHeader(Title);
   });
 
   return (

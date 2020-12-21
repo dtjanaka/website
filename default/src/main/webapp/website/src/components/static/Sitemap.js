@@ -5,7 +5,7 @@ const Title = 'Dylon Tjanaka | Sitemap';
 
 function Sitemap(props) {
   useEffect(() => {
-    props.changeHeader('Dylon Tjanaka > Sitemap');
+    props.changeHeader(Title);
   });
 
   return (

@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 
+const Title = 'Dylon Tjanaka | Comments';
+
 function Comments(props) {
   useEffect(() => {
-    props.changeHeader('Dylon Tjanaka > Comments');
+    props.changeHeader(Title);
   });
 
   return (
