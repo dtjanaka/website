@@ -2,6 +2,9 @@
   "name": "website",
   "version": "0.1.0",
   "private": true,
+
+  "homepage": ".",
+
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
@@ -18,7 +21,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && mv build ../webape",
+    "build": "react-scripts build && rm -rf ../webapp/static/ && mv build/* ../webapp/ && rm -rf build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

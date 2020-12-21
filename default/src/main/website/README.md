@@ -20,3 +20,19 @@ Add to package.json:
     "prettier --write --single-quote --jsx-single-quote"
     ]
   }
+
+For Ubuntu 20.04
+note: so that I could change npm run build script from:
+"build": "react-scripts build",
+to:
+"build": "react-scripts build && rm -rf ../webapp/static/ && mv build/* ../webapp/ && rm -rf build",
+:D
+
+sudo apt update
+sudo apt install nodejs
+sudo apt install npm
+npx create-react-app [appName] --use-npm
+
+note: added to package.json:
+"homepage": ".",
+so index.html of production build loads in browser properly
