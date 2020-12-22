@@ -94,7 +94,7 @@ function Footer(props) {
       <div className={classes.footerHeaderBox}>
         <div className={classes.headingBox}>
           <Typography variant='h6' style={offWhite}>
-            Site Links
+            Quick Links
           </Typography>
           <Link to='/about'>
             <Typography variant='body2' style={offWhite}>
