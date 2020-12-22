@@ -1,10 +1,10 @@
-package com.dtjanaka.servlets;
+package com.dtjanaka;
 
 /**
  * Holds relevant User login info to return to front end and
  * allows for easy creation of JSON response.
  */
-class UsernameInfo {
+public class UsernameInfo {
   boolean available;
   String message;
 

@@ -23,29 +23,9 @@
   <build>
     <plugins>
       <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.3</version>
-          <configuration>
-              <excludes>
-                  <exclude>ngapp/**</exclude>
-              </excludes>
-          </configuration>
-      </plugin>
-      <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-war-plugin</artifactId>
-          <version>3.0.0</version>
-          <configuration>
-              <excludes>
-                  <exclude>ngapp/**</exclude>
-              </excludes>
-          </configuration>
-      </plugin>
-      <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>exec-maven-plugin</artifactId>
-          <version>1.5.0</version>
+          <version>3.0.0</version>
           <executions>
               <execution>
                   <id>exec-npm-install</id>
@@ -69,7 +49,8 @@
                       <workingDirectory>${project.basedir}/src/main/website</workingDirectory>
                       <executable>npm</executable>
                       <arguments>
-                          <argument>run build</argument>
+                          <argument>run</argument> 
+                          <argument>build</argument>
                       </arguments>
                   </configuration>
                   <goals>

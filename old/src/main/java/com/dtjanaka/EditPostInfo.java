@@ -1,9 +1,9 @@
-package com.dtjanaka.servlets;
+package com.dtjanaka;
 
 /**
  * Holds status of attempted edit POST and a message.
  */
-class EditPostInfo {
+public class EditPostInfo {
   boolean successful;
   String message;
 

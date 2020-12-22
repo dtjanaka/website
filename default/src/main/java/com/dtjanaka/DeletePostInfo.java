@@ -1,9 +1,9 @@
-package com.dtjanaka.servlets;
+package com.dtjanaka;
 
 /**
  * Holds status of attempted delete POST and a message.
  */
-class DeletePostInfo {
+public class DeletePostInfo {
   boolean successful;
   String message;
 
