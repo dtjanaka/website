@@ -65,10 +65,10 @@ public class ErrorServlet extends HttpServlet {
           code + "</h1>");
       switch (code) {
       case "404":
-        response.getWriter().println("<p>Page not found.</p></div>");
+        response.getWriter().println("<p>Page not found.</p></div></body>");
         return;
       case "500":
-        response.getWriter().println("<p>Internal server error.</p></div>");
+        response.getWriter().println("<p>Internal server error.</p></div></body>");
         return;
       default:
         response.getWriter().println(

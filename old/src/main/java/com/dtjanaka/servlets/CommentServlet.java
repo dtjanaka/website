@@ -36,7 +36,7 @@ import org.json.JSONObject;
 /**
  * Handles new comments and returns existing comments.
  */
-@WebServlet("/comments")
+@WebServlet("/comments-servlet")
 public class CommentServlet extends HttpServlet {
   private static final Gson gson =
       new GsonBuilder().setPrettyPrinting().create();

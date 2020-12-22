@@ -10,7 +10,7 @@ async function updateComments(isProfile) {
   let newLang = commentOptions.get('lang-comments');
 
   let url =
-    '/comments?' +
+    '/comments-servlet?' +
     'num-comments=' +
     numComments +
     '&sort-type=' +
@@ -194,7 +194,7 @@ async function submitComment() {
     const commentForm = document.getElementById('comment-form');
     const commentFormData = new FormData(commentForm);
 
-    const response = await fetch('/comments', {
+    const response = await fetch('/comments-servlet', {
       method: 'POST',
       headers: {
         Accept:
