@@ -1,4 +1,4 @@
-package com.dtjanaka.servlets;
+package com.dtjanaka;
 
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;

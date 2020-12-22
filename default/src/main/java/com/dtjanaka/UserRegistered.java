@@ -1,9 +1,9 @@
-package com.dtjanaka.servlets;
+package com.dtjanaka;
 
 /**
  * Holds registration status and username or null.
  */
-class UserRegistered {
+public class UserRegistered {
   boolean registered;
   String username;
 

@@ -1,4 +1,4 @@
-package com.dtjanaka.servlets;
+package com.dtjanaka;
 
 import static org.junit.Assert.assertEquals;
 
