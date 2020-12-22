@@ -8,7 +8,7 @@ function Comments(props) {
   });
 
   return (
-    <div>
+    <div className='content'>
       <h1>Comments</h1>
     </div>
   );

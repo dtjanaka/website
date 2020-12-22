@@ -8,7 +8,7 @@ function Settings(props) {
   });
 
   return (
-    <div>
+    <div className='content'>
       <h1>Settings</h1>
     </div>
   );

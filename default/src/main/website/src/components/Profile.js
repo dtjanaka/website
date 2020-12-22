@@ -8,7 +8,7 @@ function Profile(props) {
   });
 
   return (
-    <div>
+    <div className='content'>
       <h1>Profile</h1>
     </div>
   );
