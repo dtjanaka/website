@@ -31,12 +31,16 @@ async function updateComments(isProfile) {
   const commentContainer = document.getElementById('comment-container');
 
   commentContainer.innerHTML = '';
-  if (result.length === 0) {
+  if (!result.loggedIn) {
+    commentContainer.innerHTML = '<br />' + 'You must log in to view comments.'.italics();
+  } else if (!result.registered) {
+    commentContainer.innerHTML = '<br />' + 'You must register to view comments.'.italics();
+  } else if (result.comments.length === 0) {
     commentContainer.innerHTML = '<br />' + 'Nothing to show'.italics();
   } else {
-    for (let numComment = 0; numComment < result.length; numComment++) {
+    for (let numComment = 0; numComment < result.comments.length; numComment++) {
       commentContainer.appendChild(
-        createCommentElement(result[numComment], isProfile)
+        createCommentElement(result.comments[numComment], isProfile)
       );
     }
   }

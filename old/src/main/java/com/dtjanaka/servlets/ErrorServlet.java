@@ -67,6 +67,9 @@ public class ErrorServlet extends HttpServlet {
       case "404":
         response.getWriter().println("<p>Page not found.</p></div></body>");
         return;
+      case "405":
+        response.getWriter().println("<p>GET not supported by this URL.</p></div></body>");
+        return;
       case "500":
         response.getWriter().println("<p>Internal server error.</p></div></body>");
         return;

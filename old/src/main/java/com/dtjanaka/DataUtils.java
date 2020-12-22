@@ -194,6 +194,10 @@ public final class DataUtils {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     UserService userService = UserServiceFactory.getUserService();
 
+    if (!userService.isUserLoggedIn()) {
+      return null;
+    }
+
     String uid = userService.getCurrentUser().getUserId();
 
     Query userQuery =

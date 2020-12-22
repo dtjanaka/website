@@ -114,12 +114,20 @@ public class CommentServlet extends HttpServlet {
     response.setContentType("application/json");
 
     UserService userService = UserServiceFactory.getUserService();
-    String uid = userService.getCurrentUser().getUserId();
 
-    if (!DataUtils.isCurrentUserRegistered()) {
-      response.getWriter().println(gson.toJson("Access denied."));
+    if (!userService.isUserLoggedIn()) {
+      response.getWriter().println(gson.toJson(new CommentsInfo(false, false, 
+          new ArrayList<Comment>())));
       return;
     }
+    
+    if (!DataUtils.isCurrentUserRegistered()) {
+      response.getWriter().println(gson.toJson(new CommentsInfo(true, false, 
+          new ArrayList<Comment>())));
+      return;
+    }
+
+    String uid = userService.getCurrentUser().getUserId();
 
     String numCommentsString = request.getParameter("num-comments");
     String sortType = request.getParameter("sort-type");
@@ -220,7 +228,7 @@ public class CommentServlet extends HttpServlet {
     // TODO: known issue where translated comments display &#39; instead of '
     Gson gsonDisableEscaping =
         new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
-    String jsonComments = gsonDisableEscaping.toJson(comments);
+    String jsonComments = gsonDisableEscaping.toJson(new CommentsInfo(true, true, comments));
     response.getWriter().println(jsonComments);
   }
 

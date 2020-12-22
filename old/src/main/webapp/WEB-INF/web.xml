@@ -9,6 +9,10 @@ xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/
     <location>/error?code=404</location>
   </error-page>
   <error-page>
+    <error-code>405</error-code>
+    <location>/error?code=405</location>
+  </error-page>
+  <error-page>
     <error-code>500</error-code>
     <location>/error?code=500</location>
   </error-page>
