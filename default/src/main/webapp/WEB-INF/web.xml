@@ -14,7 +14,7 @@ xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/
   </error-page>
   <error-page>
     <error-code>500</error-code>
-    <location>index.html</location>
+    <location>/index.html</location>
   </error-page>
   <error-page>
     <exception-type>java.lang.Throwable</exception-type>
