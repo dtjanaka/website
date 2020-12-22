@@ -1,6 +1,6 @@
-package com.dtjanaka.servlets;
+package com.dtjanaka;
 
-class Comment {
+public class Comment {
   String username;
   String comment;
   String utc;        // timestamp

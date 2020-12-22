@@ -1,9 +1,9 @@
-package com.dtjanaka.servlets;
+package com.dtjanaka;
 
 /**
  * Holds status of attempted user POST and a message.
  */
-class UserPostInfo {
+public class UserPostInfo {
   boolean successful;
   String message;
 
