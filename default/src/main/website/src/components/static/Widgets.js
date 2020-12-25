@@ -18,6 +18,8 @@ function Widgets() {
         <br />
         <h1 className='contentTitle'>Widgets</h1>
         <br />
+        <hr />
+        <br />
       </div>
     </>
   );

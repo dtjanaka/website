@@ -173,6 +173,9 @@ function Misc(props) {
       <div className='content'>
         <br />
         <h1 className='contentTitle'>Everything Else</h1>
+        <br />
+        <hr />
+        <br />
         <h2>Cycling</h2>
         <p className='textBlock'>
           In my free time, I sometimes like to go cycling, mostly along the

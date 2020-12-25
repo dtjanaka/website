@@ -10,6 +10,9 @@ function Settings(props) {
   return (
     <div className='content'>
       <h1 className='contentTitle'>Settings</h1>
+      <br />
+      <hr />
+      <br />
     </div>
   );
 }

@@ -17,6 +17,9 @@ function Printing(props) {
       <div className='content'>
         <br />
         <h1 className='contentTitle'>3D Printing</h1>
+        <br />
+        <hr />
+        <br />
         <p className='textBlock'>
           I first became interested in 3D printing through cubing when I became
           interested in making my own twisty puzzles. With the help of online

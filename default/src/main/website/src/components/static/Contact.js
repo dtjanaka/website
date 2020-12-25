@@ -78,6 +78,8 @@ function Contact(props) {
         <br />
         <h1 className='contentTitle'>Contact</h1>
         <br />
+        <hr />
+        <br />
         <div className={classes.emailBox}>
           <img src={email} className={classes.email} alt='Email' />
           <IconButton edge='end' onClick={copyEmailToClipboard} color='primary'>

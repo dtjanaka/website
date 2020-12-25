@@ -17,6 +17,8 @@ function Sitemap(props) {
         <br />
         <h1 className='contentTitle'>Sitemap</h1>
         <br />
+        <hr />
+        <br />
       </div>
     </>
   );

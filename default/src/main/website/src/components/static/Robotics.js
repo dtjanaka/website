@@ -16,6 +16,9 @@ function Robotics(props) {
       <div className='content'>
         <br />
         <h1 className='contentTitle'>Robotics</h1>
+        <br />
+        <hr />
+        <br />
         <p className='textBlock'>
           86868: The Resistance was a high school robotics team from Santa
           Clara, California consisting of brothers Bryon Tjanaka and Dylon

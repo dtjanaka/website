@@ -17,6 +17,9 @@ function Micromouse(props) {
       <div className='content'>
         <br />
         <h1 className='contentTitle'>Micromouse</h1>
+        <br />
+        <hr />
+        <br />
         <p className='text textBlock'>
           Micromouse is an event where small robot mice solve a 16×16 maze. I
           first heard about it in high school, but only started in college after

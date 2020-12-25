@@ -152,3 +152,10 @@ th {
 .contentTitle {
   font-size: 40px;
 }
+
+hr {
+  height: 2px;
+  border-width: 0;
+  color: black;
+  background-color: black;
+}
