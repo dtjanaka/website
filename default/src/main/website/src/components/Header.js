@@ -31,14 +31,6 @@ function Header(props) {
 
   const [state, setState] = React.useState(false);
 
-  window.onload = function () {
-    if (window.innerWidth < 600) {
-      document.getElementById('headerTitle').innerHTML = 'Dylon Tjanaka';
-    } else {
-      document.getElementById('headerTitle').innerHTML = props.name;
-    }
-  };
-
   window.addEventListener('resize', function () {
     if (window.innerWidth < 600) {
       document.getElementById('headerTitle').innerHTML = 'Dylon Tjanaka';
@@ -63,7 +55,7 @@ function Header(props) {
             <img src={logo3} className={classes.homeIcon} alt='DT home icon' />
           </Link>
           <Typography variant='h6' className={classes.title} id='headerTitle'>
-            {props.name}
+            {window.innerWidth < 600 ? 'Dylon Tjanaka' : props.name}
           </Typography>
           <Button color='secondary' onClick={login}>
             Login
