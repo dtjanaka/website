@@ -31,6 +31,14 @@ function Header(props) {
 
   const [state, setState] = React.useState(false);
 
+  window.onload = function () {
+    if (window.innerWidth < 600) {
+      document.getElementById('headerTitle').innerHTML = 'Dylon Tjanaka';
+    } else {
+      document.getElementById('headerTitle').innerHTML = props.name;
+    }
+  };
+
   window.addEventListener('resize', function () {
     if (window.innerWidth < 600) {
       document.getElementById('headerTitle').innerHTML = 'Dylon Tjanaka';
