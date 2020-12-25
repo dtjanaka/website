@@ -16,7 +16,7 @@ function Robotics(props) {
       <div className='content'>
         <br />
         <h1>Robotics</h1>
-        <p className='text-block'>
+        <p className='textBlock'>
           86868: The Resistance was a high school robotics team from Santa
           Clara, California consisting of brothers Bryon Tjanaka and Dylon
           Tjanaka. The team competed in the VEX Robotics Competition from
@@ -68,7 +68,7 @@ function Robotics(props) {
         </div>
         <br />
         <h2>2017 VRC Engr Q110 - 200D 2S vs 86868 333X - 24 to 29</h2>
-        <p className='text-block'>
+        <p className='textBlock'>
           An example Starstruck match played at the World Championships. 86868's
           robot is on the blue alliance, starting in the lower righthand corner
           of the screen.
@@ -87,7 +87,7 @@ function Robotics(props) {
         </div>
         <br />
         <h2>2018 VRC Arts Q73 - 7536B 86868R vs 8192B 20785B - 140 to 66</h2>
-        <p className='text-block'>
+        <p className='textBlock'>
           An example In The Zone match played at the World Championships.
           86868's robot is on the red alliance, visible on the left side of the
           screen at the beginning.

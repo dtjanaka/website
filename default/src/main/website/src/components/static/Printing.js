@@ -17,7 +17,7 @@ function Printing(props) {
       <div className='content'>
         <br />
         <h1>3D Printing</h1>
-        <p className='text-block'>
+        <p className='textBlock'>
           I first became interested in 3D printing through cubing when I became
           interested in making my own twisty puzzles. With the help of online
           tutorials, I learned how to CAD in Solidworks. In high school, with
@@ -29,7 +29,7 @@ function Printing(props) {
           creativity.
         </p>
         <br />
-        <p className='text-block'>
+        <p className='textBlock'>
           Currently, I mainly design with Autodesk Inventor although I have also
           have experience with Solidworks and Fusion 360. I have a Tiertime UP
           Mini 2 printer at home.

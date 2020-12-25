@@ -5,6 +5,8 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
 import { GrtCoordinates } from '../Constants';
 import { map1, map2, map3 } from '../../images';
+import { I8732, I8795, I8819 } from '../../images';
+import { I2715, I2718, I2722 } from '../../images';
 import PropTypes from 'prop-types';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
@@ -103,7 +105,7 @@ function Misc(props) {
   });
 
   const [open, setOpen] = React.useState(false);
-  const [index, setIndex] = React.useState(false);
+  const [index, setIndex] = React.useState(0);
 
   const handleClickOpen = (i) => {
     setIndex(i);
@@ -154,7 +156,7 @@ function Misc(props) {
     const grtPath = new window.google.maps.Polyline({
       path: GrtCoordinates,
       geodesic: true,
-      strokeColor: '#FF0000',
+      strokeColor: '#ff0000',
       strokeOpacity: 1.0,
       strokeWeight: 2,
     });
@@ -172,7 +174,7 @@ function Misc(props) {
         <br />
         <h1>Everything Else</h1>
         <h2>Cycling</h2>
-        <p className='text-block'>
+        <p className='textBlock'>
           In my free time, I sometimes like to go cycling, mostly along the
           Guadalupe River Trail. I track my rides with the Strava app for which
           a widget of my weekly activity is shown. A map of one of my common
@@ -194,63 +196,136 @@ function Misc(props) {
         </div>
 
         <MarkerDialog index={index} open={open} onClose={handleClose} />
+
         <div>
-          {/*<div id="bridge-text">
-        <h2>Popsicle Stick Bridges</h2>
-        <p className="text-block">
-          As part of my high school AP Physics 1 course, we built and tested
-          bridges made of only popsicle sticks and wood glue. The blog and video
-          below provide insight into our group's design process and results. In
-          the end, our bridge held 565 pounds while only weighing 1.0494 pounds,
-          giving it an efficiency of 538.
-        </p>
-        <a href="https://what-a-resilient-bridge.weebly.com/"
-          ><button className="center misc-button" id="bridge-blog">
-            Bridge blog
-          </button>
-        </a>
-      </div>
-      <div className="resp-container" id="bridge-video">
-        <iframe
-          className="responsive-iframe"
-          src="https://www.youtube.com/embed/cG5Qb2XNFQU"
-          frameborder="0"
-          allow="accelerometer; autoplay; encrypted-media; gyroscope;
-	        picture-in-picture"
-          allowfullscreen
-        ></iframe>
-      </div>
-      <a id="show0-link" href="/images/IMG_8732.jpg">
-        <img className="slideshow" id="show0" src="/images/IMG_8732.jpg" />
-      </a>
-      <div>
-        <button onclick="changeSlide(0, -1)" className="slideshow-button">
-          &#10094;
-        </button>
-        <button onclick="changeSlide(0, 1)" className="slideshow-button">
-          &#10095;
-        </button>
-      </div>
-      <p>
-        The summer after this project, I made a bridge out of coffee stirrers
-        instead of popsicle sticks just for fun. Unlike the popsicle stick
-        bridge, this one was never tested and so remains intact.
-      </p>
-      <a id="show1-link" href="/images/IMG_2715.jpg">
-        <img className="slideshow" id="show1" src="/images/IMG_2715.jpg" />
-      </a>
-      <div>
-        <button onclick="changeSlide(1, -1)" className="slideshow-button stirrer">
-          &#10094;
-        </button>
-        <button onclick="changeSlide(1, 1)" className="slideshow-button stirrer">
-          &#10095;
-        </button>
-      </div>*/}
+          <div>
+            <h2>Popsicle Stick Bridges</h2>
+            <p className='textBlock'>
+              As part of my high school AP Physics 1 course, we built and tested
+              bridges made of only popsicle sticks and wood glue. The blog and
+              video below provide insight into our group's design process and
+              results. In the end, our bridge held 565 pounds while only
+              weighing 1.0494 pounds, giving it an efficiency of 538.
+            </p>
+            <br />
+            <a href='https://what-a-resilient-bridge.weebly.com/'>
+              <button className='center miscButton'>Bridge blog</button>
+            </a>
+            <br />
+          </div>
+
+          <div className='resp-container'>
+            <iframe
+              title='bridge video'
+              className='responsive-iframe'
+              src='https://www.youtube.com/embed/cG5Qb2XNFQU'
+              frameBorder='0'
+              allow='accelerometer; autoplay; encrypted-media; gyroscope;
+	        picture-in-picture'
+              allowFullScreen
+            ></iframe>
+          </div>
+
+          <br />
+
+          <a id='show0-link' href={I8732}>
+            <img
+              className='slideshow'
+              id='show0'
+              src={I8732}
+              alt='popsicle stick bridge'
+            />
+          </a>
+          <div>
+            {/* just changeSlide(0, -1) calls the function immediately */}
+            <button
+              onClick={() => {
+                changeSlide(0, -1);
+              }}
+              className='slideshowButton'
+            >
+              &#10094;
+            </button>
+            <button
+              onClick={() => {
+                changeSlide(0, 1);
+              }}
+              className='slideshowButton'
+            >
+              &#10095;
+            </button>
+          </div>
+
+          <br />
+
+          <p className='textBlock'>
+            The summer after this project, I made a bridge out of coffee
+            stirrers instead of popsicle sticks just for fun. Unlike the
+            popsicle stick bridge, this one was never tested and so remains
+            intact.
+          </p>
+
+          <br />
+
+          <a id='show1-link' href={I2715}>
+            <img
+              className='slideshow'
+              id='show1'
+              src={I2715}
+              alt='coffee stirrer bridge'
+            />
+          </a>
+          <div>
+            <button
+              onClick={() => {
+                changeSlide(1, -1);
+              }}
+              className='slideshowButton'
+            >
+              &#10094;
+            </button>
+            <button
+              onClick={() => {
+                changeSlide(1, 1);
+              }}
+              className='slideshowButton'
+            >
+              &#10095;
+            </button>
+          </div>
+          <br />
         </div>
       </div>
     </>
   );
+}
+
+// Holds the current indices of both slideshows
+let curShowIdxs = [0, 0];
+
+/**
+ * Change picture for either slideshow.
+ */
+function changeSlide(slideshowNum, direction) {
+  const show = [
+    [I8732, I8795, I8819],
+    [I2715, I2718, I2722],
+  ];
+
+  curShowIdxs[slideshowNum] = (curShowIdxs[slideshowNum] + direction) % 3;
+  // Handle negative numbers: -1 % 3 = -1, want to wrap around to 2
+  if (curShowIdxs[slideshowNum] < 0) {
+    curShowIdxs[slideshowNum] += 3;
+  }
+
+  const img = show[slideshowNum][curShowIdxs[slideshowNum]];
+  if (!slideshowNum) {
+    document.getElementById('show0').src = img;
+    document.getElementById('show0-link').href = img;
+  } else {
+    document.getElementById('show1').src = img;
+    document.getElementById('show1-link').href = img;
+  }
 }
 
 export default Misc;

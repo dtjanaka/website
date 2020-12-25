@@ -17,7 +17,7 @@ function Micromouse(props) {
       <div className='content'>
         <br />
         <h1>Micromouse</h1>
-        <p className='text text-block'>
+        <p className='text textBlock'>
           Micromouse is an event where small robot mice solve a 16×16 maze. I
           first heard about it in high school, but only started in college after
           joining the UCLA IEEE club. Micromice autonomously navigate from the
@@ -32,7 +32,7 @@ function Micromouse(props) {
           understanding of the EE side of things.
         </p>
         <br />
-        <p className='text text-block'>
+        <p className='text textBlock'>
           I have built two mice so far. The first one, a "rat," is a proven
           design provided by the Micromouse instructors in UCLA IEEE which
           allowed new Micromousers such as myself to learn the fundamentals. It
@@ -61,7 +61,7 @@ function Micromouse(props) {
           ></iframe>
         </div>
         <br />
-        <p className='text-block'>
+        <p className='textBlock'>
           The second mouse I have worked on is a custom design using the
           STM32F405RGT6 chip. It was designed with Autodesk Eagle; programming
           is done in the STM32 CubeIDE environment. It has six IRs, two

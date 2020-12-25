@@ -50,7 +50,25 @@ a:hover {
   border: none;
 }
 
-.text-block {
+.slideshow {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.slideshowButton {
+  height: 50px;
+  width: 50%;
+  background-color: #00aff5;
+  border: none;
+  color: #f8f8ff;
+  cursor: pointer;
+  font-size: large;
+}
+
+.textBlock {
   text-align: justify;
 }
 
@@ -59,8 +77,25 @@ a:hover {
   margin-top: 8px;
 }
 
+.miscButton {
+  height: 50px;
+  width: 50%;
+  background-color: #00aff5;
+  border: none;
+  color: #f8f8ff;
+  cursor: pointer;
+  font-size: large;
+}
+
+button:hover {
+  opacity: 0.7;
+}
+
 /* Responsiveness */
 @media only screen and (max-width: 1600px) {
+  .miscButton {
+    width: 100%;
+  }
 }
 
 @media only screen and (max-width: 1000px) {

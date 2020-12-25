@@ -23,3 +23,11 @@ export const mm = require('./micromouse/IMG_2326.jpg');
 export const map1 = require('./cycling/IMG_2686.jpg');
 export const map2 = require('./cycling/IMG_2744.jpg');
 export const map3 = require('./cycling/IMG_2751.jpg');
+
+export const I8732 = require('./bridge/IMG_8732.jpg');
+export const I8795 = require('./bridge/IMG_8795.jpg');
+export const I8819 = require('./bridge/IMG_8819.jpg');
+
+export const I2715 = require('./bridge/IMG_2715.jpg');
+export const I2718 = require('./bridge/IMG_2718.jpg');
+export const I2722 = require('./bridge/IMG_2722.jpg');
