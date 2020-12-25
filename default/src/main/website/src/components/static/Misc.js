@@ -193,18 +193,6 @@ function Misc(props) {
           <br />
         </div>
 
-        <div>
-          <a href='https://www.270towin.com/maps/opQe7'>
-            <img
-              src='https://www.270towin.com/map-images/opQe7.png'
-              className={classes.map270}
-              alt='270towin map'
-            />
-            <p>Prediction made 3:30 PM PT 28 October 2020</p>
-          </a>
-          <br />
-        </div>
-
         <MarkerDialog index={index} open={open} onClose={handleClose} />
         <div>
           {/*<div id="bridge-text">
