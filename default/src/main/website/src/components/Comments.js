@@ -9,7 +9,7 @@ function Comments(props) {
 
   return (
     <div className='content'>
-      <h1>Comments</h1>
+      <h1 className='contentTitle'>Comments</h1>
     </div>
   );
 }

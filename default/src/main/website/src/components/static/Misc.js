@@ -172,7 +172,7 @@ function Misc(props) {
       </Helmet>
       <div className='content'>
         <br />
-        <h1>Everything Else</h1>
+        <h1 className='contentTitle'>Everything Else</h1>
         <h2>Cycling</h2>
         <p className='textBlock'>
           In my free time, I sometimes like to go cycling, mostly along the
@@ -214,10 +214,10 @@ function Misc(props) {
             <br />
           </div>
 
-          <div className='resp-container'>
+          <div className='respContainer'>
             <iframe
               title='bridge video'
-              className='responsive-iframe'
+              className='responsiveIframe'
               src='https://www.youtube.com/embed/cG5Qb2XNFQU'
               frameBorder='0'
               allow='accelerometer; autoplay; encrypted-media; gyroscope;

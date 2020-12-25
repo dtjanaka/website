@@ -76,7 +76,7 @@ function Contact(props) {
       </Helmet>
       <div className='content'>
         <br />
-        <h1>Contact</h1>
+        <h1 className='contentTitle'>Contact</h1>
         <br />
         <div className={classes.emailBox}>
           <img src={email} className={classes.email} alt='Email' />

@@ -28,7 +28,7 @@ function Cubing(props) {
       </Helmet>
       <div className='content'>
         <br />
-        <h1>Cubing</h1>
+        <h1 className='contentTitle'>Cubing</h1>
         <p className='textBlock'>
           I first learned to solve the Rubik's Cube in 7th grade with the help
           of online tutorials. Since then, I have spent thousands of hours

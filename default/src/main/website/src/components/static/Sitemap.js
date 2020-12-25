@@ -15,7 +15,7 @@ function Sitemap(props) {
       </Helmet>
       <div className='content'>
         <br />
-        <h1>Sitemap</h1>
+        <h1 className='contentTitle'>Sitemap</h1>
         <br />
       </div>
     </>

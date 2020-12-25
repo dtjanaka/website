@@ -33,13 +33,13 @@ a:hover {
   width: 40%;
 }
 
-.resp-container {
+.respContainer {
   position: relative;
   overflow: hidden;
   padding-top: 56.25%;
 }
 
-.responsive-iframe {
+.responsiveIframe {
   position: absolute;
   top: 0;
   left: 0;
@@ -147,4 +147,8 @@ td {
 
 th {
   font-size: 75%;
+}
+
+.contentTitle {
+  font-size: 40px;
 }

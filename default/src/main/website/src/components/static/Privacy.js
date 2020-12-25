@@ -28,7 +28,7 @@ function Privacy(props) {
       </Helmet>
       <div className='content' style={justified}>
         <br />
-        <h1>Privacy Policy</h1>
+        <h1 className='contentTitle'>Privacy Policy</h1>
         <p>Last updated: November 14, 2020</p>
         <br />
         <p>

@@ -16,7 +16,7 @@ function Micromouse(props) {
       </Helmet>
       <div className='content'>
         <br />
-        <h1>Micromouse</h1>
+        <h1 className='contentTitle'>Micromouse</h1>
         <p className='text textBlock'>
           Micromouse is an event where small robot mice solve a 16×16 maze. I
           first heard about it in high school, but only started in college after
@@ -49,10 +49,10 @@ function Micromouse(props) {
           short path:
         </p>
         <br />
-        <div className='resp-container'>
+        <div className='respContainer'>
           <iframe
             title='Micromouse Rat Competition Trial 3'
-            className='responsive-iframe'
+            className='responsiveIframe'
             src='https://www.youtube.com/embed/nHUUiYqV9mQ'
             frameBorder='0'
             allow='accelerometer; autoplay; encrypted-media; gyroscope;

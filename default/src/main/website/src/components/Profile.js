@@ -9,7 +9,7 @@ function Profile(props) {
 
   return (
     <div className='content'>
-      <h1>Profile</h1>
+      <h1 className='contentTitle'>Profile</h1>
     </div>
   );
 }

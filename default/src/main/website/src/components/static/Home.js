@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 
-const Title = 'Dylon Tjanaka | Home';
+const Title = 'Dylon Tjanaka | Homepage';
 
 function Home(props) {
   useEffect(() => {
@@ -16,7 +16,7 @@ function Home(props) {
       </Helmet>
       <div className='content'>
         <br />
-        <h1>Home</h1>
+        <h1 className='contentTitle'>Home</h1>
       </div>
     </>
   );

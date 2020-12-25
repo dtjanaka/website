@@ -15,7 +15,7 @@ function Robotics(props) {
       </Helmet>
       <div className='content'>
         <br />
-        <h1>Robotics</h1>
+        <h1 className='contentTitle'>Robotics</h1>
         <p className='textBlock'>
           86868: The Resistance was a high school robotics team from Santa
           Clara, California consisting of brothers Bryon Tjanaka and Dylon
@@ -37,10 +37,10 @@ function Robotics(props) {
           World Championship title in Louisville, Kentucky.
         </p>
         <br />
-        <div className='resp-container'>
+        <div className='respContainer'>
           <iframe
             title='86868 Season Recap 2016-2017'
-            className='responsive-iframe'
+            className='responsiveIframe'
             src='https://www.youtube.com/embed/hUtrqf6Oids'
             frameBorder='0'
             allow='accelerometer; autoplay; encrypted-media; gyroscope;
@@ -55,10 +55,10 @@ function Robotics(props) {
           team won the California State Championship.
         </p>
         <br />
-        <div className='resp-container'>
+        <div className='respContainer'>
           <iframe
             title='86868: THE RESISTANCE - 86868R VEX In The Zone Season Recap'
-            className='responsive-iframe'
+            className='responsiveIframe'
             src='https://www.youtube.com/embed/eGpasQFLgAY'
             frameBorder='0'
             allow='accelerometer; autoplay; encrypted-media; gyroscope;
@@ -74,10 +74,10 @@ function Robotics(props) {
           of the screen.
         </p>
         <br />
-        <div className='resp-container'>
+        <div className='respContainer'>
           <iframe
             title='2017 VRC Engr Q110 - 200D 2S vs 86868 333X - 24 to 29'
-            className='responsive-iframe'
+            className='responsiveIframe'
             src='https://www.youtube.com/embed/A8gQNJh9yCM'
             frameBorder='0'
             allow='accelerometer; autoplay; encrypted-media; gyroscope;
@@ -93,10 +93,10 @@ function Robotics(props) {
           screen at the beginning.
         </p>
         <br />
-        <div className='resp-container'>
+        <div className='respContainer'>
           <iframe
             title='2018 VRC Arts Q73 - 7536B 86868R vs 8192B 20785B - 140 to 66'
-            className='responsive-iframe'
+            className='responsiveIframe'
             src='https://www.youtube.com/embed/5tjxxdGJM0I'
             frameBorder='0'
             allow='accelerometer; autoplay; encrypted-media; gyroscope;

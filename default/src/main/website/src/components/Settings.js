@@ -9,7 +9,7 @@ function Settings(props) {
 
   return (
     <div className='content'>
-      <h1>Settings</h1>
+      <h1 className='contentTitle'>Settings</h1>
     </div>
   );
 }

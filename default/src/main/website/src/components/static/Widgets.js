@@ -16,6 +16,8 @@ function Widgets() {
       </Helmet>
       <div className='content'>
         <br />
+        <h1 className='contentTitle'>Widgets</h1>
+        <br />
       </div>
     </>
   );
