@@ -18,9 +18,6 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
-    '@media only screen and (max-width: 400px)': {
-      fontSize: '0.75rem',
-    },
   },
   homeIcon: {
     width: '36px',
@@ -33,6 +30,14 @@ function Header(props) {
   const classes = useStyles();
 
   const [state, setState] = React.useState(false);
+
+  window.addEventListener('resize', function () {
+    if (window.innerWidth < 600) {
+      document.getElementById('headerTitle').innerHTML = 'Dylon Tjanaka';
+    } else {
+      document.getElementById('headerTitle').innerHTML = props.name;
+    }
+  });
 
   return (
     <div className={classes.root}>
@@ -49,7 +54,7 @@ function Header(props) {
           <Link to='/home'>
             <img src={logo3} className={classes.homeIcon} alt='DT home icon' />
           </Link>
-          <Typography variant='h6' className={classes.title}>
+          <Typography variant='h6' className={classes.title} id='headerTitle'>
             {props.name}
           </Typography>
           <Button color='secondary' onClick={login}>
