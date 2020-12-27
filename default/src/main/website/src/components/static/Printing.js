@@ -17,7 +17,6 @@ function Printing(props) {
       <div className='content'>
         <br />
         <h1 className='contentTitle'>3D Printing</h1>
-        <br />
         <hr />
         <br />
         <p className='textBlock'>

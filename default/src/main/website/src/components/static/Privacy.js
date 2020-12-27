@@ -29,7 +29,6 @@ function Privacy(props) {
       <div className='content' style={justified}>
         <br />
         <h1 className='contentTitle'>Privacy Policy</h1>
-        <br />
         <hr />
         <br />
         <p>Last updated: November 14, 2020</p>

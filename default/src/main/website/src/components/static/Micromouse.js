@@ -17,7 +17,6 @@ function Micromouse(props) {
       <div className='content'>
         <br />
         <h1 className='contentTitle'>Micromouse</h1>
-        <br />
         <hr />
         <br />
         <p className='text textBlock'>

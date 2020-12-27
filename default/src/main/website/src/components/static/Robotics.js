@@ -16,7 +16,6 @@ function Robotics(props) {
       <div className='content'>
         <br />
         <h1 className='contentTitle'>Robotics</h1>
-        <br />
         <hr />
         <br />
         <p className='textBlock'>

@@ -17,7 +17,6 @@ function Home(props) {
       <div className='content'>
         <br />
         <h1 className='contentTitle'>Home</h1>
-        <br />
         <hr />
         <br />
       </div>

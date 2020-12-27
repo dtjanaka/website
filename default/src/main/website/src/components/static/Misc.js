@@ -173,7 +173,6 @@ function Misc(props) {
       <div className='content'>
         <br />
         <h1 className='contentTitle'>Everything Else</h1>
-        <br />
         <hr />
         <br />
         <h2>Cycling</h2>

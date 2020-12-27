@@ -1,2 +1,4 @@
 webapp/
 !webapp/WEB-INF
+!webapp/norcal
+!webapp/norcal.html
