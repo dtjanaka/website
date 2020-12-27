@@ -10,9 +10,9 @@
     </style>
   </head>
   <body>
-    <script src="js/three.js"></script>
-    <!--<script src="js/OrbitControls.js"></script>-->
-    <script src="js/GLTFLoader.js"></script>
+    <script src="norcal/js/three.js"></script>
+    <!--<script src="norcal/js/OrbitControls.js"></script>-->
+    <script src="norcal/js/GLTFLoader.js"></script>
 
     <script>
       // [min, max]
@@ -63,7 +63,7 @@
 
       // load a sound and set it as the Audio object's buffer
       const audioLoader = new THREE.AudioLoader();
-      audioLoader.load('/Swamp_Thing_RI3D_Edit.mp3', function (buffer) {
+      audioLoader.load('/norcal/Swamp_Thing_RI3D_Edit.mp3', function (buffer) {
         sound.setBuffer(buffer);
         sound.setLoop(true);
         sound.setVolume(0.5);
@@ -124,7 +124,7 @@
       const loader = new THREE.GLTFLoader();
 
       loader.load(
-        '/field_tile.gltf',
+        '/norcal/field_tile.gltf',
         function (gltf) {
           gltf.scene.scale.set(TILE_SCALE, TILE_SCALE, TILE_SCALE);
           for (let row = 0; row < ROW_MAX; row++) {
@@ -285,7 +285,7 @@
       const CUBE_COLORS = [ORANGE, PURPLE, GREEN, ORANGE, PURPLE, GREEN];
 
       loader.load(
-        '/tower_takeover_cube.gltf',
+        '/norcal/tower_takeover_cube.gltf',
         function (gltf) {
           gltf.scene.scale.set(CUBE_SCALE, CUBE_SCALE, CUBE_SCALE);
           for (let letter = N; letter <= L; letter++) {
