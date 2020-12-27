@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>N O R C A L 🟪🟩🟩🟧</title>
+    <style>
+      body {
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="js/three.js"></script>
+    <!--<script src="js/OrbitControls.js"></script>-->
+    <script src="js/GLTFLoader.js"></script>
+
+    <script>
+      // [min, max]
+      function randomIntInclusive(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1) + min);
+      }
+
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0xf8f8ff);
+
+      const camera = new THREE.PerspectiveCamera(
+        110,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        1000
+      );
+
+      const renderer = new THREE.WebGLRenderer({ antialias: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      document.body.appendChild(renderer.domElement);
+
+      window.addEventListener('resize', () => {
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+      });
+
+      //const controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+      camera.position.x = 0;
+      camera.position.y = 0;
+      camera.position.z = 20;
+
+      camera.up.set(0, 0, 1);
+      camera.lookAt(0, 0, 0);
+      camera.rotation.z -= Math.PI;
+      //controls.update();
+
+      /*
+      // create an AudioListener and add it to the camera
+      const listener = new THREE.AudioListener();
+      camera.add(listener);
+
+      // create a global audio source
+      const sound = new THREE.Audio(listener);
+
+      // load a sound and set it as the Audio object's buffer
+      const audioLoader = new THREE.AudioLoader();
+      audioLoader.load('/Swamp_Thing_RI3D_Edit.mp3', function (buffer) {
+        sound.setBuffer(buffer);
+        sound.setLoop(true);
+        sound.setVolume(0.5);
+        sound.play();
+      });
+      */
+
+      /*
+      const p_geometry = new THREE.PlaneGeometry(64, 64);
+      const p_material = new THREE.MeshLambertMaterial({
+        color: 0xff0000,
+        side: THREE.DoubleSide,
+      });
+      const plane = new THREE.Mesh(p_geometry, p_material);
+      plane.position.copy(new THREE.Vector3(0, 0, 0));
+      //scene.add(plane);
+
+      // x is red, y is green, blue is z (right-handed)
+      const axesHelper = new THREE.AxesHelper(8);
+      //scene.add(axesHelper);
+      */
+
+      const light = new THREE.PointLight(0xffffff, 1.2, 0, 2);
+      light.position.set(0, 0, 20);
+      scene.add(light);
+
+      /*
+      const light2 = new THREE.PointLight(0xffffff, 1.2, 0, 2);
+      light2.position.set(0, 0, -20);
+      scene.add(light2);
+      */
+
+      const ROW_MAX = 6;
+      const COL_MAX = 6;
+
+      // cubes are 5.5", tiles are 24.375"
+      // cube scale 0.01 = same edge length as tile scale 0.0023
+      const TILE_SPACING = 3.05025;
+      const TILE_SCALE = 0.0101931818;
+      const TILE_HEIGHT = 0.09;
+
+      const CUBE_SCALE = 0.01;
+      const CUBE_SPACING = 0.6975;
+      const CUBE_OFFSET = 0.095;
+      const CUBE_HEIGHT = CUBE_SPACING + 2 * TILE_HEIGHT;
+
+      const TILE_COLORS = [
+        0x626262,
+        0x646464,
+        0x686868,
+        0x6e6e6e,
+        0x717171,
+        0x767676,
+      ];
+
+      const group = new THREE.Group();
+
+      const loader = new THREE.GLTFLoader();
+
+      loader.load(
+        '/field_tile.gltf',
+        function (gltf) {
+          gltf.scene.scale.set(TILE_SCALE, TILE_SCALE, TILE_SCALE);
+          for (let row = 0; row < ROW_MAX; row++) {
+            for (let col = 0; col < COL_MAX; col++) {
+              let newScene = gltf.scene.clone();
+              newScene.position.set(
+                2 * row * TILE_SPACING - (ROW_MAX - 1) * TILE_SPACING,
+                2 * col * TILE_SPACING - (COL_MAX - 1) * TILE_SPACING,
+                TILE_HEIGHT
+              );
+
+              let newMaterial = new THREE.MeshLambertMaterial({
+                color:
+                  TILE_COLORS[randomIntInclusive(0, TILE_COLORS.length - 1)],
+              });
+              newScene.traverse((o) => {
+                if (o.isMesh) o.material = newMaterial;
+              });
+              group.add(newScene);
+            }
+          }
+        },
+        undefined,
+        function (error) {
+          console.error(error);
+        }
+      );
+
+      // prettier-ignore
+      const NO_OFFSET = [
+        [
+          [2 * TILE_SPACING + (TILE_SPACING - 2 * CUBE_SPACING), 3 * CUBE_SPACING - CUBE_OFFSET / 2],
+          [2 * TILE_SPACING + (TILE_SPACING - 2 * CUBE_SPACING), -3 * CUBE_SPACING + CUBE_OFFSET / 2],
+          [3 * TILE_SPACING, 3 * CUBE_SPACING - CUBE_OFFSET / 2],
+          [3 * TILE_SPACING + 2 * CUBE_SPACING - CUBE_OFFSET / 2, CUBE_SPACING - CUBE_OFFSET / 2],
+          [3 * TILE_SPACING + CUBE_OFFSET / 2, -CUBE_SPACING + CUBE_OFFSET / 2],
+          [3 * TILE_SPACING, -3 * CUBE_SPACING + CUBE_OFFSET / 2],
+          [3 * TILE_SPACING + 2 * CUBE_SPACING, 3 * CUBE_SPACING - CUBE_OFFSET / 2],
+          [3 * TILE_SPACING + 2 * CUBE_SPACING, -3 * CUBE_SPACING + CUBE_OFFSET / 2],
+          [3 * TILE_SPACING + 4 * CUBE_SPACING, 3 * CUBE_SPACING - CUBE_OFFSET / 2],
+          [3 * TILE_SPACING + 4 * CUBE_SPACING, -3 * CUBE_SPACING + CUBE_OFFSET / 2],
+        ],
+        [],
+        [
+          [2 * TILE_SPACING + (TILE_SPACING - 2 * CUBE_SPACING), 2 * CUBE_SPACING],
+          [2 * TILE_SPACING + (TILE_SPACING - 2 * CUBE_SPACING) + 2 * CUBE_OFFSET, -2 * CUBE_SPACING + CUBE_OFFSET],
+          [3 * TILE_SPACING, 2 * CUBE_SPACING],
+          [3 * TILE_SPACING + CUBE_OFFSET, 0],
+          [3 * TILE_SPACING + 2 * CUBE_SPACING, 2 * CUBE_SPACING],
+          [3 * TILE_SPACING + 2 * CUBE_SPACING, -2 * CUBE_SPACING + CUBE_OFFSET],
+          [3 * TILE_SPACING + 4 * CUBE_SPACING, CUBE_SPACING],
+          [3 * TILE_SPACING + 4 * CUBE_SPACING, -CUBE_SPACING],
+        ],
+        [
+          [2 * TILE_SPACING + (TILE_SPACING - 2 * CUBE_SPACING), CUBE_SPACING],
+          [2 * TILE_SPACING + (TILE_SPACING - 2 * CUBE_SPACING), -CUBE_SPACING],
+          [2 * TILE_SPACING + (TILE_SPACING - CUBE_SPACING), 3 * CUBE_SPACING],
+          [2 * TILE_SPACING + (TILE_SPACING - CUBE_SPACING), -3 * CUBE_SPACING],
+          [3 * TILE_SPACING + CUBE_SPACING, 3 * CUBE_SPACING],
+          [3 * TILE_SPACING + 3 * CUBE_SPACING, 3 * CUBE_SPACING],
+          [3 * TILE_SPACING + 3 * CUBE_SPACING, -3 * CUBE_SPACING],
+          [3 * TILE_SPACING + 4 * CUBE_SPACING, CUBE_SPACING],
+          [3 * TILE_SPACING + 4 * CUBE_SPACING, -CUBE_SPACING],
+        ],
+        [],
+        [
+          [2 * TILE_SPACING + (TILE_SPACING - 2 * CUBE_SPACING), 2 * CUBE_SPACING],
+          [2 * TILE_SPACING + (TILE_SPACING - 2 * CUBE_SPACING), 0],
+          [2 * TILE_SPACING + (TILE_SPACING - 2 * CUBE_SPACING), -2 * CUBE_SPACING],
+          [3 * TILE_SPACING, 2 * CUBE_SPACING],
+          [3 * TILE_SPACING + 2 * CUBE_SPACING, 2 * CUBE_SPACING],
+          [3 * TILE_SPACING + 4 * CUBE_SPACING, 2 * CUBE_SPACING],
+        ]
+      ];
+
+      const CUBE_ROTATIONS = [
+        -Math.PI / 6,
+        0,
+        (-5 * Math.PI) / 6,
+        (5 * Math.PI) / 6,
+        0,
+        Math.PI / 6,
+      ];
+
+      function trX(x, y, rad) {
+        return x * Math.cos(rad) - y * Math.sin(rad);
+      }
+
+      function trY(x, y, rad) {
+        return x * Math.sin(rad) + y * Math.cos(rad);
+      }
+
+      // prettier-ignore
+      let POSITIONS = [
+        [], // N
+        [
+          // O
+          new THREE.Vector3(CUBE_SPACING, -(2 * TILE_SPACING + (TILE_SPACING - 2 * CUBE_SPACING)), CUBE_HEIGHT),
+          new THREE.Vector3(-CUBE_SPACING, -(2 * TILE_SPACING + (TILE_SPACING - 2 * CUBE_SPACING)), CUBE_HEIGHT),
+          new THREE.Vector3(CUBE_SPACING, -(2 * TILE_SPACING + (TILE_SPACING - 2 * CUBE_SPACING)) - 6 * CUBE_SPACING + 2 * CUBE_OFFSET, CUBE_HEIGHT),
+          new THREE.Vector3(-CUBE_SPACING, -(2 * TILE_SPACING + (TILE_SPACING - 2 * CUBE_SPACING)) - 6 * CUBE_SPACING + 2 * CUBE_OFFSET, CUBE_HEIGHT),
+          new THREE.Vector3(3 * CUBE_SPACING - CUBE_OFFSET, -(2 * TILE_SPACING + (TILE_SPACING - 2 * CUBE_SPACING)) - 2 * CUBE_SPACING + CUBE_OFFSET, CUBE_HEIGHT),
+          new THREE.Vector3(3 * CUBE_SPACING - CUBE_OFFSET, -(2 * TILE_SPACING + (TILE_SPACING - 2 * CUBE_SPACING)) - 4 * CUBE_SPACING + CUBE_OFFSET, CUBE_HEIGHT),
+          new THREE.Vector3(-3 * CUBE_SPACING + CUBE_OFFSET, -(2 * TILE_SPACING + (TILE_SPACING - 2 * CUBE_SPACING)) - 2 * CUBE_SPACING + CUBE_OFFSET, CUBE_HEIGHT),
+          new THREE.Vector3(-3 * CUBE_SPACING + CUBE_OFFSET, -(2 * TILE_SPACING + (TILE_SPACING - 2 * CUBE_SPACING)) - 4 * CUBE_SPACING + CUBE_OFFSET, CUBE_SPACING + 2 *TILE_HEIGHT),
+        ],
+        [], // R
+        [], // C
+        [
+          // A
+          new THREE.Vector3(3 * CUBE_SPACING, 2 * TILE_SPACING + (TILE_SPACING - 2 * CUBE_SPACING), CUBE_HEIGHT),
+          new THREE.Vector3(-3 * CUBE_SPACING, 2 * TILE_SPACING + (TILE_SPACING - 2 * CUBE_SPACING), CUBE_HEIGHT),
+          new THREE.Vector3(3 * CUBE_SPACING, 3 * TILE_SPACING, CUBE_HEIGHT),
+          new THREE.Vector3(CUBE_SPACING, 3 * TILE_SPACING, CUBE_HEIGHT),
+          new THREE.Vector3(-CUBE_SPACING, 3 * TILE_SPACING, CUBE_HEIGHT),
+          new THREE.Vector3(-3 * CUBE_SPACING, 3 * TILE_SPACING, CUBE_HEIGHT),
+          new THREE.Vector3(3 * CUBE_SPACING - CUBE_OFFSET, 3 * TILE_SPACING + 2 * CUBE_SPACING, CUBE_HEIGHT),
+          new THREE.Vector3(-3 * CUBE_SPACING + CUBE_OFFSET, 3 * TILE_SPACING + 2 * CUBE_SPACING, CUBE_HEIGHT),
+          new THREE.Vector3(CUBE_SPACING, 3 * TILE_SPACING + 4 * CUBE_SPACING - CUBE_OFFSET, CUBE_HEIGHT),
+          new THREE.Vector3(-CUBE_SPACING, 3 * TILE_SPACING + 4 * CUBE_SPACING - CUBE_OFFSET, CUBE_HEIGHT),
+        ],
+        [], // L
+      ];
+
+      const N = 0;
+      const O = 1;
+      const R = 2;
+      const C = 3;
+      const A = 4;
+      const L = 5;
+
+      for (let letter = N; letter <= L; letter++) {
+        if (letter === O || letter === A) {
+          continue;
+        }
+        for (let cube = 0; cube < NO_OFFSET[letter].length; cube++) {
+          POSITIONS[letter].push(
+            new THREE.Vector3(
+              trX(
+                NO_OFFSET[letter][cube][0],
+                NO_OFFSET[letter][cube][1],
+                CUBE_ROTATIONS[letter]
+              ),
+              trY(
+                NO_OFFSET[letter][cube][0],
+                NO_OFFSET[letter][cube][1],
+                CUBE_ROTATIONS[letter]
+              ),
+              CUBE_HEIGHT
+            )
+          );
+        }
+      }
+
+      const PURPLE = 0x664498;
+      const GREEN = 0x1dae4f;
+      const ORANGE = 0xf4762b;
+      const CUBE_COLORS = [ORANGE, PURPLE, GREEN, ORANGE, PURPLE, GREEN];
+
+      loader.load(
+        '/tower_takeover_cube.gltf',
+        function (gltf) {
+          gltf.scene.scale.set(CUBE_SCALE, CUBE_SCALE, CUBE_SCALE);
+          for (let letter = N; letter <= L; letter++) {
+            for (let i = 0; i < POSITIONS[letter].length; i++) {
+              let newScene = gltf.scene.clone();
+              newScene.position.copy(POSITIONS[letter][i]);
+              newScene.rotation.set(0, 0, CUBE_ROTATIONS[letter]);
+
+              let newMaterial = new THREE.MeshLambertMaterial({
+                color: CUBE_COLORS[letter],
+              });
+              newScene.traverse((o) => {
+                if (o.isMesh) o.material = newMaterial;
+              });
+              group.add(newScene);
+            }
+          }
+        },
+        undefined,
+        function (error) {
+          console.error(error);
+        }
+      );
+
+      scene.add(group);
+
+      //let rotation = 0;
+      function animate() {
+        requestAnimationFrame(animate);
+
+        //rotation -= 0.02;
+        //camera.lookAt(Math.cos(rotation) * 10, Math.sin(rotation) * 10, 0);
+
+        group.rotation.z += 0.02;
+
+        renderer.render(scene, camera);
+      }
+      animate();
+    </script>
+  </body>
+</html>
