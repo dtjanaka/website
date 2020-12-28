@@ -3,6 +3,7 @@
 }
 
 body {
+  margin: 0;
   background-color: #f8f8ff;
   font-family: "Poppins", sans-serif;
 }
@@ -112,10 +113,16 @@ th {
 .fa-youtube {
   background: #bb0000;
   color: white;
+  margin-top: -20px;
 }
 
 .fa-instagram {
   background: #125688;
+  color: white;
+}
+
+.fa-facebook {
+  background: #4267b2;
   color: white;
 }
 /* Social Icons */
@@ -248,7 +255,6 @@ iframe {
 #delete-comment {
   background-color: #d00000;
 }
-
 
 #up-down {
   background-color: #f0f0f8;
@@ -458,6 +464,12 @@ iframe {
   .fa {
     margin-top: 0px;
     margin-bottom: 0px;
+  }
+  .fa-facebook {
+    margin-top: 20px;
+  }
+  .fa-youtube {
+    margin-bottom: 20px;
   }
 }
 
