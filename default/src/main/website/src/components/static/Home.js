@@ -192,29 +192,11 @@ function addRandomPrequelQuote() {
  * Changes profile picture to random image.
  */
 function changeProfilePic() {
+  // prettier-ignore
   const images = [
-    pfp0,
-    pfp1,
-    pfp2,
-    pfp3,
-    pfp4,
-    pfp5,
-    pfp6,
-    pfp7,
-    pfp8,
-    pfp9,
-    pfp10,
-    pfp11,
-    pfp12,
-    pfp13,
-    pfp14,
-    pfp15,
-    pfp16,
-    pfp17,
-    pfp18,
-    pfp19,
-    pfp20,
-    pfp21,
+    pfp0, pfp1, pfp2, pfp3, pfp4, pfp5, pfp6, pfp7,
+    pfp8, pfp9, pfp10, pfp11, pfp12, pfp13, pfp14, pfp15,
+    pfp16, pfp17, pfp18, pfp19, pfp20, pfp21,
   ];
 
   // Pick random different image.
