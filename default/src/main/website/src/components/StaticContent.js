@@ -9,6 +9,8 @@ import Home from './static/Home';
 import Sitemap from './static/Sitemap';
 import Privacy from './static/Privacy';
 import Contact from './static/Contact';
+import About from './static/About';
+import Widgets from './static/Widgets';
 
 function StaticContent(props) {
   const changeHeader = (title) => props.changeHeader(title);
@@ -23,10 +25,13 @@ function StaticContent(props) {
       <Route exact path='/sitemap'        render={(props) => <Sitemap {...props} changeHeader={changeHeader} />} />
       <Route exact path='/privacy-policy' render={(props) => <Privacy {...props} changeHeader={changeHeader} />}/>
       <Route exact path='/contact'        render={(props) => <Contact {...props} changeHeader={changeHeader} />}/>
+      <Route exact path='/about'          render={(props) => <About {...props} changeHeader={changeHeader} />}/>
+      <Route exact path='/widgets'        render={(props) => <Widgets {...props} changeHeader={changeHeader} />}/>
 
       {/*<Route exact path='/about' component={About} />
       <Route exact path='/about/me' component={AboutMe} />
-      <Route exact path='/about/website' component={AboutWebsite} />*/}
+      <Route exact path='/about/website' component={AboutWebsite} />
+      // TODO: Add HTML status error pages*/}
 
       <Route exact path='/'               render={(props) => <Home {...props} changeHeader={changeHeader} />}/>
     </Switch>

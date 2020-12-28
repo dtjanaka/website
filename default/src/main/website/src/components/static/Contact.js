@@ -77,7 +77,6 @@ function Contact(props) {
       <div className='content'>
         <br />
         <h1 className='contentTitle'>Contact</h1>
-        <br />
         <hr />
         <br />
         <div className={classes.emailBox}>

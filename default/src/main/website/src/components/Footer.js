@@ -98,7 +98,7 @@ function Footer(props) {
           </Typography>
           <Link to='/about'>
             <Typography variant='body2' style={offWhite}>
-              About
+              About Website
             </Typography>
           </Link>
           <Link to='/contact'>

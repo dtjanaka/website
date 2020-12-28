@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import { logo3 } from '../images';
+import { logo } from '../images';
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -52,7 +52,7 @@ function Header(props) {
             <MenuIcon />
           </IconButton>
           <Link to='/home'>
-            <img src={logo3} className={classes.homeIcon} alt='DT home icon' />
+            <img src={logo} className={classes.homeIcon} alt='DT home icon' />
           </Link>
           <Typography variant='h6' className={classes.title} id='headerTitle'>
             {window.innerWidth < 600 ? 'Dylon Tjanaka' : props.name}

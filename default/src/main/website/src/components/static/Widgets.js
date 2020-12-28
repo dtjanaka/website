@@ -1,10 +1,9 @@
-import { Widgets } from '@material-ui/icons';
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 
 const Title = 'Dylon Tjanaka | Widgets';
 
-function Widgets() {
+function Widgets(props) {
   useEffect(() => {
     props.changeHeader(Title);
   });
