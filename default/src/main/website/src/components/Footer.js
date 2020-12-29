@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 // prettier-ignore
 import {
   logotype,
@@ -89,110 +89,116 @@ const offWhite = {
 
 function Footer(props) {
   const classes = useStyles();
-  return (
-    <div className={classes.root}>
-      <div className={classes.footerHeaderBox}>
-        <div className={classes.headingBox}>
-          <Typography variant='h6' style={offWhite}>
-            Quick Links
-          </Typography>
-          <Link to='/about'>
-            <Typography variant='body2' style={offWhite}>
-              About Website
+
+  const location = useLocation();
+  if (location.pathname === '/norcal') {
+    return null;
+  } else {
+    return (
+      <div className={classes.root}>
+        <div className={classes.footerHeaderBox}>
+          <div className={classes.headingBox}>
+            <Typography variant='h6' style={offWhite}>
+              Quick Links
             </Typography>
-          </Link>
-          <Link to='/contact'>
-            <Typography variant='body2' style={offWhite}>
-              Contact
+            <Link to='/about-website'>
+              <Typography variant='body2' style={offWhite}>
+                About Website
+              </Typography>
+            </Link>
+            <Link to='/contact'>
+              <Typography variant='body2' style={offWhite}>
+                Contact
+              </Typography>
+            </Link>
+          </div>
+          <div className={classes.headingBox}>
+            <Typography variant='h6' style={offWhite}>
+              Connect
             </Typography>
-          </Link>
-        </div>
-        <div className={classes.headingBox}>
-          <Typography variant='h6' style={offWhite}>
-            Connect
-          </Typography>
-          <div className={classes.socialsBox}>
-            <a
-              href='https://www.facebook.com/profile.php?id=100014709977810'
-              target='_blank'
-              rel='noopener noreferrer'
-              className={classes.social}
-            >
-              <img src={fb} className={classes.socialIcon} alt='Facebook' />
-            </a>
-            <a
-              href='https://www.instagram.com/dylon.tjanaka/'
-              target='_blank'
-              rel='noopener noreferrer'
-              className={classes.social}
-            >
-              <img src={ig} className={classes.socialIcon} alt='Instagram' />
-            </a>
-            <a
-              href='https://www.linkedin.com/in/dylon-tjanaka-971508192'
-              target='_blank'
-              rel='noopener noreferrer'
-              className={classes.social}
-            >
-              <img src={li} className={classes.socialIcon} alt='LinkedIn' />
-            </a>
-            <a
-              href='https://github.com/dtjanaka/'
-              target='_blank'
-              rel='noopener noreferrer'
-              className={classes.social}
-            >
-              <img src={gh} className={classes.socialIcon} alt='GitHub' />
-            </a>
-            <a
-              href='https://www.youtube.com/channel/UCx1tcHdDx4esRDbmDgRIn9Q'
-              target='_blank'
-              rel='noopener noreferrer'
-              className={classes.social}
-            >
-              <img src={yt} className={classes.socialIcon} alt='YouTube' />
-            </a>
+            <div className={classes.socialsBox}>
+              <a
+                href='https://www.facebook.com/profile.php?id=100014709977810'
+                target='_blank'
+                rel='noopener noreferrer'
+                className={classes.social}
+              >
+                <img src={fb} className={classes.socialIcon} alt='Facebook' />
+              </a>
+              <a
+                href='https://www.instagram.com/dylon.tjanaka/'
+                target='_blank'
+                rel='noopener noreferrer'
+                className={classes.social}
+              >
+                <img src={ig} className={classes.socialIcon} alt='Instagram' />
+              </a>
+              <a
+                href='https://www.linkedin.com/in/dylon-tjanaka-971508192'
+                target='_blank'
+                rel='noopener noreferrer'
+                className={classes.social}
+              >
+                <img src={li} className={classes.socialIcon} alt='LinkedIn' />
+              </a>
+              <a
+                href='https://github.com/dtjanaka/'
+                target='_blank'
+                rel='noopener noreferrer'
+                className={classes.social}
+              >
+                <img src={gh} className={classes.socialIcon} alt='GitHub' />
+              </a>
+              <a
+                href='https://www.youtube.com/channel/UCx1tcHdDx4esRDbmDgRIn9Q'
+                target='_blank'
+                rel='noopener noreferrer'
+                className={classes.social}
+              >
+                <img src={yt} className={classes.socialIcon} alt='YouTube' />
+              </a>
+            </div>
           </div>
         </div>
-      </div>
-      <div className={classes.logotypeBox}>
-        <Link to='/'>
-          <img
-            src={logotype}
-            className={classes.logotype}
-            alt='Dylon Tjanaka logotype'
-          />
-        </Link>
-      </div>
-      <div className={classes.footerFooterBox}>
-        <Link to='/privacy-policy'>
+        <div className={classes.logotypeBox}>
+          <Link to='/'>
+            <img
+              src={logotype}
+              className={classes.logotype}
+              alt='Dylon Tjanaka logotype'
+            />
+          </Link>
+        </div>
+        <div className={classes.footerFooterBox}>
+          <Link to='/privacy-policy'>
+            <Typography
+              variant='caption'
+              style={offWhite}
+              className={classes.footerFooterItem}
+            >
+              Privacy Policy
+            </Typography>
+          </Link>
+          <Link to='/sitemap'>
+            <Typography
+              variant='caption'
+              style={offWhite}
+              className={classes.footerFooterItem}
+            >
+              Sitemap
+            </Typography>
+          </Link>
           <Typography
             variant='caption'
             style={offWhite}
             className={classes.footerFooterItem}
           >
-            Privacy Policy
+            © 2020 Dylon Tjanaka. All rights reserved.
           </Typography>
-        </Link>
-        <Link to='/sitemap'>
-          <Typography
-            variant='caption'
-            style={offWhite}
-            className={classes.footerFooterItem}
-          >
-            Sitemap
-          </Typography>
-        </Link>
-        <Typography
-          variant='caption'
-          style={offWhite}
-          className={classes.footerFooterItem}
-        >
-          © 2020 Dylon Tjanaka. All rights reserved.
-        </Typography>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default Footer;

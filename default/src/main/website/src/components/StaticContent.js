@@ -9,7 +9,7 @@ import Home from './static/Home';
 import Sitemap from './static/Sitemap';
 import Privacy from './static/Privacy';
 import Contact from './static/Contact';
-import About from './static/About';
+import AboutWebsite from './static/AboutWebsite';
 import Widgets from './static/Widgets';
 
 function StaticContent(props) {
@@ -25,7 +25,7 @@ function StaticContent(props) {
       <Route exact path='/sitemap'        render={(props) => <Sitemap {...props} changeHeader={changeHeader} />} />
       <Route exact path='/privacy-policy' render={(props) => <Privacy {...props} changeHeader={changeHeader} />}/>
       <Route exact path='/contact'        render={(props) => <Contact {...props} changeHeader={changeHeader} />}/>
-      <Route exact path='/about'          render={(props) => <About {...props} changeHeader={changeHeader} />}/>
+      <Route exact path='/about-website'  render={(props) => <AboutWebsite {...props} changeHeader={changeHeader} />}/>
       <Route exact path='/widgets'        render={(props) => <Widgets {...props} changeHeader={changeHeader} />}/>
 
       {/*<Route exact path='/about' component={About} />

@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -31,41 +31,46 @@ function Header(props) {
 
   const [state, setState] = React.useState(false);
 
-  window.addEventListener('resize', function () {
-    if (window.innerWidth < 600) {
-      document.getElementById('headerTitle').innerHTML = 'Dylon Tjanaka';
-    } else {
-      document.getElementById('headerTitle').innerHTML = props.name;
-    }
-  });
+  const location = useLocation();
+  if (location.pathname === '/norcal') {
+    return null;
+  } else {
+    window.addEventListener('resize', function () {
+      if (window.innerWidth < 600) {
+        document.getElementById('headerTitle').innerHTML = 'Dylon Tjanaka';
+      } else {
+        document.getElementById('headerTitle').innerHTML = props.name;
+      }
+    });
 
-  return (
-    <div className={classes.root}>
-      <AppBar position='fixed'>
-        <Toolbar className={classes.toolbar}>
-          <IconButton
-            edge='start'
-            className={classes.menuButton}
-            color='secondary'
-            aria-label='menu'
-          >
-            <MenuIcon />
-          </IconButton>
-          <Link to='/home'>
-            <img src={logo} className={classes.homeIcon} alt='DT home icon' />
-          </Link>
-          <Typography variant='h6' className={classes.title} id='headerTitle'>
-            {window.innerWidth < 600 ? 'Dylon Tjanaka' : props.name}
-          </Typography>
-          <Button color='secondary' onClick={login}>
-            Login
-          </Button>
-        </Toolbar>
-      </AppBar>
-      {/*https://material-ui.com/components/app-bar/#fixed-placement*/}
-      <Toolbar />
-    </div>
-  );
+    return (
+      <div className={classes.root}>
+        <AppBar position='fixed'>
+          <Toolbar className={classes.toolbar}>
+            <IconButton
+              edge='start'
+              className={classes.menuButton}
+              color='secondary'
+              aria-label='menu'
+            >
+              <MenuIcon />
+            </IconButton>
+            <Link to='/home'>
+              <img src={logo} className={classes.homeIcon} alt='DT home icon' />
+            </Link>
+            <Typography variant='h6' className={classes.title} id='headerTitle'>
+              {window.innerWidth < 600 ? 'Dylon Tjanaka' : props.name}
+            </Typography>
+            <Button color='secondary' onClick={login}>
+              Login
+            </Button>
+          </Toolbar>
+        </AppBar>
+        {/*https://material-ui.com/components/app-bar/#fixed-placement*/}
+        <Toolbar />
+      </div>
+    );
+  }
 }
 
 export default Header;

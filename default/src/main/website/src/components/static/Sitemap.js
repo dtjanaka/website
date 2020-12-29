@@ -21,7 +21,7 @@ function Sitemap(props) {
         <br />
         <Link to='/'>Home</Link>
         <br />
-        <Link to='/about'>About Website</Link>
+        <Link to='/about-website'>About Website</Link>
         <br />
         <br />
         <Link to='/robotics'>Robotics</Link>
