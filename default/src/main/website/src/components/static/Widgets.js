@@ -3,7 +3,7 @@ import './Widgets.css';
 import { Helmet } from 'react-helmet';
 import { inversePaint } from './logic/invertWidget';
 import { ticTacToe, resetTicTacToe } from './logic/tictactoe';
-import { angular } from '../../images';
+import { grid } from '../../images';
 
 const Title = 'Dylon Tjanaka | Widgets';
 
@@ -13,7 +13,7 @@ function Widgets(props) {
   });
 
   window.onload = function () {
-    inversePaint(angular, 256, 256);
+    inversePaint(grid, 256, 256);
   };
 
   return (
@@ -30,7 +30,7 @@ function Widgets(props) {
         <p id='player-turn'>Player X, make your move.</p>
         <br />
         <div style={{ textAlign: 'center' }}>
-          <div className='tac-cont'>
+          <div className='tacCont'>
             <button
               id='1'
               className='tictactoe'
@@ -53,7 +53,7 @@ function Widgets(props) {
               }}
             ></button>
           </div>
-          <div className='tac-cont'>
+          <div className='tacCont'>
             <button
               id='4'
               className='tictactoe'
@@ -76,7 +76,7 @@ function Widgets(props) {
               }}
             ></button>
           </div>
-          <div className='tac-cont'>
+          <div className='tacCont'>
             <button
               id='7'
               className='tictactoe'
@@ -111,19 +111,19 @@ function Widgets(props) {
         </div>
         <h2>HTML Canvas</h2>
         <br />
-        <canvas id='canvas-1' width='256' height='256'>
+        <canvas id='canvas1' width='256' height='256'>
           {' '}
         </canvas>
         <br />
-        <form id='brush-options'>
-          <label htmlFor='brush-size'>Brush size:</label>
+        <form id='brushOptions'>
+          <label htmlFor='brushSize'>Brush size:</label>
           <input
             type='number'
-            id='brush-size'
-            name='brush-size'
+            id='brushSize'
+            name='brushSize'
             min='1'
             max='25'
-            value='5'
+            defaultValue='5'
           />
         </form>
         <br />

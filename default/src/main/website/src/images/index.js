@@ -53,4 +53,4 @@ export const pfp19 = require('./pfps/pfp_terra.jpg');
 export const pfp20 = require('./pfps/pfp_ver.jpg');
 export const pfp21 = require('./pfps/pfp_wh.jpg');
 
-export const angular = require('./angular.png');
+export const grid = require('./misc/grid.png');

@@ -3,7 +3,7 @@
  * variable size brush.
  */
 function inversePaint(src, w, h) {
-  let c = document.getElementById('canvas-1');
+  let c = document.getElementById('canvas1');
   c.width = w;
   c.height = h;
   let ctx = c.getContext('2d');
@@ -22,7 +22,7 @@ function inversePaint(src, w, h) {
   function invertLocally() {
     id = ctx.getImageData(0, 0, c.width, c.height);
     let pixels = id.data;
-    let brushSizeInput = document.getElementById('brush-size');
+    let brushSizeInput = document.getElementById('brushSize');
     let side = Math.max(
       Math.min(+brushSizeInput.value, +brushSizeInput.max),
       +brushSizeInput.min
