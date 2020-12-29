@@ -13,9 +13,15 @@ function Widgets(props) {
   });
 
   window.onload = function () {
+    for (let i = 1; i <= 9; i++) {
+      document.getElementById(i).onclick = () => {
+        ticTacToe(i);
+      };
+    }
     inversePaint(grid, 256, 256);
   };
 
+  // prettier-ignore
   return (
     <>
       <Helmet>
@@ -27,106 +33,50 @@ function Widgets(props) {
         <hr />
         <br />
         <h2>Tic-Tac-Toe</h2>
-        <p id='player-turn'>Player X, make your move.</p>
-        <br />
-        <div style={{ textAlign: 'center' }}>
-          <div className='tacCont'>
-            <button
-              id='1'
-              className='tictactoe'
-              onClick={() => {
-                ticTacToe(1);
-              }}
-            ></button>
-            <button
-              id='2'
-              className='tictactoe'
-              onClick={() => {
-                ticTacToe(2);
-              }}
-            ></button>
-            <button
-              id='3'
-              className='tictactoe'
-              onClick={() => {
-                ticTacToe(3);
-              }}
-            ></button>
-          </div>
-          <div className='tacCont'>
-            <button
-              id='4'
-              className='tictactoe'
-              onClick={() => {
-                ticTacToe(4);
-              }}
-            ></button>
-            <button
-              id='5'
-              className='tictactoe'
-              onClick={() => {
-                ticTacToe(5);
-              }}
-            ></button>
-            <button
-              id='6'
-              className='tictactoe'
-              onClick={() => {
-                ticTacToe(6);
-              }}
-            ></button>
-          </div>
-          <div className='tacCont'>
-            <button
-              id='7'
-              className='tictactoe'
-              onClick={() => {
-                ticTacToe(7);
-              }}
-            ></button>
-            <button
-              id='8'
-              className='tictactoe'
-              onClick={() => {
-                ticTacToe(8);
-              }}
-            ></button>
-            <button
-              id='9'
-              className='tictactoe'
-              onClick={() => {
-                ticTacToe(9);
-              }}
-            ></button>
-          </div>
+          <p id='player-turn'>Player X, make your move.</p>
           <br />
-          <button
-            id='reset'
-            className='center miscButton'
-            onClick={resetTicTacToe}
-          >
-            Reset board
-          </button>
+          <div style={{'textAlign': 'center'}}>
+            <div className='tac-cont'>
+              <button id='1' className='tictactoe'></button>
+              <button id='2' className='tictactoe'></button>
+              <button id='3' className='tictactoe'></button>
+            </div>
+            <div className='tac-cont'>
+              <button id='4' className='tictactoe'></button>
+              <button id='5' className='tictactoe'></button>
+              <button id='6' className='tictactoe'></button>
+            </div>
+            <div className='tac-cont'>
+              <button id='7' className='tictactoe'></button>
+              <button id='8' className='tictactoe'></button>
+              <button id='9' className='tictactoe'></button>
+            </div>
+            <br />
+            <button
+              id='reset'
+              className='center miscButton'
+              onClick={resetTicTacToe}
+            >
+              Reset board
+            </button>
           <br />
-        </div>
-        <h2>HTML Canvas</h2>
-        <br />
-        <canvas id='canvas1' width='256' height='256'>
-          {' '}
-        </canvas>
-        <br />
-        <form id='brushOptions'>
-          <label htmlFor='brushSize'>Brush size:</label>
-          <input
-            type='number'
-            id='brushSize'
-            name='brushSize'
-            min='1'
-            max='25'
-            defaultValue='5'
-          />
-        </form>
-        <br />
+          </div>
+          <h2>HTML Canvas</h2>
+          <br />
+          <canvas id='canvas1' width='256' height='256'> </canvas>
+          <br />
+          <form id='brushOptions'>
+            <label htmlFor='brushSize'>Brush size:</label>
+            <input
+              type='number'
+              id='brushSize'
+              name='brushSize'
+              min='1'
+              max='25'
+              defaultValue='5'
+            />
+          </form>
+          <br />
       </div>
     </>
   );
