@@ -3,7 +3,9 @@ import { Helmet } from 'react-helmet';
 // prettier-ignore
 import {pfp0, pfp1, pfp2, pfp3, pfp4, pfp5, pfp6, pfp7,
         pfp8, pfp9, pfp10, pfp11, pfp12, pfp13, pfp14, pfp15,
-        pfp16, pfp17, pfp18, pfp19, pfp20, pfp21 }  from '../../images';
+        pfp16, pfp17, pfp18, pfp19, pfp20, pfp21, pfp22, pfp23,
+        pfp24, pfp25, pfp26, pfp27, pfp28, pfp29, pfp30, pfp31,
+        pfp32 }  from '../../images';
 import { Link } from 'react-router-dom';
 
 const Title = 'Dylon Tjanaka | Homepage';
@@ -143,7 +145,7 @@ function Home(props) {
               href='https://www.youtube.com/channel/UCx1tcHdDx4esRDbmDgRIn9Q'
               target='_blank'
               rel='noopener noreferrer'
-              className='fa fa-youtube'
+              className='fa fa-youtube-play'
               style={{ fontSize: '50px' }}
             ></a>
           </div>
@@ -196,7 +198,9 @@ function changeProfilePic() {
   const images = [
     pfp0, pfp1, pfp2, pfp3, pfp4, pfp5, pfp6, pfp7,
     pfp8, pfp9, pfp10, pfp11, pfp12, pfp13, pfp14, pfp15,
-    pfp16, pfp17, pfp18, pfp19, pfp20, pfp21,
+    pfp16, pfp17, pfp18, pfp19, pfp20, pfp21, pfp22, pfp23,
+    pfp24, pfp25, pfp26, pfp27, pfp28, pfp29, pfp30, pfp31,
+    pfp32
   ];
 
   // Pick random different image.
