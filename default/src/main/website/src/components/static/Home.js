@@ -109,7 +109,9 @@ function Home(props) {
               rel='noopener noreferrer'
               className='fa fa-facebook'
               style={{ fontSize: '50px' }}
-            ></a>
+            >
+              {' '}
+            </a>
           </div>
           <div className='col-3'>
             <a
@@ -118,7 +120,9 @@ function Home(props) {
               rel='noopener noreferrer'
               className='fa fa-instagram'
               style={{ fontSize: '50px' }}
-            ></a>
+            >
+              {' '}
+            </a>
           </div>
           <div id='linkedin' className='col-3'>
             <a
@@ -127,7 +131,9 @@ function Home(props) {
               rel='noopener noreferrer'
               className='fa fa-linkedin'
               style={{ fontSize: '50px' }}
-            ></a>
+            >
+              {' '}
+            </a>
           </div>
           <div className='col-3'>
             <a
@@ -136,7 +142,9 @@ function Home(props) {
               rel='noopener noreferrer'
               className='fa fa-github'
               style={{ fontSize: '50px' }}
-            ></a>
+            >
+              {' '}
+            </a>
           </div>
         </div>
         <div id='socialMedia-2' className='row'>
@@ -147,7 +155,9 @@ function Home(props) {
               rel='noopener noreferrer'
               className='fa fa-youtube-play'
               style={{ fontSize: '50px' }}
-            ></a>
+            >
+              {' '}
+            </a>
           </div>
           <div className='col-9'></div>
         </div>
