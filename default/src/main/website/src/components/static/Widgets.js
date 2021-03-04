@@ -13,6 +13,7 @@ function Widgets(props) {
   });
 
   window.onload = function () {
+    // putting the onClick functions in the buttons directly does not work
     for (let i = 1; i <= 9; i++) {
       document.getElementById(i).onclick = () => {
         ticTacToe(i);

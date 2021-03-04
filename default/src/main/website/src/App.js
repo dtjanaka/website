@@ -6,7 +6,6 @@ import {
   Redirect,
   Switch,
   Route,
-  useLocation,
 } from 'react-router-dom';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
