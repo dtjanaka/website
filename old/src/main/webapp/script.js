@@ -309,7 +309,7 @@ async function checkUniqueUsername() {
     document.getElementById('message-icon').src =
       'images/icons/checkmark_icon.svg';
   } else {
-    document.getElementById('message-icon').src = 'images/icons/x.svg';
+    document.getElementById('message-icon').src = 'images/icons/x_icon.svg';
   }
   document.getElementById('message-text').innerText = result.message;
 
