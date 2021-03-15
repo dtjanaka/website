@@ -36,3 +36,26 @@ npx create-react-app [appName] --use-npm
 note: added to package.json:
 "homepage": ".",
 so index.html of production build loads in browser properly
+
+Favicons generated with realfavicongenerator.net
+Current settings:
+Desktop browsers and Google result pages
+Add margins and a plain background
+* Background color #000000
+* Default background radius and image size
+iOS - web clip
+* Background color #000000
+* Margin size 8px
+Favicon for Android Chrome
+* Add a solid, plain background to fill the transparent regions
+* Background color #000000
+* Margin size 12px
+* App name Dylon
+* Theme color #000000
+Windows Metro
+* #ff4000
+* Use a white silouhette version of the favicon
+macOS Safari
+* Use a silhouette of the original image
+* Theme color #ff4000
+Placed at root

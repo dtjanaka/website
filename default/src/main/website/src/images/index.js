@@ -1,4 +1,4 @@
-export const logo = require('./logo/logo_3.svg');
+export const logo = require('./logo/logo_4.svg');
 export const logotype = require('./logo/logotype_2_no_font.svg');
 
 export const fb = require('./socials/fb.svg');
