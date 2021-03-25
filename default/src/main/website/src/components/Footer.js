@@ -99,7 +99,7 @@ function Footer(props) {
         <div className={classes.footerHeaderBox}>
           <div className={classes.headingBox}>
             <Typography variant='h6' style={offWhite}>
-              Quick Links
+              Site Links
             </Typography>
             <Link to='/about-website'>
               <Typography variant='body2' style={offWhite}>
@@ -134,7 +134,7 @@ function Footer(props) {
                 <img src={ig} className={classes.socialIcon} alt='Instagram' />
               </a>
               <a
-                href='https://www.linkedin.com/in/dylon-tjanaka-971508192'
+                href='https://www.linkedin.com/in/dtjanaka'
                 target='_blank'
                 rel='noopener noreferrer'
                 className={classes.social}

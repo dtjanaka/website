@@ -100,7 +100,7 @@ function Home(props) {
           </div>
           <div className='col-9'></div>
         </div>
-        <div id='socialMedia' className='row'>
+        <div id='socialMedia-1' className='row'>
           <br />
           <div id='facebook' className='col-3'>
             <a
@@ -126,7 +126,7 @@ function Home(props) {
           </div>
           <div id='linkedin' className='col-3'>
             <a
-              href='https://www.linkedin.com/in/dylon-tjanaka-971508192'
+              href='https://www.linkedin.com/in/dtjanaka'
               target='_blank'
               rel='noopener noreferrer'
               className='fa fa-linkedin'
