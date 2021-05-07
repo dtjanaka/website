@@ -113,7 +113,7 @@ function Home(props) {
               {' '}
             </a>
           </div>
-          <div className='col-3'>
+          <div id='instagram' className='col-3'>
             <a
               href='https://www.instagram.com/dylon.tjanaka/'
               target='_blank'
@@ -135,7 +135,7 @@ function Home(props) {
               {' '}
             </a>
           </div>
-          <div className='col-3'>
+          <div id='github' className='col-3'>
             <a
               href='https://github.com/dtjanaka/'
               target='_blank'
@@ -148,7 +148,7 @@ function Home(props) {
           </div>
         </div>
         <div id='socialMedia-2' className='row'>
-          <div className='col-3'>
+          <div id='youtube-play' className='col-3'>
             <a
               href='https://www.youtube.com/channel/UCx1tcHdDx4esRDbmDgRIn9Q'
               target='_blank'
