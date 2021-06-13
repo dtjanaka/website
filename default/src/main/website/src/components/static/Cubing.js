@@ -76,14 +76,6 @@ function Cubing(props) {
             <td className='times'>14.95</td>
             <td className='times'>17.30</td>
           </tr>
-          <tr>
-            <td className='puzzle'>4x4</td>
-            <td className='times'>-</td>
-            <td className='times'>-</td>
-            <td className='times'>-</td>
-            <td className='times'>-</td>
-            <td className='times'>-</td>
-          </tr>
         </table>
         <br />
         <a href={cubing1}>
