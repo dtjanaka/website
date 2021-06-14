@@ -31,6 +31,8 @@ function Header(props) {
 
   const [state, setState] = React.useState(false);
 
+  const location = useLocation();
+
   window.addEventListener('resize', function () {
     if (window.innerWidth < 600) {
       document.getElementById('headerTitle').innerHTML = 'Dylon Tjanaka';
@@ -40,8 +42,6 @@ function Header(props) {
   });
 
   async function login() {
-    const location = useLocation();
-
     window.open(loggedIn(location), '_blank');
   }
 
