@@ -18,7 +18,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && rm -rf ../webapp/static/ ../webapp/gltf/ ../webapp/js/ && mv build/* ../webapp/ && rm -rf build",
+    "build": "react-scripts build && rm -rf ../webapp/static/ && mv build/* ../webapp/ && rm -rf build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
