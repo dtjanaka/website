@@ -66,12 +66,11 @@ function Header(props) {
     await updateLoginStatus();
     document.getElementById('loginLogoutButton').style.visibility = 'visible';
     console.log('2');
+    setInterval(() => {
+      updateLoginStatus();
+      console.log('3');
+    }, 10000);
   };
-
-  setInterval(() => {
-    updateLoginStatus();
-    console.log('3');
-  }, 10000);
 
   return (
     <div className={classes.root}>
