@@ -1,5 +1,4 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -31,7 +30,7 @@ function Header(props) {
   const classes = useStyles();
 
   const [state, setState] = React.useState(false);
-  const [loginStatus, setLoginStatus] = React.useState('Login');
+  const [loginStatus, setLoginStatus] = React.useState('');
 
   const location = useLocation().pathname.substring(1);
 
@@ -49,29 +48,18 @@ function Header(props) {
     window.open(url, '_self');
   }
 
-  /*  window.onload = async () => { // instead of window.addEventListener('load', ...), which fires twice
+  window.onload = async () => {
+    // instead of window.addEventListener('load', ...), which fires twice
     const result = await getLoginLogoutObject(location);
     if (result.loggedIn) {
       setLoginStatus('Logout');
     } else {
       setLoginStatus('Login');
     }
-  }; */
+  };
 
   return (
     <div className={classes.root}>
-      <Helmet>
-        <script>
-          {(async () => {
-            const result = await getLoginLogoutObject(location);
-            if (result.loggedIn) {
-              setLoginStatus('Logout');
-            } else {
-              setLoginStatus('Login');
-            }
-          })()}
-        </script>
-      </Helmet>
       <AppBar position='fixed'>
         <Toolbar className={classes.toolbar}>
           <IconButton
