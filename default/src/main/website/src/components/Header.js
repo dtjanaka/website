@@ -49,14 +49,12 @@ function Header(props) {
   }
 
   window.onload = async () => {
-    console.log('3');
     const result = await getLoginLogoutObject(location.pathname.substring(1));
     if (result.loggedIn) {
       setLoginStatus('Logout');
     } else {
       setLoginStatus('Login');
     }
-    console.log('4');
   };
 
   return (
