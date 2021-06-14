@@ -51,16 +51,22 @@ function Header(props) {
     window.open(url, '_self');
   }
 
-  window.onload = async () => {
-    // instead of window.addEventListener('load', ...), which fires twice
+  async function updateLoginStatus() {
     const result = await getLoginLogoutObject(location);
     if (result.loggedIn) {
       setLoginStatus('Logout');
     } else {
       setLoginStatus('Login');
     }
+  }
+
+  // instead of window.addEventListener('load', ...), which fires twice
+  window.onload = async () => {
+    await updateLoginStatus();
     document.getElementById('loginLogoutButton').style.visibility = 'visible';
   };
+
+  setInterval(updateLoginStatus, 10000);
 
   return (
     <div className={classes.root}>
