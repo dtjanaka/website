@@ -44,7 +44,9 @@ function Header(props) {
 
   async function loginLogout() {
     console.log('1');
-    const url = await getLoginLogoutObject(location.pathname.substring(1)).url;
+    const result = await getLoginLogoutObject(location.pathname.substring(1));
+    const url = result.url;
+    console.log(url);
     console.log('2');
     window.open(url, '_self');
   }
