@@ -31,63 +31,61 @@ function Header(props) {
 
   const [state, setState] = React.useState(false);
 
-  const location = useLocation();
-  if (location.pathname === '/norcal') {
-    return null;
-  } else {
-    window.addEventListener('resize', function () {
-      if (window.innerWidth < 600) {
-        document.getElementById('headerTitle').innerHTML = 'Dylon Tjanaka';
-      } else {
-        document.getElementById('headerTitle').innerHTML = props.name;
-      }
-    });
+  window.addEventListener('resize', function () {
+    if (window.innerWidth < 600) {
+      document.getElementById('headerTitle').innerHTML = 'Dylon Tjanaka';
+    } else {
+      document.getElementById('headerTitle').innerHTML = props.name;
+    }
+  });
 
-    return (
-      <div className={classes.root}>
-        <AppBar position='fixed'>
-          <Toolbar className={classes.toolbar}>
-            <IconButton
-              edge='start'
-              className={classes.menuButton}
-              color='secondary'
-              aria-label='menu'
-            >
-              <MenuIcon />
-            </IconButton>
-            <Link to='/home'>
-              <img src={logo} className={classes.homeIcon} alt='DT home icon' />
-            </Link>
-            <Typography variant='h6' className={classes.title} id='headerTitle'>
-              {window.innerWidth < 600 ? 'Dylon Tjanaka' : props.name}
-            </Typography>
-            <Button color='secondary' onClick={login}>
-              Login
-            </Button>
-          </Toolbar>
-        </AppBar>
-        {/*https://material-ui.com/components/app-bar/#fixed-placement*/}
-        <Toolbar />
-      </div>
-    );
-  }
+  return (
+    <div className={classes.root}>
+      <AppBar position='fixed'>
+        <Toolbar className={classes.toolbar}>
+          <IconButton
+            edge='start'
+            className={classes.menuButton}
+            color='secondary'
+            aria-label='menu'
+          >
+            <MenuIcon />
+          </IconButton>
+          <Link to='/home'>
+            <img src={logo} className={classes.homeIcon} alt='DT home icon' />
+          </Link>
+          <Typography variant='h6' className={classes.title} id='headerTitle'>
+            {window.innerWidth < 600 ? 'Dylon Tjanaka' : props.name}
+          </Typography>
+          <Button color='secondary' onClick={login}>
+            Login
+          </Button>
+        </Toolbar>
+      </AppBar>
+      {/*https://material-ui.com/components/app-bar/#fixed-placement*/}
+      <Toolbar />
+    </div>
+  );
 }
 
 export default Header;
 
-/*
 async function loggedIn(page) {
   const url = '/users' + '?page=' + page;
   const response = await fetch(url);
   const result = await response.json();
   if (result.loggedIn) {
-    result.url
+    result.url;
   } else {
-    result.url
+    result.url;
   }
-}*/
+}
 
-function login() {}
+async function login() {
+  const location = useLocation();
+
+  window.open(loggedIn(location), '_blank');
+}
 
 /**
  * Runs when the body of a login-restricted page loads.
