@@ -42,16 +42,14 @@ function Header(props) {
     }
   });
 
-  const loginLogoutObject = (async () =>
-    await getLoginLogoutObject(location.pathname.substring(1)))();
-  const url = loginLogoutObject.url;
-
-  function loginLogout() {
+  async function loginLogout() {
+    const url = await getLoginLogoutObject(location.pathname.substring(1)).url;
     window.open(url, '_self');
   }
 
-  window.addEventListener('load', (event) => {
-    if (loginLogoutObject.loggedIn) {
+  window.addEventListener('load', async (event) => {
+    const result = await getLoginLogoutObject(location.pathname.substring(1));
+    if (result.loggedIn) {
       setLoginStatus('Logout');
     } else {
       setLoginStatus('Login');
