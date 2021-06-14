@@ -30,6 +30,7 @@ function Header(props) {
   const classes = useStyles();
 
   const [state, setState] = React.useState(false);
+  const [loginStatus, setLoginStatus] = React.useState('Login');
 
   const location = useLocation();
 
@@ -41,10 +42,21 @@ function Header(props) {
     }
   });
 
-  async function loginLogout() {
-    const url = await getLoginLogoutUrl(location.pathname.substring(1));
-    window.open(url, '_blank');
+  const loginLogoutObject = (async () =>
+    await getLoginLogoutObject(location.pathname.substring(1)))();
+  const url = loginLogoutObject.url;
+
+  function loginLogout() {
+    window.open(url, '_self');
   }
+
+  window.addEventListener('load', (event) => {
+    if (loginLogoutObject.loggedIn) {
+      setLoginStatus('Logout');
+    } else {
+      setLoginStatus('Login');
+    }
+  });
 
   return (
     <div className={classes.root}>
@@ -65,7 +77,7 @@ function Header(props) {
             {window.innerWidth < 600 ? 'Dylon Tjanaka' : props.name}
           </Typography>
           <Button color='secondary' onClick={loginLogout}>
-            Login
+            {loginStatus}
           </Button>
         </Toolbar>
       </AppBar>
@@ -77,11 +89,11 @@ function Header(props) {
 
 export default Header;
 
-async function getLoginLogoutUrl(page) {
+async function getLoginLogoutObject(page) {
   const url = '/users' + '?page=' + page;
   const response = await fetch(url);
   const result = await response.json();
-  return result.url;
+  return result;
 }
 
 /**
