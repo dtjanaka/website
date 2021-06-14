@@ -41,11 +41,9 @@ function Header(props) {
     }
   });
 
-  async function login() {
-    const loginUrl = await loggedIn(location.pathname.substring(1));
-    if (loginUrl.length > 0) {
-      window.open(loginUrl, '_blank');
-    }
+  async function loginLogout() {
+    const url = await getLoginLogoutUrl(location.pathname.substring(1));
+    window.open(loginUrl, '_blank');
   }
 
   return (
@@ -66,7 +64,7 @@ function Header(props) {
           <Typography variant='h6' className={classes.title} id='headerTitle'>
             {window.innerWidth < 600 ? 'Dylon Tjanaka' : props.name}
           </Typography>
-          <Button color='secondary' onClick={login}>
+          <Button color='secondary' onClick={loginLogout}>
             Login
           </Button>
         </Toolbar>
@@ -79,14 +77,11 @@ function Header(props) {
 
 export default Header;
 
-async function loggedIn(page) {
+async function getLoginLogoutUrl(page) {
   const url = '/users' + '?page=' + page;
   const response = await fetch(url);
   const result = await response.json();
-  if (!result.loggedIn) {
-    return result.url;
-  }
-  return '';
+  return result.url;
 }
 
 /**
