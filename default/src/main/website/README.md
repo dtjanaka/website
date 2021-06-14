@@ -59,3 +59,6 @@ macOS Safari
 * Use a silhouette of the original image
 * Theme color #ff4000
 Placed at root
+
+For updating dependencies
+https://nodejs.dev/learn/update-all-the-nodejs-dependencies-to-their-latest-version
