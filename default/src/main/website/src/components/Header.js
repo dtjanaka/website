@@ -32,7 +32,7 @@ function Header(props) {
   const [state, setState] = React.useState(false);
   const [loginStatus, setLoginStatus] = React.useState('Login');
 
-  const location = useLocation();
+  const location = useLocation().pathname.substring(1);
 
   window.addEventListener('resize', function () {
     if (window.innerWidth < 600) {
@@ -43,19 +43,19 @@ function Header(props) {
   });
 
   async function loginLogout() {
-    const result = await getLoginLogoutObject(location.pathname.substring(1));
+    const result = await getLoginLogoutObject(location);
     const url = result.url;
     window.open(url, '_self');
   }
 
-  window.onload = async () => {
-    const result = await getLoginLogoutObject(location.pathname.substring(1));
+  /*  window.onload = async () => { // instead of window.addEventListener('load', ...), which fires twice
+    const result = await getLoginLogoutObject(location);
     if (result.loggedIn) {
       setLoginStatus('Logout');
     } else {
       setLoginStatus('Login');
     }
-  };
+  }; */
 
   return (
     <div className={classes.root}>
