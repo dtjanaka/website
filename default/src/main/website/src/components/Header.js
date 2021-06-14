@@ -59,7 +59,7 @@ function Header(props) {
     } else {
       setLoginStatus('Login');
     }
-    document.getElementById('loginLogoutButton').visibility = 'visible';
+    document.getElementById('loginLogoutButton').style.visibility = 'visible';
   };
 
   return (
