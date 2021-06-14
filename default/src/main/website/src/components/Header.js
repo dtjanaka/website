@@ -60,11 +60,17 @@ function Header(props) {
     }
   }
 
+  async function updateLoginStatusIfActive() {
+    if (!document.hidden) {
+      await updateLoginStatus();
+    }
+  }
+
   // instead of window.addEventListener('load', ...), which fires twice
   window.onload = async () => {
     await updateLoginStatus();
     document.getElementById('loginLogoutButton').style.visibility = 'visible';
-    setInterval(updateLoginStatus, 5000); // set this in here instead of by itself; would fire more than once every interval
+    setInterval(updateLoginStatusIfActive, 5000); // set this in here instead of by itself; would fire more than once every interval
   };
 
   return (
