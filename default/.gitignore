@@ -1,5 +1,2 @@
 /src/main/webapp/*
 !/src/main/webapp/WEB-INF/
-!/src/main/webapp/norcal/
-!/src/main/webapp/norcal.html
-!/src/main/webapp/resume.pdf
