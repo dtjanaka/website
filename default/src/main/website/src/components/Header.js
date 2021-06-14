@@ -43,7 +43,7 @@ function Header(props) {
 
   async function loginLogout() {
     const url = await getLoginLogoutUrl(location.pathname.substring(1));
-    window.open(loginUrl, '_blank');
+    window.open(url, '_blank');
   }
 
   return (
