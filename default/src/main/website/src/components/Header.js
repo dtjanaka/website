@@ -24,6 +24,9 @@ const useStyles = makeStyles((theme) => ({
     marginRight: '24px',
     display: 'block',
   },
+  loginLogoutButton: {
+    visibility: 'hidden',
+  },
 }));
 
 function Header(props) {
@@ -56,6 +59,7 @@ function Header(props) {
     } else {
       setLoginStatus('Login');
     }
+    document.getElementById('loginLogoutButton').visibility = 'visible';
   };
 
   return (
@@ -76,7 +80,12 @@ function Header(props) {
           <Typography variant='h6' className={classes.title} id='headerTitle'>
             {window.innerWidth < 600 ? 'Dylon Tjanaka' : props.name}
           </Typography>
-          <Button color='secondary' onClick={loginLogout}>
+          <Button
+            color='secondary'
+            onClick={loginLogout}
+            className={classes.loginLogoutButton}
+            id='loginLogoutButton'
+          >
             {loginStatus}
           </Button>
         </Toolbar>
