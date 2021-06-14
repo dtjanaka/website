@@ -49,7 +49,7 @@ function Header(props) {
     window.open(url, '_self');
   }
 
-  window.addEventListener('load', async (event) => {
+  /*window.addEventListener('load', async (event) => {
     console.log('3');
     const result = await getLoginLogoutObject(location.pathname.substring(1));
     if (result.loggedIn) {
@@ -58,7 +58,7 @@ function Header(props) {
       setLoginStatus('Login');
     }
     console.log('4');
-  });
+  });*/
 
   return (
     <div className={classes.root}>
