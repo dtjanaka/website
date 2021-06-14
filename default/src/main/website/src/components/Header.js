@@ -43,17 +43,21 @@ function Header(props) {
   });
 
   async function loginLogout() {
+    console.log('1');
     const url = await getLoginLogoutObject(location.pathname.substring(1)).url;
+    console.log('2');
     window.open(url, '_self');
   }
 
   window.addEventListener('load', async (event) => {
+    console.log('3');
     const result = await getLoginLogoutObject(location.pathname.substring(1));
     if (result.loggedIn) {
       setLoginStatus('Logout');
     } else {
       setLoginStatus('Login');
     }
+    console.log('4');
   });
 
   return (
