@@ -42,7 +42,10 @@ function Header(props) {
   });
 
   async function login() {
-    window.open(loggedIn(location), '_blank');
+    const loginUrl = await loggedIn(location.pathname.substring(1));
+    if (loginUrl.length > 0) {
+      window.open(loginUrl, '_blank');
+    }
   }
 
   return (
@@ -83,6 +86,7 @@ async function loggedIn(page) {
   if (!result.loggedIn) {
     return result.url;
   }
+  return '';
 }
 
 /**
