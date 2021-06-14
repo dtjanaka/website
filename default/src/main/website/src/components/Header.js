@@ -74,10 +74,8 @@ async function loggedIn(page) {
   const url = '/users' + '?page=' + page;
   const response = await fetch(url);
   const result = await response.json();
-  if (result.loggedIn) {
-    result.url;
-  } else {
-    result.url;
+  if (!result.loggedIn) {
+    return result.url;
   }
 }
 
