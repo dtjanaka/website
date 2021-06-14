@@ -39,6 +39,12 @@ function Header(props) {
     }
   });
 
+  async function login() {
+    const location = useLocation();
+
+    window.open(loggedIn(location), '_blank');
+  }
+
   return (
     <div className={classes.root}>
       <AppBar position='fixed'>
@@ -77,12 +83,6 @@ async function loggedIn(page) {
   if (!result.loggedIn) {
     return result.url;
   }
-}
-
-async function login() {
-  const location = useLocation();
-
-  window.open(loggedIn(location), '_blank');
 }
 
 /**
