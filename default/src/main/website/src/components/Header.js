@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -59,6 +60,18 @@ function Header(props) {
 
   return (
     <div className={classes.root}>
+      <Helmet>
+        <script>
+          {(async () => {
+            const result = await getLoginLogoutObject(location);
+            if (result.loggedIn) {
+              setLoginStatus('Logout');
+            } else {
+              setLoginStatus('Login');
+            }
+          })()}
+        </script>
+      </Helmet>
       <AppBar position='fixed'>
         <Toolbar className={classes.toolbar}>
           <IconButton
