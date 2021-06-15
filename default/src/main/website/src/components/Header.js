@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
+import Drawer from '@material-ui/core/Drawer';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { Link, useLocation } from 'react-router-dom';
@@ -27,13 +28,25 @@ const useStyles = makeStyles((theme) => ({
   loginLogoutButton: {
     visibility: 'hidden',
   },
+  drawerPAL: {
+    backgroundColor: '#f8f8ff',
+  },
 }));
 
 function Header(props) {
   const classes = useStyles();
 
-  const [state, setState] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
   const [loginStatus, setLoginStatus] = React.useState('');
+
+  const toggleDrawer = (openParam) => (event) => {
+
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) { // what is this for?
+      return;
+    }
+
+    setOpen(openParam);
+  };
 
   const location = useLocation().pathname.substring(1);
 
@@ -75,6 +88,17 @@ function Header(props) {
 
   return (
     <div className={classes.root}>
+      <Drawer
+        className={classes.drawer}
+        anchor="left"
+        open={open}
+        onClose={toggleDrawer(false)}
+        classes={{paperAnchorLeft: classes.drawerPAL}}
+      >
+        <div style={{width: '250px', display: 'flex', flexFlow: 'row wrap'}}>
+          {[...Array(625 + 1).keys()].slice(1).map(x => <div style={{width: '50px', height: '50px', display: 'flex', justifyContent: 'center', alignItems: 'center', border: '1px solid black'}}>{x}</div>)}
+        </div>
+      </Drawer>
       <AppBar position='fixed'>
         <Toolbar className={classes.toolbar}>
           <IconButton
@@ -82,6 +106,7 @@ function Header(props) {
             className={classes.menuButton}
             color='secondary'
             aria-label='menu'
+            onClick={toggleDrawer(true)}
           >
             <MenuIcon />
           </IconButton>

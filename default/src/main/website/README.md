@@ -61,4 +61,5 @@ macOS Safari
 Placed at root
 
 For updating dependencies
-https://nodejs.dev/learn/update-all-the-nodejs-dependencies-to-their-latest-version
+https://nodejs.dev/learn/update-all-the-nodejs-dependencies-to-their-latest-version did not work as expected
+Instead, removing node_modules and running npm install seemed to do the trick without breaking anything
