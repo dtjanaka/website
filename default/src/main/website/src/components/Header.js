@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Drawer from '@material-ui/core/Drawer';
+import Modal from '@material-ui/core/Modal';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { Link, useLocation } from 'react-router-dom';
@@ -31,21 +32,46 @@ const useStyles = makeStyles((theme) => ({
   drawerPAL: {
     backgroundColor: '#f8f8ff',
   },
+  boxes: {
+    width: '250px',
+    display: 'flex',
+    flexFlow: 'row wrap',
+    justifyContent: 'start',
+    alignItems: 'center',
+  },
+  box: {
+    width: '50px',
+    height: '50px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    border: '1px solid black',
+  },
+  modal: {
+
+  },
 }));
 
 function Header(props) {
   const classes = useStyles();
 
-  const [open, setOpen] = React.useState(false);
+  const [drawerOpen, setDrawerOpen] = React.useState(false);
+  const [modalOpen, setModalOpen] = React.useState(false);
+  const [modalText, setModalText] = React.useState('');
   const [loginStatus, setLoginStatus] = React.useState('');
 
-  const toggleDrawer = (openParam) => (event) => {
-
+  const toggleDrawer = (open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) { // what is this for?
       return;
     }
 
-    setOpen(openParam);
+    setDrawerOpen(open);
+  };
+
+  const toggleModal = (open, text) => (event) => {
+    setModalOpen(open);
+    setModalText(text);
+    console.log("set modal");
   };
 
   const location = useLocation().pathname.substring(1);
@@ -84,19 +110,29 @@ function Header(props) {
     await updateLoginStatus();
     document.getElementById('loginLogoutButton').style.visibility = 'visible';
     setInterval(updateLoginStatusIfActive, 5000); // set this in here instead of by itself; would fire more than once every interval
+
+    document.getElementById('box-69').addEventListener('click', toggleModal(true, 'Nice'));
+    document.getElementById('box-420').addEventListener('click', toggleModal(true, '4:20 😎'));
   };
 
   return (
     <div className={classes.root}>
+      <Modal
+        className={classes.modal}
+        open={modalOpen}
+        onClose={toggleModal(false, '')}
+      >
+        {modalText}
+      </Modal>
       <Drawer
         className={classes.drawer}
         anchor="left"
-        open={open}
+        open={drawerOpen}
         onClose={toggleDrawer(false)}
-        classes={{paperAnchorLeft: classes.drawerPAL}}
+        classes={{paperAnchorLeft: classes.drawerPAL}} // pull out rule name
       >
-        <div style={{width: '250px', display: 'flex', flexFlow: 'row wrap'}}>
-          {[...Array(625 + 1).keys()].slice(1).map(x => <div style={{width: '50px', height: '50px', display: 'flex', justifyContent: 'center', alignItems: 'center', border: '1px solid black'}}>{x}</div>)}
+        <div className={classes.boxes}>
+          {[...Array(10000 + 1).keys()].slice(1).map(x => <div className={classes.box} id={'box-' + x}>{x}</div>)}
         </div>
       </Drawer>
       <AppBar position='fixed'>
