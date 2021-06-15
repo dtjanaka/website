@@ -12,7 +12,7 @@ npm install --save-dev husky lint-staged prettier
 Add to package.json:
   "husky": {
     "hooks": {
-    "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
@@ -22,7 +22,8 @@ Add to package.json:
   }
 
 For Ubuntu 20.04
-note: so that I could change npm run build script from:
+note: I changed the npm run build script
+from:
 "build": "react-scripts build",
 to:
 "build": "react-scripts build && rm -rf ../webapp/static/ ../webapp/gltf/ ../webapp/js/ && mv build/* ../webapp/ && rm -rf build",
@@ -63,4 +64,26 @@ Placed at root
 
 For updating dependencies
 https://nodejs.dev/learn/update-all-the-nodejs-dependencies-to-their-latest-version did not work as expected
-Instead, removing node_modules and running npm install seemed to do the trick without breaking anything
+Instead, removing node_modules and running npm install seemed to do the trick without breaking ~~anything~~ production
+However, this did break linting with husky (for Git hooks), lint-staged, and prettier
+
+As suspected, this was caused by differences in husky versions
+https://typicode.github.io/husky/#/?id=custom-directory
+
+Add to package.json:
+  "scripts": {
+    "prepare": "cd ../../../.. && husky install default/src/main/website/.husky"
+  }
+
+Then, I ran [cmd] from [dir]
+
+lint-staged has to be run from pre-commit
+https://github.com/typicode/husky/issues/949
+
+Add to package.json:
+  "scripts": {
+    "pre-commit": "lint-staged"
+  }
+
+Then, in .husky/pre-commit, add:
+npm run pre-commit
