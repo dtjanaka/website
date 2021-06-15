@@ -160,6 +160,14 @@ th {
   font-size: 75%;
 }
 
+.puzzle {
+  text-align: center;
+}
+
+.times {
+  text-align: right;
+}
+
 .contentTitle {
   font-size: 40px;
 }

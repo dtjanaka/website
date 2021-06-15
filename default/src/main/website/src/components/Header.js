@@ -65,6 +65,8 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
     backgroundColor: 'transparent',
     border: 'none',
+    cursor: 'pointer',
+    // button:hover --> opacity: 0.7 already in App.css
   },
 }));
 
