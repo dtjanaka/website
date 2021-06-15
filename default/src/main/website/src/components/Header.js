@@ -79,7 +79,11 @@ function Header(props) {
   const [loginStatus, setLoginStatus] = React.useState('');
 
   const toggleDrawer = (open) => (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) { // what is this for?
+    if (
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
+    ) {
+      // what is this for?
       return;
     }
 
@@ -89,7 +93,6 @@ function Header(props) {
   function toggleModal(open, text) {
     setModalOpen(open);
     setModalText(text);
-    console.log("set modal");
   }
 
   const location = useLocation().pathname.substring(1);
@@ -141,17 +144,29 @@ function Header(props) {
         open={modalOpen}
         onClose={() => toggleModal(false, '')}
       >
-        <div className={classes.modalChild}><h1>{modalText}</h1></div>
+        <div className={classes.modalChild}>
+          <h1>{modalText}</h1>
+        </div>
       </Modal>
       <Drawer
         className={classes.drawer}
-        anchor="left"
+        anchor='left'
         open={drawerOpen}
         onClose={toggleDrawer(false)} // why do Drawer onClose and onClick functions have to be as such while onClose and onClick functions for Modal have to be wrapped in anonymous functions?
-        classes={{paperAnchorLeft: classes.drawerPAL}} // pull out rule name
+        classes={{ paperAnchorLeft: classes.drawerPAL }} // pull out rule name
       >
         <div className={classes.boxes}>
-          {[...Array(10000 + 1).keys()].slice(1).map(x => <div className={classes.box} id={'box-' + x}><button type='button' onClick={() => toggleModal(true, boxModalContent[x])} className={classes.boxButton}>{x}</button></div>)}
+          {[...Array(10000 + 1).keys()].slice(1).map((x) => (
+            <div className={classes.box} id={'box-' + x}>
+              <button
+                type='button'
+                onClick={() => toggleModal(true, boxModalContent[x])}
+                className={classes.boxButton}
+              >
+                {x}
+              </button>
+            </div>
+          ))}
         </div>
       </Drawer>
       <AppBar position='fixed'>
