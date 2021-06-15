@@ -47,8 +47,24 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     border: '1px solid black',
   },
-  modal: {
-
+  modalChild: {
+    width: '400px',
+    height: '400px',
+    position: 'fixed',
+    top: '50%',
+    left: '50%',
+    marginLeft: '-200px',
+    marginTop: '-200px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f8f8ff',
+  },
+  boxButton: {
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'transparent',
+    border: 'none',
   },
 }));
 
@@ -68,11 +84,11 @@ function Header(props) {
     setDrawerOpen(open);
   };
 
-  const toggleModal = (open, text) => (event) => {
+  function toggleModal(open, text) {
     setModalOpen(open);
     setModalText(text);
     console.log("set modal");
-  };
+  }
 
   const location = useLocation().pathname.substring(1);
 
@@ -110,29 +126,30 @@ function Header(props) {
     await updateLoginStatus();
     document.getElementById('loginLogoutButton').style.visibility = 'visible';
     setInterval(updateLoginStatusIfActive, 5000); // set this in here instead of by itself; would fire more than once every interval
-
-    document.getElementById('box-69').addEventListener('click', toggleModal(true, 'Nice'));
-    document.getElementById('box-420').addEventListener('click', toggleModal(true, '4:20 😎'));
   };
+
+  let boxModalContent = [...Array(10000 + 1).keys()];
+  boxModalContent[69] = 'Nice';
+  boxModalContent[420] = '4:20 😎';
 
   return (
     <div className={classes.root}>
       <Modal
         className={classes.modal}
         open={modalOpen}
-        onClose={toggleModal(false, '')}
+        onClose={() => toggleModal(false, '')}
       >
-        {modalText}
+        <div className={classes.modalChild}><h1>{modalText}</h1></div>
       </Modal>
       <Drawer
         className={classes.drawer}
         anchor="left"
         open={drawerOpen}
-        onClose={toggleDrawer(false)}
+        onClose={toggleDrawer(false)} // why do Drawer onClose and onClick functions have to be as such while onClose and onClick functions for Modal have to be wrapped in anonymous functions?
         classes={{paperAnchorLeft: classes.drawerPAL}} // pull out rule name
       >
         <div className={classes.boxes}>
-          {[...Array(10000 + 1).keys()].slice(1).map(x => <div className={classes.box} id={'box-' + x}>{x}</div>)}
+          {[...Array(10000 + 1).keys()].slice(1).map(x => <div className={classes.box} id={'box-' + x}><button type='button' onClick={() => toggleModal(true, boxModalContent[x])} className={classes.boxButton}>{x}</button></div>)}
         </div>
       </Drawer>
       <AppBar position='fixed'>

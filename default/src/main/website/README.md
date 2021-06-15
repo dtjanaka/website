@@ -25,7 +25,8 @@ For Ubuntu 20.04
 note: so that I could change npm run build script from:
 "build": "react-scripts build",
 to:
-"build": "react-scripts build && rm -rf ../webapp/static/ && mv build/* ../webapp/ && rm -rf build",
+"build": "react-scripts build && rm -rf ../webapp/static/ ../webapp/gltf/ ../webapp/js/ && mv build/* ../webapp/ && rm -rf build",
+
 :D
 
 sudo apt update
