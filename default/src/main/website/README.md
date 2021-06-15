@@ -72,12 +72,12 @@ https://typicode.github.io/husky/#/?id=custom-directory
 
 Add to package.json:
   "scripts": {
-    "prepare": "cd ../../../.. && husky install default/src/main/website/.husky"
+    "prepare": "cd ../../../.. && husky install .husky"
   }
 
-Then, I ran [cmd] from [dir]
+Then, I ran deleted node_modules and ran npm i from default/src/main/website
 
-lint-staged has to be run from pre-commit
+lint-staged has to be run from the pre-commit file
 https://github.com/typicode/husky/issues/949
 
 Add to package.json:
@@ -85,5 +85,7 @@ Add to package.json:
     "pre-commit": "lint-staged"
   }
 
-Then, in .husky/pre-commit, add:
-npm run pre-commit
+Then, to add the pre-commit file
+https://typicode.github.io/husky/#/?id=create-a-hook
+
+npx husky add .husky/pre-commit "npm run pre-commit"
