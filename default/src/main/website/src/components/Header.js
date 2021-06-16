@@ -70,12 +70,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+let open420flag = false; // global variable since setting and using state immediately doesn't work
+
 function Header(props) {
   const classes = useStyles();
 
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const [modalOpen, setModalOpen] = React.useState(false);
   const [modalText, setModalText] = React.useState('');
+  const [buttonNum, setButtonNum] = React.useState(0);
+  const [interval420, setInterval420] = React.useState(0);
   const [loginStatus, setLoginStatus] = React.useState('');
 
   const toggleDrawer = (open) => (event) => {
@@ -90,9 +94,54 @@ function Header(props) {
     setDrawerOpen(open);
   };
 
-  function toggleModal(open, text) {
+  function callback420() {
+    let date = new Date();
+    let day = date.getDate();
+    let month = date.getMonth();
+    let year = date.getFullYear();
+
+    if (month === 3 && day === 20) {
+      setModalText('4/20 😎');
+    }
+
+    let goalDate;
+    if (month > 3 || day > 20) {
+      goalDate = new Date(year + 1, 3, 20).getTime();
+    } else {
+      goalDate = new Date(year, 3, 20).getTime();
+    }
+
+    let difference = goalDate - date.getTime();
+
+    let days = Math.floor(difference / (1000 * 60 * 60 * 24));
+    let remainder = difference - days * (1000 * 60 * 60 * 24);
+
+    if ((days === 0 && remainder) || (days === 1 && !remainder)) {
+      setModalText('1 day until 4/20');
+    } else {
+      if (!remainder) {
+        setModalText(days + ' days until 4/20');
+      }
+      setModalText(days + 1 + ' days until 4/20');
+    }
+  }
+
+  function toggleModal(open, num) {
     setModalOpen(open);
-    setModalText(text);
+    if (open) {
+      setButtonNum(num);
+    }
+    if (num === 420) {
+      open420flag = !open420flag;
+      if (!open420flag) {
+        clearInterval(interval420);
+      } else {
+        callback420();
+        setInterval420(setInterval(callback420, 1000));
+      }
+    } else {
+      setModalText(boxModalContent[num]);
+    }
   }
 
   const location = useLocation().pathname.substring(1);
@@ -135,14 +184,13 @@ function Header(props) {
 
   let boxModalContent = [...Array(10000 + 1).keys()];
   boxModalContent[69] = 'Nice';
-  boxModalContent[420] = '4:20 😎';
 
   return (
     <div className={classes.root}>
       <Modal
         className={classes.modal}
         open={modalOpen}
-        onClose={() => toggleModal(false, '')}
+        onClose={() => toggleModal(false, buttonNum)}
       >
         <div className={classes.modalChild}>
           <h1>{modalText}</h1>
@@ -160,7 +208,7 @@ function Header(props) {
             <div className={classes.box} id={'box-' + x}>
               <button
                 type='button'
-                onClick={() => toggleModal(true, boxModalContent[x])}
+                onClick={() => toggleModal(true, x)}
                 className={classes.boxButton}
               >
                 {x}
