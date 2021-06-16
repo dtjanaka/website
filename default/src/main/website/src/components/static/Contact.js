@@ -62,6 +62,7 @@ function Contact(props) {
     props.changeHeader(Title);
   });
 
+  // prettier-ignore
   return (
     <>
       <Helmet>
@@ -73,13 +74,7 @@ function Contact(props) {
         <hr />
         <br />
         <div className={classes.emailBox}>
-          <span>dylon</span>
-          <span>.</span>
-          <span>tjanaka</span>
-          <span>@</span>
-          <span>gmail</span>
-          <span>.</span>
-          <span>com</span>
+          <span>dylon</span><span>.</span><span>tjanaka</span><span>@</span><span>gmail</span><span>.</span><span>com</span>
           <IconButton edge='end' onClick={copyEmailToClipboard} color='primary'>
             <FileCopyIcon />
           </IconButton>
