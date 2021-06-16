@@ -253,7 +253,7 @@ function Header(props) {
 export default Header;
 
 async function getLoginLogoutObject(page) {
-  const url = '/users' + '?page=' + page;
+  const url = '/users?page=' + page;
   const response = await fetch(url);
   const result = await response.json();
   return result;
