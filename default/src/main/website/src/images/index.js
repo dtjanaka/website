@@ -6,7 +6,6 @@ export const ig = require('./socials/ig.svg');
 export const li = require('./socials/li.svg');
 export const gh = require('./socials/gh.svg');
 export const yt = require('./socials/yt.svg');
-export const email = require('./socials/email.svg');
 
 export const print1 = require('./printing/IMG_0663.jpg');
 export const print2 = require('./printing/IMG_1814.jpg');
