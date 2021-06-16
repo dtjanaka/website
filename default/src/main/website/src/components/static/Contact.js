@@ -14,7 +14,6 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '-13px',
     display: 'flex',
     flexFlow: 'row nowrap',
-    justifyContent: 'flex-start',
     alignItems: 'center',
   },
 }));
@@ -62,6 +61,7 @@ function Contact(props) {
     props.changeHeader(Title);
   });
 
+  // prettier-ignore
   return (
     <>
       <Helmet>
@@ -73,13 +73,7 @@ function Contact(props) {
         <hr />
         <br />
         <div className={classes.emailBox}>
-          <p>dylon</p>
-          <p>.</p>
-          <p>tjanaka</p>
-          <p>@</p>
-          <p>gmail</p>
-          <p>.</p>
-          <p>com</p>
+          <p>dylon</p><p>.</p><p>tjanaka</p><p>@</p><p>gmail</p><p>.</p><p>com</p>
           <IconButton edge='end' onClick={copyEmailToClipboard} color='primary'>
             <FileCopyIcon />
           </IconButton>

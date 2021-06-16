@@ -36,7 +36,6 @@ const useStyles = makeStyles((theme) => ({
     width: '250px',
     display: 'flex',
     flexFlow: 'row wrap',
-    justifyContent: 'start',
     alignItems: 'center',
   },
   box: {
