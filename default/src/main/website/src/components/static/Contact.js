@@ -62,10 +62,6 @@ function Contact(props) {
     props.changeHeader(Title);
   });
 
-  window.onload = () => {
-    document.getElementById('emailText').textContent = EmailText;
-  };
-
   return (
     <>
       <Helmet>
@@ -77,7 +73,7 @@ function Contact(props) {
         <hr />
         <br />
         <div className={classes.emailBox}>
-          <span id='emailText'></span>
+          <span>{EmailText}</span>
           <IconButton edge='end' onClick={copyEmailToClipboard} color='primary'>
             <FileCopyIcon />
           </IconButton>
