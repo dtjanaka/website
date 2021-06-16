@@ -62,7 +62,10 @@ function Contact(props) {
     props.changeHeader(Title);
   });
 
-  // prettier-ignore
+  window.onload = () => {
+    document.getElementById('emailText').textContent = EmailText;
+  };
+
   return (
     <>
       <Helmet>
@@ -74,7 +77,7 @@ function Contact(props) {
         <hr />
         <br />
         <div className={classes.emailBox}>
-          <span>dylon</span><span>.</span><span>tjanaka</span><span>@</span><span>gmail</span><span>.</span><span>com</span>
+          <span id='emailText'></span>
           <IconButton edge='end' onClick={copyEmailToClipboard} color='primary'>
             <FileCopyIcon />
           </IconButton>
