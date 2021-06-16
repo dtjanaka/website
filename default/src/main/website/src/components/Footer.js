@@ -193,7 +193,7 @@ function Footer(props) {
             style={offWhite}
             className={classes.footerFooterItem}
           >
-            © 2020 Dylon Tjanaka. All rights reserved.
+            © 2021 Dylon Tjanaka. All rights reserved.
           </Typography>
         </div>
       </div>
