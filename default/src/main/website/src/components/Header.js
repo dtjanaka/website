@@ -55,6 +55,7 @@ const useStyles = makeStyles((theme) => ({
     left: '50%',
     marginLeft: '-200px',
     marginTop: '-200px',
+    textAlign: 'center',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -70,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-let open420flag = false; // global variable since setting and using state immediately doesn't work
+let openXFlag = false; // global variable since setting and using state immediately doesn't work
 
 function Header(props) {
   const classes = useStyles();
@@ -79,51 +80,97 @@ function Header(props) {
   const [modalOpen, setModalOpen] = React.useState(false);
   const [modalText, setModalText] = React.useState('');
   const [buttonNum, setButtonNum] = React.useState(0);
-  const [interval420, setInterval420] = React.useState(0);
+  const [intervalID, setIntervalID] = React.useState(0);
   const [loginStatus, setLoginStatus] = React.useState('');
 
   const toggleDrawer = (open) => (event) => {
     if (
+      // what is this for?
       event.type === 'keydown' &&
       (event.key === 'Tab' || event.key === 'Shift')
     ) {
-      // what is this for?
       return;
     }
 
     setDrawerOpen(open);
   };
 
-  function callback420() {
+  function generateTimeStrings(numMsecs) {
+    let days = Math.floor(numMsecs / (1000 * 60 * 60 * 24));
+    let hours = Math.floor(
+      (numMsecs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    );
+    let minutes = Math.floor((numMsecs % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((numMsecs % (1000 * 60)) / 1000);
+
+    let daysString = days + (days === 1 ? ' day' : ' days');
+    let hoursString = hours + (hours === 1 ? ' hour' : ' hours');
+    let minutesString = minutes + (minutes === 1 ? ' minute' : ' minutes');
+    let secondsString = seconds + (seconds === 1 ? ' second' : ' seconds');
+
+    return [daysString, hoursString, minutesString, secondsString];
+  }
+
+  const xNums = [420, 1225];
+
+  const xNumsInfo = {
+    420: {
+      month: 3,
+      day: 20,
+      dayOfText: <h1>😎 4/20 😎</h1>,
+      untilText: <h1>until 4/20</h1>,
+    },
+    1225: {
+      month: 11,
+      day: 25,
+      dayOfText: <h1>🎄 Merry Christmas! 🎄</h1>,
+      untilText: <h1>until Christmas</h1>,
+    },
+  };
+
+  function callbackX(num) {
     let date = new Date();
     let day = date.getDate();
     let month = date.getMonth();
     let year = date.getFullYear();
 
-    if (month === 3 && day === 20) {
-      setModalText('4/20 😎');
+    if (month === xNumsInfo[num].month && day === xNumsInfo[num].day) {
+      setModalText(xNumsInfo[num].dayOfText);
+      return;
     }
 
     let goalDate;
-    if (month > 3 || day > 20) {
-      goalDate = new Date(year + 1, 3, 20).getTime();
+    if (month > xNumsInfo[num].month || day > xNumsInfo[num].day) {
+      goalDate = new Date(
+        year + 1,
+        xNumsInfo[num].month,
+        xNumsInfo[num].day
+      ).getTime();
     } else {
-      goalDate = new Date(year, 3, 20).getTime();
+      goalDate = new Date(
+        year,
+        xNumsInfo[num].month,
+        xNumsInfo[num].day
+      ).getTime();
     }
 
     let difference = goalDate - date.getTime();
 
-    let days = Math.floor(difference / (1000 * 60 * 60 * 24));
-    let remainder = difference - days * (1000 * 60 * 60 * 24);
+    let daysString, hoursString, minutesString, secondsString;
+    [daysString, hoursString, minutesString, secondsString] =
+      generateTimeStrings(difference);
 
-    if ((days === 0 && remainder) || (days === 1 && !remainder)) {
-      setModalText('1 day until 4/20');
-    } else {
-      if (!remainder) {
-        setModalText(days + ' days until 4/20');
-      }
-      setModalText(days + 1 + ' days until 4/20');
-    }
+    let countdownString = (
+      <div>
+        <h1>{daysString}</h1>
+        <h1>{hoursString}</h1>
+        <h1>{minutesString}</h1>
+        <h1>{secondsString}</h1>
+        {xNumsInfo[num].untilText}
+      </div>
+    );
+
+    setModalText(countdownString);
   }
 
   function toggleModal(open, num) {
@@ -131,16 +178,16 @@ function Header(props) {
     if (open) {
       setButtonNum(num);
     }
-    if (num === 420) {
-      open420flag = !open420flag;
-      if (!open420flag) {
-        clearInterval(interval420);
+    if (xNums.includes(num)) {
+      openXFlag = !openXFlag;
+      if (!openXFlag) {
+        clearInterval(intervalID);
       } else {
-        callback420();
-        setInterval420(setInterval(callback420, 1000));
+        callbackX(num);
+        setIntervalID(setInterval(() => callbackX(num), 1000)); // remember to use anonymous functions for callbacks with arguments!
       }
     } else {
-      setModalText(boxModalContent[num]);
+      setModalText(<h1>{boxModalContent[num]}</h1>);
     }
   }
 
@@ -192,9 +239,7 @@ function Header(props) {
         open={modalOpen}
         onClose={() => toggleModal(false, buttonNum)}
       >
-        <div className={classes.modalChild}>
-          <h1>{modalText}</h1>
-        </div>
+        <div className={classes.modalChild}>{modalText}</div>
       </Modal>
       <Drawer
         className={classes.drawer}
