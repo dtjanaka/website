@@ -112,8 +112,6 @@ function Header(props) {
     return [daysString, hoursString, minutesString, secondsString];
   }
 
-  const xNums = [420, 1225];
-
   const xNumsInfo = {
     420: {
       month: 3,
@@ -179,7 +177,7 @@ function Header(props) {
     if (open) {
       setButtonNum(num);
     }
-    if (xNums.includes(num)) {
+    if (xNumsInfo.hasOwnProperty(num)) {
       openXFlag = !openXFlag;
       if (!openXFlag) {
         clearInterval(intervalID);
