@@ -73,17 +73,16 @@ function Contact(props) {
         <hr />
         <br />
         <div className={classes.emailBox}>
-          <p>dylon</p><p>.</p><p>tjanaka</p><p>@</p><p>gmail</p><p>.</p><p>com</p>
+          <span>dylon</span><span>.</span><span>tjanaka</span><span>@</span><span>gmail</span><span>.</span><span>com</span>
           <IconButton edge='end' onClick={copyEmailToClipboard} color='primary'>
             <FileCopyIcon />
           </IconButton>
-          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+          <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
             <Alert onClose={handleClose} severity='success'>
               Email copied to clipboard!
             </Alert>
           </Snackbar>
         </div>
-        <br />
       </div>
     </>
   );
