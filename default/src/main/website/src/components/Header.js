@@ -95,6 +95,7 @@ function Header(props) {
     setDrawerOpen(open);
   };
 
+  // credit: https://www.w3schools.com/howto/howto_js_countdown.asp
   function generateTimeStrings(numMsecs) {
     let days = Math.floor(numMsecs / (1000 * 60 * 60 * 24));
     let hours = Math.floor(
