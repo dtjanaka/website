@@ -190,6 +190,7 @@ function Header(props) {
   }
 
   const location = useLocation().pathname.substring(1);
+  console.log(location);
 
   window.addEventListener('resize', function () {
     if (window.innerWidth < 600) {
