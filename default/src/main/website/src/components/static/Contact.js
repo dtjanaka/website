@@ -62,10 +62,6 @@ function Contact(props) {
     props.changeHeader(Title);
   });
 
-  window.onload = () => {
-    console.log('contact window onload');
-  };
-
   return (
     <>
       <Helmet>

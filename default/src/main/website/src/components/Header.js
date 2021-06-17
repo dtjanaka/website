@@ -189,8 +189,8 @@ function Header(props) {
     }
   }
 
+  // note 1: this is run multiple times when loading a page or switching between pages (via React Router)
   const location = useLocation().pathname.substring(1);
-  console.log(location);
 
   window.addEventListener('resize', function () {
     if (window.innerWidth < 600) {
@@ -222,8 +222,10 @@ function Header(props) {
   }
 
   // instead of window.addEventListener('load', ...), which fires twice
+  // note 2: this is run once per page load, meaning switching between pages via React Router does not rerun this
+  //         additionally, only one window.onload function is run if there are multiple defined
+  //         (e.g. multiple components have a window.onload function defined)
   window.onload = async () => {
-    console.log('header window onload');
     await updateLoginStatus();
     document.getElementById('loginLogoutButton').style.visibility = 'visible';
     setInterval(updateLoginStatusIfActive, 5000); // set this in here instead of by itself; would fire more than once every interval
