@@ -96,17 +96,17 @@ function Header(props) {
 
   // credit: https://www.w3schools.com/howto/howto_js_countdown.asp
   function generateTimeStrings(numMsecs) {
-    let days = Math.floor(numMsecs / (1000 * 60 * 60 * 24));
-    let hours = Math.floor(
+    const days = Math.floor(numMsecs / (1000 * 60 * 60 * 24));
+    const hours = Math.floor(
       (numMsecs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
     );
-    let minutes = Math.floor((numMsecs % (1000 * 60 * 60)) / (1000 * 60));
-    let seconds = Math.floor((numMsecs % (1000 * 60)) / 1000);
+    const minutes = Math.floor((numMsecs % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((numMsecs % (1000 * 60)) / 1000);
 
-    let daysString = days + (days === 1 ? ' day' : ' days');
-    let hoursString = hours + (hours === 1 ? ' hour' : ' hours');
-    let minutesString = minutes + (minutes === 1 ? ' minute' : ' minutes');
-    let secondsString = seconds + (seconds === 1 ? ' second' : ' seconds');
+    const daysString = days + (days === 1 ? ' day' : ' days');
+    const hoursString = hours + (hours === 1 ? ' hour' : ' hours');
+    const minutesString = minutes + (minutes === 1 ? ' minute' : ' minutes');
+    const secondsString = seconds + (seconds === 1 ? ' second' : ' seconds');
 
     return [daysString, hoursString, minutesString, secondsString];
   }
@@ -127,10 +127,10 @@ function Header(props) {
   };
 
   function callbackX(num) {
-    let date = new Date();
-    let day = date.getDate();
-    let month = date.getMonth();
-    let year = date.getFullYear();
+    const date = new Date();
+    const day = date.getDate();
+    const month = date.getMonth();
+    const year = date.getFullYear();
 
     if (month === xNumsInfo[num].month && day === xNumsInfo[num].day) {
       setModalText(xNumsInfo[num].dayOfText);
@@ -152,13 +152,13 @@ function Header(props) {
       ).getTime();
     }
 
-    let difference = goalDate - date.getTime();
+    const difference = goalDate - date.getTime();
 
     let daysString, hoursString, minutesString, secondsString;
     [daysString, hoursString, minutesString, secondsString] =
       generateTimeStrings(difference);
 
-    let countdownString = (
+    const countdownString = (
       <div>
         <h1>{daysString}</h1>
         <h1>{hoursString}</h1>
