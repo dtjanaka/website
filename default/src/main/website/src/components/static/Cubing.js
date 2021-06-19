@@ -73,7 +73,7 @@ function Cubing(props) {
             <td className='times'>10.09</td>
             <td className='times'>12.95</td>
             <td className='times'>13.79</td>
-            <td className='times'>14.95</td>
+            <td className='times'>14.78</td>
             <td className='times'>17.30</td>
           </tr>
         </table>
