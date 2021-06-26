@@ -60,11 +60,11 @@ function Home(props) {
             Click here to see some JS widgets!
           </button>
         </Link>
-        <Link to='/comments'>
+        {/*TODO(dtjanaka): <Link to='/comments'>
           <button id='comments' className='center miscButton blue even'>
             Click here to leave a comment!
           </button>
-        </Link>
+        </Link>*/}
         <br />
         <p>Or click the links below to learn more about me!</p>
         <br />

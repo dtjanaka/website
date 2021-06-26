@@ -10,17 +10,13 @@ const Title = 'Dylon Tjanaka | Widgets';
 function Widgets(props) {
   useEffect(() => {
     props.changeHeader(Title);
-  });
-
-  window.onload = function () {
-    // putting the onClick functions in the buttons directly does not work
     for (let i = 1; i <= 9; i++) {
       document.getElementById(i).onclick = () => {
         ticTacToe(i);
       };
     }
     inversePaint(grid, 256, 256);
-  };
+  });
 
   // prettier-ignore
   return (
@@ -64,7 +60,7 @@ function Widgets(props) {
           </div>
           <h2>HTML Canvas</h2>
           <br />
-          <canvas id='canvas1' width='256' height='256'> </canvas>
+          <canvas id='canvas1' width='1200' height='400'> </canvas>
           <br />
           <form id='brushOptions'>
             <label htmlFor='brushSize'>Brush size:</label>
