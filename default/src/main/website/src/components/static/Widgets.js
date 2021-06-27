@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import './Widgets.css';
 import { Helmet } from 'react-helmet';
-import { inversePaint } from './logic/invertWidget';
+//import { inversePaint } from './logic/invertWidget';
 import { ticTacToe, resetTicTacToe } from './logic/tictactoe';
-import { angular } from '../../images';
+//import { angular } from '../../images';
 
 const Title = 'Dylon Tjanaka | Widgets';
 
@@ -15,7 +15,7 @@ function Widgets(props) {
         ticTacToe(i);
       };
     }
-    inversePaint(angular, 256, 256);
+    //inversePaint(angular, 256, 256);
   });
 
   // prettier-ignore
@@ -58,7 +58,7 @@ function Widgets(props) {
             </button>
           <br />
           </div>
-          <h2>HTML Canvas</h2>
+          {/*<h2>HTML Canvas</h2>
           <br />
           <canvas id='canvas1' width='256' height='256'> </canvas>
           <br />
@@ -73,7 +73,7 @@ function Widgets(props) {
               defaultValue='5'
             />
           </form>
-          <br />
+          <br />*/}
       </div>
     </>
   );
