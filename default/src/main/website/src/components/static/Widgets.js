@@ -3,7 +3,7 @@ import './Widgets.css';
 import { Helmet } from 'react-helmet';
 import { inversePaint } from './logic/invertWidget';
 import { ticTacToe, resetTicTacToe } from './logic/tictactoe';
-import { grid } from '../../images';
+import { angular } from '../../images';
 
 const Title = 'Dylon Tjanaka | Widgets';
 
@@ -15,7 +15,7 @@ function Widgets(props) {
         ticTacToe(i);
       };
     }
-    inversePaint(grid, 256, 256);
+    inversePaint(angular, 256, 256);
   });
 
   // prettier-ignore
@@ -60,7 +60,7 @@ function Widgets(props) {
           </div>
           <h2>HTML Canvas</h2>
           <br />
-          <canvas id='canvas1' width='1200' height='400'> </canvas>
+          <canvas id='canvas1' width='256' height='256'> </canvas>
           <br />
           <form id='brushOptions'>
             <label htmlFor='brushSize'>Brush size:</label>

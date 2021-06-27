@@ -152,4 +152,24 @@ function squarePixels(x, y, s, w, h) {
   return toInvert;
 }
 
+function circlePixels(x, y, d, w, h) {
+  let toInvert = [];
+  let leftX = x - Math.floor(d / 2);
+  let topY = y - Math.floor(d / 2);
+  for (let i = leftX; i < leftX + d; i++) {
+    for (let j = topY; j < topY + d; j++) {
+      if (
+        i >= 0 &&
+        i < w &&
+        j >= 0 &&
+        j < h &&
+        Math.pow(i - x, 2) + Math.pow(j - y, 2) < Math.pow(d / 2, 2)
+      ) {
+        toInvert.push({ x: i, y: j });
+      }
+    }
+  }
+  return toInvert;
+}
+
 export { inversePaint };
