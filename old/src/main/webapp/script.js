@@ -202,7 +202,7 @@ async function submitComment() {
       method: 'POST',
       headers: {
         Accept:
-          'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+        'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
         'Accept-Language': 'en-US,en;q=0.5',
         'Content-Type': 'application/x-www-form-urlencoded',
         'Upgrade-Insecure-Requests': '1',
@@ -328,7 +328,7 @@ async function submitUsername() {
       method: 'POST',
       headers: {
         Accept:
-          'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+        'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
         'Accept-Language': 'en-US,en;q=0.5',
         'Content-Type': 'application/x-www-form-urlencoded',
         'Upgrade-Insecure-Requests': '1',
@@ -402,7 +402,7 @@ async function massDeleteHandler() {
       method: 'POST',
       headers: {
         Accept:
-          'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+        'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
         'Accept-Language': 'en-US,en;q=0.5',
         'Content-Type': 'application/x-www-form-urlencoded',
         'Upgrade-Insecure-Requests': '1',
@@ -433,7 +433,7 @@ async function singleDeleteHandler(trashButton) {
       method: 'POST',
       headers: {
         Accept:
-          'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+        'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
         'Accept-Language': 'en-US,en;q=0.5',
         'Content-Type': 'application/x-www-form-urlencoded',
         'Upgrade-Insecure-Requests': '1',
@@ -492,7 +492,7 @@ async function submitEditHandler(submitButton) {
     method: 'POST',
     headers: {
       Accept:
-        'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+      'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
       'Accept-Language': 'en-US,en;q=0.5',
       'Content-Type': 'application/x-www-form-urlencoded',
       'Upgrade-Insecure-Requests': '1',
